@@ -937,7 +937,7 @@
   min-width:0;
 }
 
-.elementor-152 .elementor-element.elementor-element-3ce914a .sp-wufoo-card{
+.elementor-152 .elementor-element.elementor-element-3ce914a .sp-contact-card{
   background:#fff;
   border:1px solid var(--sp-border);
   border-radius:14px;
@@ -946,7 +946,7 @@
   overflow:hidden;
 }
 
-.elementor-152 .elementor-element.elementor-element-3ce914a .sp-wufoo-card iframe{
+.elementor-152 .elementor-element.elementor-element-3ce914a .sp-contact-card iframe{
   width:100% !important;
   max-width:100% !important;
   border:none !important;
@@ -1046,7 +1046,7 @@
     font-size:12.5px;
   }
 
-  .elementor-152 .elementor-element.elementor-element-3ce914a .sp-wufoo-card{
+  .elementor-152 .elementor-element.elementor-element-3ce914a .sp-contact-card{
     padding:16px 12px 14px;
     border-radius:12px;
   }
@@ -1067,7 +1067,7 @@
     font-size:12px;
   }
 
-  .elementor-152 .elementor-element.elementor-element-3ce914a .sp-wufoo-card{
+  .elementor-152 .elementor-element.elementor-element-3ce914a .sp-contact-card{
     padding:14px 10px;
   }
 }/* End custom CSS */

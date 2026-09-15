@@ -85,10 +85,10 @@ function localizeHtml(html, assetMap) {
   output = output.replaceAll(`${ORIGIN}/`, '/');
   output = output.replaceAll('/manus-storage/solution-bottled-water-line_bfa500ce.png', `${PUBLIC_ASSET_URL}/2026/05/solution-bottled-water-line.webp`);
 
-  // Replace third-party Wufoo embed blocks with a contact page link.
+  // Replace legacy third-party form embeds with a static contact-page link.
   output = output.replace(
     /<div id="wufoo-[\s\S]*?static\.wufoo\.com[\s\S]*?<\/script>/gi,
-    `<div class="wufoo-placeholder"><h3>获取报价</h3><p>请通过联系我们页面发送您的项目需求。</p><a class="green-btn" href="/contact/?source=legacy-quote">联系我们</a></div>`,
+    `<div class="contact-placeholder"><h3>获取报价</h3><p>请通过联系我们页面查看电话、邮箱和 WhatsApp。</p><a class="green-btn" href="/contact/?source=legacy-quote">联系我们</a></div>`,
   );
 
   return output;

@@ -2,7 +2,6 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Template1 from '@/components/Template1.astro';
 import WaterBottlingTechnicalParameters from '@/components/WaterBottlingTechnicalParameters.astro';
-import { countryDialOptions, defaultCountryName } from '@/data/countryDialOptions';
 
 export const prerender = true;
 
@@ -647,51 +646,6 @@ const schema = {
       </a>
     </aside>
 
-    <div class="product-mobile-quote-modal" data-mobile-quote-modal hidden>
-      <div class="product-mobile-quote-backdrop" data-mobile-quote-close></div>
-      <div class="product-mobile-quote-panel" role="dialog" aria-modal="true" aria-labelledby="mobileQuoteTitle">
-        <button class="product-mobile-quote-close" type="button" aria-label="关闭报价表单" data-mobile-quote-close>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m6 6 12 12M18 6 6 18"></path>
-          </svg>
-        </button>
-        <form class="product-mobile-quote-form" data-lead-form novalidate>
-          <div class="lead-eyebrow">获取方案</div>
-          <h2 id="mobileQuoteTitle">获取6000BPH产线报价</h2>
-          <label>
-            <span>姓名 <b>*</b></span>
-            <input name="name" type="text" autocomplete="name" placeholder="您的姓名" required />
-            <em data-error-for="name">请输入您的姓名。</em>
-          </label>
-          <label>
-            <span>联系电话 <b>*</b></span>
-            <div class="product-hero-phone-control">
-              <select name="country" autocomplete="country-name" required aria-label="国家区号">
-                {countryDialOptions.map((item) => (
-                  <option value={item.country} data-dial={item.code} selected={item.country === defaultCountryName}>
-                    {item.flag} {item.code}
-                  </option>
-                ))}
-              </select>
-              <input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required />
-            </div>
-            <em data-error-for="whatsapp">请输入联系电话。</em>
-          </label>
-          <label>
-            <span>项目需求 <b>*</b></span>
-            <textarea name="message" placeholder="瓶型、目标产能、水源、电压、整线范围等" required></textarea>
-            <em data-error-for="message">请填写项目需求。</em>
-          </label>
-          <input type="hidden" name="product" value={productName} />
-          <input type="hidden" name="sourcePage" value="" />
-          <input type="hidden" name="sourceTitle" value="" />
-          <input type="hidden" name="source" value="mobile-sticky-quote" />
-          <input type="hidden" name="referrer" value="" />
-          <button class="lead-submit" type="submit">获取报价</button>
-          <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，可直接咨询。</p>
-        </form>
-      </div>
-    </div>
   </article>
 
   <script is:inline>
@@ -753,42 +707,6 @@ const schema = {
         window.addEventListener('scroll', updateSticky, { passive: true });
       }
 
-      const quoteModal = document.querySelector('[data-mobile-quote-modal]');
-      const quoteTrigger = document.querySelector('[data-mobile-quote-trigger]');
-      const isMobileQuote = () => window.matchMedia('(max-width: 921px)').matches;
-      const openQuoteModal = () => {
-        if (!quoteModal) return;
-        quoteModal.hidden = false;
-        document.body.classList.add('mobile-quote-open');
-        requestAnimationFrame(() => {
-          quoteModal.classList.add('is-open');
-          quoteModal.querySelector('input[name="name"]')?.focus();
-        });
-      };
-      const closeQuoteModal = () => {
-        if (!quoteModal) return;
-        quoteModal.classList.remove('is-open');
-        document.body.classList.remove('mobile-quote-open');
-        window.setTimeout(() => {
-          if (!quoteModal.classList.contains('is-open')) quoteModal.hidden = true;
-        }, 180);
-      };
-
-      quoteTrigger?.addEventListener('click', (event) => {
-        if (!isMobileQuote()) return;
-        event.preventDefault();
-        openQuoteModal();
-      });
-
-      quoteModal?.querySelectorAll('[data-mobile-quote-close]').forEach((item) => {
-        item.addEventListener('click', closeQuoteModal);
-      });
-
-      window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) {
-          closeQuoteModal();
-        }
-      });
     })();
   </script>
 </BaseLayout>

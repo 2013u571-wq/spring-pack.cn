@@ -1,6 +1,4 @@
 ---
-import { countryDialOptions, defaultCountryName } from '@/data/countryDialOptions';
-
 interface Props {
   item: {
     title: string;
@@ -11,40 +9,6 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const countryOptions = countryDialOptions
-  .map(
-    (country) =>
-      `<option value="${country.country}" data-dial="${country.code}"${country.country === defaultCountryName ? ' selected' : ''}>${country.flag} ${country.code}</option>`,
-  )
-  .join('');
-
-const commonProductForm = `
-<div class="lead-section legacy-product-form" id="quote"><div class="lead-card"><form class="lead-form" data-lead-form novalidate>
-  <div class="lead-grid">
-    <label><span>姓名 <b>*</b></span><input name="name" type="text" autocomplete="name" placeholder="请输入姓名" required><em data-error-for="name">请输入您的姓名。</em></label>
-    <label><span>邮箱 <b>*</b></span><input name="email" type="email" autocomplete="email" placeholder="name@company.com" required><em data-error-for="email">请输入有效邮箱。</em></label>
-    <label class="lead-phone-field"><span>WhatsApp <b>*</b></span><div class="lead-phone-control"><select name="country" autocomplete="country-name" required aria-label="国家区号">${countryOptions}</select><input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required></div><em data-error-for="whatsapp">请选择国家并填写 WhatsApp 号码。</em></label>
-    <label class="lead-message-field"><span>项目<br>需求</span><textarea name="message" placeholder="瓶型、饮料类型、目标产能、工厂状态等..."></textarea></label>
-  </div>
-  <label class="lead-attachment-field"><span>附件</span><input name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip"><em data-error-for="attachment">附件需为 PDF、Office、图片、WebP 或 ZIP，且不超过 8 MB。</em></label>
-  <input type="hidden" name="product" value="${item.title}"><input type="hidden" name="sourcePage" value=""><input type="hidden" name="sourceTitle" value=""><input type="hidden" name="source" value="legacy-product-form"><input type="hidden" name="referrer" value="">
-  <button class="lead-submit" type="submit">获取产线方案 <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M1 10L10 1M10 1H3M10 1V8"></path></svg></button>
-  <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，您的询盘信息会被妥善保密。</p>
-</form></div></div>`;
-
-const productsDirectQuoteForm = `
-<form class="lead-form products-direct-quote-form" data-lead-form novalidate>
-  <div class="lead-grid">
-    <label><span>姓名 <b>*</b></span><input name="name" type="text" autocomplete="name" placeholder="请输入姓名" required><em data-error-for="name">请输入您的姓名。</em></label>
-    <label><span>邮箱 <b>*</b></span><input name="email" type="email" autocomplete="email" placeholder="name@company.com" required><em data-error-for="email">请输入有效邮箱。</em></label>
-    <label class="lead-phone-field"><span>WhatsApp <b>*</b></span><div class="lead-phone-control"><select name="country" autocomplete="country-name" required aria-label="国家区号">${countryOptions}</select><input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required></div><em data-error-for="whatsapp">请选择国家并填写 WhatsApp 号码。</em></label>
-    <label class="lead-message-field"><span>项目<br>需求</span><textarea name="message" placeholder="瓶型、产品类型、目标产能、工厂状态等..."></textarea></label>
-  </div>
-  <input type="hidden" name="product" value="完整灌装与 包装设备"><input type="hidden" name="sourcePage" value=""><input type="hidden" name="sourceTitle" value=""><input type="hidden" name="source" value="products-direct-quote-form"><input type="hidden" name="referrer" value="">
-  <button class="lead-submit" type="submit">获取产线方案 <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M1 10L10 1M10 1H3M10 1V8"></path></svg></button>
-  <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，您的询盘信息会被妥善保密。</p>
-</form>`;
-
 const fillingMachineDirectContactCard = `
 <div class="sp-direct-contact-card">
   <p>联系我们</p>
@@ -355,14 +319,11 @@ const projectsHeroSection = `
 </section>`;
 
 let content = item.content
-  .replaceAll('https://hongdao.wufoo.com/forms/m1afeevd0fti8na/', `/contact/?source=legacy-quote&sourceTitle=${encodeURIComponent(item.title)}`)
-  .replaceAll('https://hongdao.wufoo.com/forms/m1afeevd0fti8na', `/contact/?source=legacy-quote&sourceTitle=${encodeURIComponent(item.title)}`)
   .replaceAll('href="#" class="sol-card sol-card-turnkey"', 'href="/solutions/" class="sol-card sol-card-turnkey"')
   .replaceAll(
     '<a class="product-card-link" href="#">',
     `<a class="product-card-link" href="/contact/?source=product-card&sourceTitle=${encodeURIComponent(item.title)}">`,
   )
-  .replaceAll('Wufoo 询价表单，后续阶段可接入 API 提交', '请通过联系我们页面发送项目需求')
   .replaceAll('Depalletizer · Automatic · Robot Palletizer', '卸垛机 · 自动化 · 机器人码垛机')
   .replaceAll('膜包 Shrink Wrapping · Case 包装', '膜包收缩包装 · 纸箱包装')
   .replaceAll('Conveyor · Air Dryer · Date Printer · Air Compressor', '输送带 · 空气干燥机 · 喷码机 · 空压机')
@@ -423,15 +384,15 @@ if (item.slug === 'products') {
       '        我们的工程团队会在24小时内评估并回复实用的产线配置和参考价格范围。',
     )
     .replace(/<div class="sp-direct-box">[\s\S]*?<\/div>\s*/, '')
-    .replace(/<div class="sp-wufoo-card">[\s\S]*?<\/div>\s*<\/div>/, `<div class="sp-wufoo-card">${fillingMachineDirectContactCard}</div></div>`)
+    .replace(/<div class="sp-contact-card">[\s\S]*?<\/div>\s*<\/div>/, `<div class="sp-contact-card">${fillingMachineDirectContactCard}</div></div>`)
     .replace(
       '</style>',
-      `.sp-wufoo-card{background:transparent!important;border:0!important;box-shadow:none!important}.sp-direct-contact-card{box-sizing:border-box;width:100%;padding:38px 42px;border:1px solid rgba(57,93,61,.16);border-radius:16px;background:#fff;box-shadow:0 18px 48px rgba(20,32,25,.08)}.sp-direct-contact-card p{margin:0 0 18px;color:#535b56;font-size:19px;font-weight:700;line-height:1.35}.sp-direct-contact-card a{display:block;text-decoration:none}.sp-direct-contact-email{margin-bottom:18px;color:#171b18!important;font-size:27px;font-weight:900;line-height:1.25;word-break:break-word}.sp-direct-contact-phone{color:#9a9f9c!important;font-size:23px;font-weight:800;line-height:1.3}.sp-direct-contact-card a:hover{color:#376f40!important}.sp-hero-content h1{font-size:50px!important;line-height:1.05!important}@media(max-width:780px){.sp-direct-contact-card{padding:28px 24px}.sp-direct-contact-email{font-size:22px}.sp-direct-contact-phone{font-size:19px}.sp-hero-content h1{font-size:50px!important}}</style>`,
+      `.sp-contact-card{background:transparent!important;border:0!important;box-shadow:none!important}.sp-direct-contact-card{box-sizing:border-box;width:100%;padding:38px 42px;border:1px solid rgba(57,93,61,.16);border-radius:16px;background:#fff;box-shadow:0 18px 48px rgba(20,32,25,.08)}.sp-direct-contact-card p{margin:0 0 18px;color:#535b56;font-size:19px;font-weight:700;line-height:1.35}.sp-direct-contact-card a{display:block;text-decoration:none}.sp-direct-contact-email{margin-bottom:18px;color:#171b18!important;font-size:27px;font-weight:900;line-height:1.25;word-break:break-word}.sp-direct-contact-phone{color:#9a9f9c!important;font-size:23px;font-weight:800;line-height:1.3}.sp-direct-contact-card a:hover{color:#376f40!important}.sp-hero-content h1{font-size:50px!important;line-height:1.05!important}@media(max-width:780px){.sp-direct-contact-card{padding:28px 24px}.sp-direct-contact-email{font-size:22px}.sp-direct-contact-phone{font-size:19px}.sp-hero-content h1{font-size:50px!important}}</style>`,
     );
 }
 
 if (item.slug?.startsWith('products/')) {
-  content = content.replace(/<div class="wufoo-placeholder">[\s\S]*?<\/div>/g, commonProductForm);
+  content = content.replace(/<div class="contact-placeholder">[\s\S]*?<\/div>/g, `<div class="lead-section legacy-product-contact" id="quote"><div class="lead-card">${fillingMachineDirectContactCard}</div></div>`);
 }
 
 if (item.slug === 'products/filling-machine') {

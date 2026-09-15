@@ -1,7 +1,0 @@
-version: 1
-installCommand: node --version
-startCommand: HOST=0.0.0.0 PORT=3000 node ./deploy/server.mjs
-port: 3000
-healthcheck:
-  path: /
-  timeoutSeconds: 120

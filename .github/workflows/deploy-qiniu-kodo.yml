@@ -1,0 +1,53 @@
+name: Deploy to Qiniu Kodo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: qiniu-kodo-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Verify static output
+        run: |
+          test -f dist/index.html
+          test -f dist/robots.txt
+          test -f dist/sitemap.xml
+          if grep -R "/api/contact\|data-lead-form\|wufoo" dist --include='*.html' --include='*.js'; then
+            echo "Unexpected form or Wufoo code found in static output."
+            exit 1
+          fi
+
+      - name: Upload dist to Qiniu Kodo
+        run: npm run deploy:qiniu
+        env:
+          QINIU_ACCESS_KEY: ${{ secrets.QINIU_ACCESS_KEY }}
+          QINIU_SECRET_KEY: ${{ secrets.QINIU_SECRET_KEY }}
+          QINIU_BUCKET: ${{ secrets.QINIU_BUCKET }}
+          QINIU_ZONE: ${{ secrets.QINIU_ZONE }}
+          QINIU_CDN_REFRESH_URLS: ${{ secrets.QINIU_CDN_REFRESH_URLS }}
+          QINIU_CDN_REFRESH_DIRS: ${{ secrets.QINIU_CDN_REFRESH_DIRS }}

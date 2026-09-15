@@ -1,8 +1,20 @@
 ---
-export const prerender = false;
-
-return Astro.redirect(
-  '/products/filling-machine/water-filling-machine/2000bph-water-filling-machine/',
-  301,
-);
+export const prerender = true;
+const target = '/products/filling-machine/water-filling-machine/2000bph-water-filling-machine/';
 ---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="原2000BPH水灌装机页面已迁移，正在跳转到新产品详情页。" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={`https://spring-pack.cn${target}`} />
+    <title>正在跳转至2000BPH水灌装机</title>
+    <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+  </head>
+  <body>
+    <p>正在跳转：<a href={target}>2000BPH水灌装机</a></p>
+  </body>
+</html>
