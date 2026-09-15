@@ -1,0 +1,633 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const assetBase = '/assets/first-machinery/solutions/index';
+const heroImage = '/assets/first-machinery/solutions/index/solutions-hero-banner.webp';
+const heroSection盖型 = 'min-height: clamp(260px, 27vw, 390px);';
+const heroInner盖型 = 'padding: clamp(42px, 6vw, 86px) 0 clamp(38px, 5.5vw, 80px);';
+const heroTitle盖型 = 'font-size: clamp(30px, 3.75vw, 54px); line-height: 1.04; max-width: 640px;';
+const heroImage盖型 = `background-image: url('${heroImage}'); opacity: 0.9; filter: saturate(0.92) brightness(0.9);`;
+const heroOverlay盖型 = 'background: linear-gradient(90deg, rgba(6, 16, 15, 0.82) 0%, rgba(6, 16, 15, 0.64) 38%, rgba(6, 16, 15, 0.32) 66%, rgba(6, 16, 15, 0.08) 100%), radial-gradient(circle at 86% 22%, rgba(91, 187, 103, 0.14), transparent 30%);';
+
+const solutionCards = [
+  {
+    number: '01',
+    title: '200ML–2L 小瓶装水灌装生产线',
+    description: 'PET小瓶装水项目',
+    image: `${assetBase}/01-small-bottle-water.webp`,
+    href: '/solutions/200ml-2l-small-bottle-water-bottling-line/',
+  },
+  {
+    number: '02',
+    title: '3L–10L 大瓶装水灌装生产线',
+    description: '大瓶装水生产项目',
+    image: `${assetBase}/02-big-bottle-water.webp`,
+    href: '/solutions/3l-10l-big-bottle-water-filling-plant/',
+  },
+  {
+    number: '03',
+    title: '5加仑桶装水生产线',
+    description: '3–5加仑可回收桶装水',
+    image: `${assetBase}/03-five-gallon-water.webp`,
+    href: '/solutions/5-gallon-water-production-line/',
+  },
+  {
+    number: '04',
+    title: '果汁生产线项目',
+    description: '果汁、茶饮及热灌装饮料',
+    image: `${assetBase}/04-juice-production.webp`,
+    href: '/solutions/juice-production-line-project/',
+  },
+  {
+    number: '05',
+    title: '塑料瓶碳酸饮料生产线',
+    description: 'PET瓶碳酸软饮料及汽水',
+    image: `${assetBase}/05-plastic-bottle-csd.webp`,
+    href: '/solutions/plastic-bottled-carbonated-drink-production-line/',
+  },
+  {
+    number: '06',
+    title: '玻璃瓶碳酸饮料/啤酒项目',
+    description: '玻璃瓶啤酒及气泡饮料',
+    image: `${assetBase}/06-glass-bottle-beer.webp`,
+    href: '/solutions/glass-bottle-carbonated-beer-project/',
+  },
+  {
+    number: '07',
+    title: '易拉罐碳酸饮料灌装项目',
+    description: '碳酸饮料易拉罐灌装',
+    image: `${assetBase}/07-canned-carbonated-drink.webp`,
+    href: '/solutions/canned-carbonated-drink-filling-project/',
+  },
+  {
+    number: '08',
+    title: '瓶坯/瓶盖/标签/包装膜',
+    description: '包装材料及生产线配套支持',
+    image: `${assetBase}/08-packaging-materials.webp`,
+    href: '/solutions/preform-cap-label-packaging-film/',
+  },
+];
+
+const processSteps = [
+  {
+    number: '01',
+    title: '需求分析',
+    icon: '<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M12 7v5l3 2"></path>',
+  },
+  {
+    number: '02',
+    title: '方案设计',
+    icon: '<path d="M4 7h16"></path><path d="M7 4v6"></path><path d="M17 4v6"></path><path d="M6 14h12l-2 6H8l-2-6Z"></path>',
+  },
+  {
+    number: '03',
+    title: '工程制造',
+    icon: '<path d="M14.7 6.3a1 1 0 0 0-1.4 0l-7 7a1 1 0 0 0 0 1.4l3 3a1 1 0 0 0 1.4 0l7-7a1 1 0 0 0 0-1.4l-3-3Z"></path><path d="m9 15 6-6"></path><path d="M5 20h14"></path>',
+  },
+  {
+    number: '04',
+    title: '测试与质量控制',
+    icon: '<path d="M20 7 9 18l-5-5"></path><path d="M4 7h8"></path><path d="M4 11h5"></path>',
+  },
+  {
+    number: '05',
+    title: '安装调试',
+    icon: '<path d="M12 3v18"></path><path d="M6 9h12"></path><path d="M8 21h8"></path><path d="M7 3h10"></path>',
+  },
+  {
+    number: '06',
+    title: '售后支持',
+    icon: '<path d="M4 12a8 8 0 0 1 16 0"></path><path d="M5 13h3v5H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1Z"></path><path d="M16 13h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3v-5Z"></path><path d="M12 19h2"></path>',
+  },
+];
+---
+
+<BaseLayout
+  title="解决方案 | 中科美利（苏州）包装设备有限公司"
+  description="完整饮料生产解决方案，覆盖瓶装水、大瓶水、5加仑桶装水、果汁、碳酸饮料、易拉罐和包装材料项目。"
+>
+  <article class="solutions-page">
+    <section class="solutions-hero" aria-labelledby="solutions-hero-title" style={heroSection盖型}>
+      <div class="solutions-hero__image" style={heroImage盖型}></div>
+      <div class="solutions-hero__overlay" style={heroOverlay盖型}></div>
+      <div class="solutions-container solutions-hero__inner" style={heroInner盖型}>
+        <h1 id="solutions-hero-title" style={heroTitle盖型}>
+          完整饮料<br />
+          生产方案
+        </h1>
+      </div>
+    </section>
+
+    <section class="solutions-lines" aria-labelledby="solutions-lines-title">
+      <div class="solutions-container">
+        <div class="solutions-section-head">
+          <p class="solutions-eyebrow solutions-eyebrow--light">8类交钥匙方案</p>
+          <h2 id="solutions-lines-title">交钥匙生产线</h2>
+          <p>完整饮料生产项目</p>
+        </div>
+
+        <div class="solutions-card-grid">
+          {solutionCards.map((card) => (
+            <a class="solution-card" href={card.href} aria-label={`查看${card.title}详情`}>
+              <span class="solution-card__number">{card.number}</span>
+              <span class="solution-card__rule"></span>
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <span class="solution-card__image">
+                <img src={card.image} alt={card.title} loading="lazy" />
+              </span>
+              <span class="solution-card__link">查看详情 <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions-process" aria-labelledby="solutions-process-title">
+      <div class="solutions-container">
+        <h2 id="solutions-process-title">交钥匙项目流程</h2>
+        <div class="process-grid">
+          {processSteps.map((step) => (
+            <div class="process-step">
+              <span class="process-step__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" set:html={step.icon}></svg>
+              </span>
+              <span class="process-step__number">{step.number}</span>
+              <h3>{step.title}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="solutions-cta">
+      <div class="solutions-container solutions-cta__inner">
+        <div>
+          <p class="solutions-eyebrow">需要定制方案？</p>
+          <h2>
+            告诉我们您的需求<br />
+            我们为您配置合适方案
+          </h2>
+          <p>获取适合您饮料生产线的定制方案。</p>
+        </div>
+        <a class="solutions-cta__button" href="/contact/?source=solutions-page-cta">获取定制方案</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .solutions-page {
+    background: #f5f7f2;
+    color: #0c1712;
+    font-family: 'Manrope', Arial, sans-serif;
+  }
+
+  .solutions-container {
+    width: min(1250px, calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .solutions-eyebrow {
+    margin: 0 0 18px;
+    color: #71c783;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .solutions-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 42px;
+    height: 2px;
+    margin: 0 18px 5px 0;
+    background: currentColor;
+  }
+
+  .solutions-hero {
+    position: relative;
+    min-height: 390px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #06100f;
+  }
+
+  .solutions-hero__image,
+  .solutions-hero__overlay {
+    position: absolute;
+    inset: 0;
+  }
+
+  .solutions-hero__image {
+    background-position: center right;
+    background-size: cover;
+    opacity: 0.9;
+    filter: saturate(0.92) brightness(0.9);
+  }
+
+  .solutions-hero__overlay {
+    background:
+      linear-gradient(90deg, rgba(6, 16, 15, 0.82) 0%, rgba(6, 16, 15, 0.64) 38%, rgba(6, 16, 15, 0.32) 66%, rgba(6, 16, 15, 0.08) 100%),
+      radial-gradient(circle at 86% 22%, rgba(91, 187, 103, 0.14), transparent 30%);
+  }
+
+  .solutions-hero__inner {
+    position: relative;
+    z-index: 1;
+    padding: 86px 0 80px;
+    color: #fff;
+  }
+
+  .solutions-hero h1 {
+    max-width: 640px;
+    margin: 0;
+    color: #fff;
+    font-size: 54px;
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .solutions-hero h1 span {
+    color: #71c783;
+  }
+
+  .solutions-hero__text {
+    max-width: 520px;
+    margin: 26px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 17px;
+    line-height: 1.72;
+  }
+
+  .solutions-lines {
+    padding: 72px 0 64px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(38, 111, 68, 0.08), transparent 34%),
+      linear-gradient(180deg, #fbfcfa 0%, #f4f7f1 100%);
+  }
+
+  .solutions-section-head {
+    margin-bottom: 30px;
+  }
+
+  .solutions-eyebrow--light {
+    color: #2f8b4b;
+  }
+
+  .solutions-section-head h2,
+  .solutions-process h2 {
+    margin: 0;
+    color: #10211a;
+    font-size: clamp(36px, 4.2vw, 52px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .solutions-section-head > p:last-child {
+    margin: 12px 0 0;
+    color: #5c665f;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  .solutions-card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .solution-card {
+    min-height: 394px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px 18px;
+    color: #101b16;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid rgba(55, 104, 63, 0.18);
+    border-radius: 8px;
+    box-shadow: 0 18px 42px rgba(13, 31, 24, 0.08);
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .solution-card:hover,
+  .solution-card:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgba(45, 139, 74, 0.5);
+    box-shadow: 0 24px 58px rgba(13, 31, 24, 0.13);
+  }
+
+  .solution-card__number {
+    color: #2f8b4b;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .solution-card__rule {
+    width: 26px;
+    height: 2px;
+    margin: 12px 0 16px;
+    background: #2f8b4b;
+  }
+
+  .solution-card h3 {
+    min-height: 72px;
+    margin: 0 0 10px;
+    color: #10211a;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: 0;
+  }
+
+  .solution-card p {
+    min-height: 44px;
+    margin: 0;
+    color: #51615a;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .solution-card__image {
+    min-height: 150px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 14px;
+  }
+
+  .solution-card__image img {
+    width: 100%;
+    max-height: 165px;
+    object-fit: contain;
+  }
+
+  .solution-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: #1f7539;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .solutions-process {
+    padding: 52px 0 64px;
+    background: #fff;
+    border-top: 1px solid #e3e9e0;
+  }
+
+  .solutions-process h2 {
+    margin-bottom: 36px;
+    font-size: clamp(28px, 3vw, 40px);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .process-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: calc(50% + 44px);
+    width: calc(100% - 88px);
+    border-top: 2px dashed rgba(47, 139, 75, 0.45);
+  }
+
+  .process-step__icon {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #2f8b4b;
+    border-radius: 50%;
+    color: #2f8b4b;
+    background: #fff;
+  }
+
+  .process-step__icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .process-step__number {
+    margin: 14px 0 6px;
+    color: #5f6a64;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .process-step h3 {
+    max-width: 150px;
+    margin: 0;
+    color: #15231d;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .solutions-cta {
+    padding: 54px 0;
+    color: #fff;
+    background:
+      radial-gradient(circle at 72% 18%, rgba(113, 199, 131, 0.2), transparent 28%),
+      linear-gradient(135deg, #113f2d 0%, #07130f 100%);
+  }
+
+  .solutions-cta__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .solutions-cta h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(30px, 3.7vw, 48px);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: 0;
+  }
+
+  .solutions-cta p:last-child {
+    margin: 16px 0 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 17px;
+  }
+
+  .solutions-cta__button {
+    display: inline-flex;
+    min-height: 58px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 34px;
+    color: #fff;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0;
+    border: 1px solid rgba(113, 199, 131, 0.74);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    transition: background 180ms ease, border-color 180ms ease;
+  }
+
+  .solutions-cta__button:hover,
+  .solutions-cta__button:focus-visible {
+    border-color: #71c783;
+    background: #2f8b4b;
+  }
+
+  @media (max-width: 1100px) {
+    .solutions-card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 34px;
+    }
+
+    .process-step:nth-child(3)::after,
+    .process-step:last-child::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .solutions-container {
+      width: min(100% - 28px, 1250px);
+    }
+
+    .solutions-hero {
+      min-height: 260px;
+    }
+
+    .solutions-hero__image {
+      background-position: 62% center;
+      opacity: 0.72;
+    }
+
+    .solutions-hero__overlay {
+      background: linear-gradient(90deg, rgba(6, 16, 15, 0.84) 0%, rgba(6, 16, 15, 0.66) 100%);
+    }
+
+    .solutions-hero__inner {
+      padding: 42px 0 38px;
+    }
+
+    .solutions-hero h1 {
+      font-size: 36px;
+      line-height: 1.04;
+    }
+
+    .solutions-hero__text {
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    .solutions-lines {
+      padding: 54px 0 46px;
+    }
+
+    .solutions-card-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .solution-card {
+      min-height: 360px;
+    }
+
+    .solution-card h3,
+    .solution-card p {
+      min-height: 0;
+    }
+
+    .solutions-process {
+      padding: 44px 0 50px;
+    }
+
+    .process-grid {
+      position: relative;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      bottom: 30px;
+      left: 29px;
+      border-left: 2px dashed rgba(47, 139, 75, 0.42);
+    }
+
+    .process-step {
+      min-height: 84px;
+      align-items: flex-start;
+      padding-left: 82px;
+      text-align: left;
+    }
+
+    .process-step:not(:last-child)::after {
+      display: none;
+    }
+
+    .process-step__icon {
+      position: absolute;
+      left: 0;
+      width: 58px;
+      height: 58px;
+    }
+
+    .process-step__number {
+      margin: 4px 0 6px;
+    }
+
+    .process-step h3 {
+      max-width: none;
+      font-size: 16px;
+    }
+
+    .solutions-cta__inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .solutions-cta__button {
+      width: 100%;
+    }
+  }
+</style>

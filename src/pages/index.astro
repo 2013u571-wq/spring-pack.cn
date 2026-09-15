@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MigratedContent from '@/components/MigratedContent.astro';
+import site from '@/data/site.json';
+
+export const prerender = true;
+
+const home = site.pages.find((page) => page.slug === '');
+---
+
+<BaseLayout title="中科美利（苏州）包装设备有限公司" description="提供饮料生产线、灌装机、包装系统及整厂工程方案。专注饮用水、果汁、碳酸饮料、食用油和酱料灌装设备。" pageId={home?.id}>
+  {home && <MigratedContent item={home} />}
+</BaseLayout>

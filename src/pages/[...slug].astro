@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import MigratedContent from '@/components/MigratedContent.astro';
+import site from '@/data/site.json';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const explicitPageSlugs = new Set([
+    'contact',
+    'factory',
+    'solutions',
+    'products/packaging-machine',
+    'products/preform-and-bottle-blowing-machine',
+    'products/production-material',
+    'products/water-treatment-system',
+    'products/filling-machine/5-gallon-water-line',
+    'products/filling-machine/carbonated-drink-filling-machine',
+    'products/filling-machine/juice-tea-filling-machine',
+    'products/filling-machine/water-filling-machine',
+  ]);
+
+  const pages = site.pages
+    .filter((page) => page.slug && !explicitPageSlugs.has(page.slug))
+    .map((page) => ({ params: { slug: page.slug }, props: { item: page } }));
+  const posts = site.posts
+    .filter((post) => post.slug !== '2000bph-water-filling-machine')
+    .map((post) => ({ params: { slug: post.slug }, props: { item: post } }));
+  return [...pages, ...posts];
+}
+
+const { item } = Astro.props;
+const title = `${item.title} | 中科美利（苏州）包装设备有限公司`;
+const rawExcerpt = item.excerpt?.replace(/\s*\[&hellip;\]\s*$/i, '').trim() ?? '';
+const description = rawExcerpt && !/^首页\s*\//i.test(rawExcerpt)
+  ? rawExcerpt
+  : `${item.title}产品与解决方案介绍，涵盖适用物料、设备配置、工艺流程、产能选择和项目规划。中科美利可结合瓶型与工厂条件提供定制方案。`;
+---
+
+<BaseLayout title={title} description={description} dateModified={item.modified} pageId={item.id}>
+  <MigratedContent item={item} />
+</BaseLayout>

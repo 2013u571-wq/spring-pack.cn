@@ -1,0 +1,119 @@
+---
+const currentYear = new Date().getFullYear();
+
+const equipmentLinks = [
+  ['水处理系统', '/products/water-treatment-system/'],
+  ['吹瓶机', '/products/preform-and-bottle-blowing-machine/'],
+  ['PET 灌装机', '/products/filling-machine/'],
+  ['贴标机', '/products/labeling-machine/'],
+  ['包装机', '/products/packaging-machine/'],
+  ['包装材料', '/products/production-material/'],
+];
+
+const fillingLinks = [
+  ['水灌装机', '/products/filling-machine/water-filling-machine/'],
+  ['果汁茶饮灌装机', '/products/filling-machine/juice-tea-filling-machine/'],
+  ['碳酸饮料灌装机', '/products/filling-machine/carbonated-drink-filling-machine/'],
+  ['5加仑桶装水生产线', '/products/filling-machine/5-gallon-water-line/'],
+];
+
+---
+
+<footer class="site-footer" aria-labelledby="site-footer-title">
+  <h2 id="site-footer-title" class="site-footer-sr">Spring Pack 页脚导航</h2>
+  <svg
+    class="site-footer-top-line"
+    viewBox="0 0 1000 20"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M0 2 H390 L405 14 H595 L610 2 H1000"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1"
+      vector-effect="non-scaling-stroke"
+    />
+  </svg>
+
+  <div class="site-footer-inner">
+    <section class="site-footer-brand" aria-label="公司信息">
+      <a class="site-footer-logo" href="/" aria-label="Spring Pack 首页">
+        <img src="/assets/first-machinery/2026/05/spring-pack-footer-logo.webp" alt="Spring Pack" loading="lazy" />
+      </a>
+      <p>提供从水处理、灌装到贴标、包装、码垛的饮料工厂整线系统。</p>
+      <span class="site-footer-brand-line" aria-hidden="true"></span>
+
+      <address class="site-footer-contact">
+        <a href="mailto:manager@spring-pack.com" aria-label="邮箱 manager at spring-pack dot com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+          <span>manager@spring-pack.com</span>
+        </a>
+        <a href="tel:18962223666" aria-label="拨打 18962223666">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.8 9 3l2.2 5-1.5 1.1a12 12 0 0 0 5.2 5.2L16 12.8l5 2.2-.8 2.4c-.4 1.1-1.4 1.8-2.6 1.7C10.4 18.7 5.3 13.6 4.9 6.4c-.1-1.2.6-2.2 1.7-2.6Z"></path></svg>
+          <span>18962223666</span>
+        </a>
+        <a href="https://maps.google.com/?q=NO.179%20Lefeng%20Road%2C%20Leyu%20Town%2C%20张家港%20City%2C%20Jiangsu%20Province%2C%20China" target="_blank" rel="noopener noreferrer" aria-label="查看公司地址地图">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.7 7-12A7 7 0 0 0 5 9c0 6.3 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+          <span>江苏省张家港市乐余镇乐丰路179号</span>
+        </a>
+      </address>
+    </section>
+
+    <nav class="site-footer-nav site-footer-equipment" aria-label="设备分类链接">
+      <details open>
+        <summary><span><b>设备分类</b></span></summary>
+        <ul>
+          {equipmentLinks.map(([label, href]) => (
+            <li><a href={href}><span class="site-footer-diamond" aria-hidden="true"></span>{label}</a></li>
+          ))}
+        </ul>
+      </details>
+    </nav>
+
+    <nav class="site-footer-nav site-footer-filling" aria-label="灌装机链接">
+      <details open>
+        <summary><span><b>灌装机</b></span></summary>
+        <ul>
+          {fillingLinks.map(([label, href]) => (
+            <li><a href={href}><span class="site-footer-diamond" aria-hidden="true"></span>{label}</a></li>
+          ))}
+        </ul>
+      </details>
+    </nav>
+
+    <aside class="site-footer-cta" aria-label="页脚报价咨询">
+      <div class="site-footer-cta-watermark" aria-hidden="true"></div>
+      <svg class="site-footer-cta-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M12 6h17l7 7v29H12z"></path><path d="M29 6v8h7"></path><path d="M18 22h11M18 29h9"></path><circle cx="34" cy="34" r="6"></circle><path d="m31.5 34 1.8 1.8 3.2-3.8"></path>
+      </svg>
+      <h3>准备建设您的<br />饮料生产线？</h3>
+      <p>告诉我们您的需求，我们会尽快回复。</p>
+      <a class="site-footer-cta-button" href="/contact/?source=footer-cta" aria-label="获取饮料生产线报价">
+        <span>获取报价</span><span aria-hidden="true">→</span>
+      </a>
+    </aside>
+  </div>
+
+  <div class="site-footer-bottom">
+    <p>© {currentYear} 中科美利（苏州）包装设备有限公司 版权所有。</p>
+  </div>
+</footer>
+
+<script>
+  const syncFooterAccordion = () => {
+    const footer = document.querySelector('.site-footer');
+    if (!footer) return;
+    const details = [...footer.querySelectorAll('details')];
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    details.forEach((item, index) => {
+      if (!isMobile) item.open = true;
+      if (isMobile && !footer.hasAttribute('data-mobile-accordion-ready')) item.open = index === 0;
+    });
+    if (isMobile) footer.setAttribute('data-mobile-accordion-ready', 'true');
+    else footer.removeAttribute('data-mobile-accordion-ready');
+  };
+
+  syncFooterAccordion();
+  window.addEventListener('resize', syncFooterAccordion, { passive: true });
+</script>

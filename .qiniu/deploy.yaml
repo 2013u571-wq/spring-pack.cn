@@ -1,0 +1,7 @@
+version: 1
+installCommand: npm ci && npm run build
+startCommand: HOST=0.0.0.0 PORT=3000 npm run start
+port: 3000
+healthcheck:
+  path: /
+  timeoutSeconds: 120

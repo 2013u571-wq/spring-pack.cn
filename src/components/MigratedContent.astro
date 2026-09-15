@@ -1,0 +1,562 @@
+---
+import { countryDialOptions, defaultCountryName } from '@/data/countryDialOptions';
+
+interface Props {
+  item: {
+    title: string;
+    content: string;
+    textLength: number;
+    slug?: string;
+  };
+}
+
+const { item } = Astro.props;
+const countryOptions = countryDialOptions
+  .map(
+    (country) =>
+      `<option value="${country.country}" data-dial="${country.code}"${country.country === defaultCountryName ? ' selected' : ''}>${country.flag} ${country.code}</option>`,
+  )
+  .join('');
+
+const commonProductForm = `
+<div class="lead-section legacy-product-form" id="quote"><div class="lead-card"><form class="lead-form" data-lead-form novalidate>
+  <div class="lead-grid">
+    <label><span>姓名 <b>*</b></span><input name="name" type="text" autocomplete="name" placeholder="请输入姓名" required><em data-error-for="name">请输入您的姓名。</em></label>
+    <label><span>邮箱 <b>*</b></span><input name="email" type="email" autocomplete="email" placeholder="name@company.com" required><em data-error-for="email">请输入有效邮箱。</em></label>
+    <label class="lead-phone-field"><span>WhatsApp <b>*</b></span><div class="lead-phone-control"><select name="country" autocomplete="country-name" required aria-label="国家区号">${countryOptions}</select><input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required></div><em data-error-for="whatsapp">请选择国家并填写 WhatsApp 号码。</em></label>
+    <label class="lead-message-field"><span>项目<br>需求</span><textarea name="message" placeholder="瓶型、饮料类型、目标产能、工厂状态等..."></textarea></label>
+  </div>
+  <label class="lead-attachment-field"><span>附件</span><input name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.webp,.zip"><em data-error-for="attachment">附件需为 PDF、Office、图片、WebP 或 ZIP，且不超过 8 MB。</em></label>
+  <input type="hidden" name="product" value="${item.title}"><input type="hidden" name="sourcePage" value=""><input type="hidden" name="sourceTitle" value=""><input type="hidden" name="source" value="legacy-product-form"><input type="hidden" name="referrer" value="">
+  <button class="lead-submit" type="submit">获取产线方案 <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M1 10L10 1M10 1H3M10 1V8"></path></svg></button>
+  <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，您的询盘信息会被妥善保密。</p>
+</form></div></div>`;
+
+const productsDirectQuoteForm = `
+<form class="lead-form products-direct-quote-form" data-lead-form novalidate>
+  <div class="lead-grid">
+    <label><span>姓名 <b>*</b></span><input name="name" type="text" autocomplete="name" placeholder="请输入姓名" required><em data-error-for="name">请输入您的姓名。</em></label>
+    <label><span>邮箱 <b>*</b></span><input name="email" type="email" autocomplete="email" placeholder="name@company.com" required><em data-error-for="email">请输入有效邮箱。</em></label>
+    <label class="lead-phone-field"><span>WhatsApp <b>*</b></span><div class="lead-phone-control"><select name="country" autocomplete="country-name" required aria-label="国家区号">${countryOptions}</select><input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required></div><em data-error-for="whatsapp">请选择国家并填写 WhatsApp 号码。</em></label>
+    <label class="lead-message-field"><span>项目<br>需求</span><textarea name="message" placeholder="瓶型、产品类型、目标产能、工厂状态等..."></textarea></label>
+  </div>
+  <input type="hidden" name="product" value="完整灌装与 包装设备"><input type="hidden" name="sourcePage" value=""><input type="hidden" name="sourceTitle" value=""><input type="hidden" name="source" value="products-direct-quote-form"><input type="hidden" name="referrer" value="">
+  <button class="lead-submit" type="submit">获取产线方案 <svg viewBox="0 0 11 11" aria-hidden="true"><path d="M1 10L10 1M10 1H3M10 1V8"></path></svg></button>
+  <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，您的询盘信息会被妥善保密。</p>
+</form>`;
+
+const fillingMachineDirectContactCard = `
+<div class="sp-direct-contact-card">
+  <p>联系我们</p>
+  <a class="sp-direct-contact-email" href="mailto:manager@spring-pack.com">manager@spring-pack.com</a>
+  <a class="sp-direct-contact-phone" href="tel:18962223666">电话：18962223666</a>
+</div>`;
+
+const fillingMachineSupportSection = `
+<section class="sp-support">
+  <div class="sp-support-container">
+    <div class="sp-support-header">
+      <span>为什么选择我们</span>
+      <h2>我们如何支持您的项目</h2>
+      <p>从产能规划到售后服务，我们的工程团队会跟进生产线投资的每个阶段。</p>
+    </div>
+
+    <div class="sp-support-grid">
+      <article class="sp-support-card">
+        <div class="sp-support-icon">⚙️</div>
+        <h3>定制产线设计</h3>
+        <p>根据瓶型尺寸、盖型、目标产能、车间面积和预算配置产线，避免套用不适合现场的标准方案。</p>
+      </article>
+
+      <article class="sp-support-card">
+        <div class="sp-support-icon">🏭</div>
+        <h3>工厂验厂</h3>
+        <p>客户可到张家港工厂验厂，查看设备、试运行和发货前质量控制流程。</p>
+      </article>
+
+      <article class="sp-support-card">
+        <div class="sp-support-icon">🚢</div>
+        <h3>交钥匙安装</h3>
+        <p>工程师可到现场进行安装、调试和操作培训，帮助产线按计划启动生产。</p>
+      </article>
+
+      <article class="sp-support-card">
+        <div class="sp-support-icon">🛠️</div>
+        <h3>长期售后服务</h3>
+        <p>提供备件支持、远程诊断和现场服务，保障生产线长期稳定运行。</p>
+      </article>
+    </div>
+  </div>
+</section>`;
+
+const labelingMachine选项 = `
+<section class="labeling-options" id="capacity">
+  <div class="labeling-options__head"><span>贴标机解决方案</span><h2>贴标机选项</h2><p>运行可靠、贴标准确，适用于现代化生产线。</p></div>
+  <div class="labeling-options__list">
+    <article class="labeling-options__card"><div class="labeling-options__image" data-image-carousel><img src="/assets/first-machinery/products/labeling-machine/hot-melt/hot-melt-labeling-machine.webp" alt="热熔胶贴标机" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/hot-melt/hot-melt-labeling-machine-detail-1.webp" alt="热熔胶贴标机送标机构细节" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/hot-melt/hot-melt-labeling-machine-detail-2.webp" alt="热熔胶贴标机滚标机构细节" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/hot-melt/hot-melt-labeling-machine-detail-3.webp" alt="热熔胶贴标机生产线实拍" loading="lazy"><div class="labeling-options__arrows"><button type="button" data-carousel-prev aria-label="上一张图片">←</button><button type="button" data-carousel-next aria-label="下一张图片">→</button></div></div><div class="labeling-options__content"><b>01</b><h3>热熔胶贴标机</h3><p>热熔胶贴标机适用于瓶体和容器的纸标、膜标高速贴标，可自动完成进瓶、涂胶、贴标和出瓶。设备运行稳定、粘贴牢固、贴标效果整洁，适用于食品、饮料、日化和医药行业的圆形、方形及规则容器。</p><a href="/contact/">立即获取报价 <span>→</span></a></div></article>
+    <article class="labeling-options__card labeling-options__card--reverse"><div class="labeling-options__image" data-image-carousel><img src="/assets/first-machinery/products/labeling-machine/shrink-sleeve/labeling-cover.webp" alt="全自动套标机" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/shrink-sleeve/shrink-sleeve-labeling-machine-detail-1.webp" alt="全自动套标机设备细节" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/shrink-sleeve/shrink-sleeve-labeling-machine-detail-2.webp" alt="套标机标签输送机构" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/shrink-sleeve/shrink-sleeve-labeling-machine-detail-3.webp" alt="套标机生产线应用" loading="lazy"><div class="labeling-options__arrows"><button type="button" data-carousel-prev aria-label="上一张图片">←</button><button type="button" data-carousel-next aria-label="下一张图片">→</button></div></div><div class="labeling-options__content"><b>02</b><h3>全自动套标机</h3><p>全自动套标机集进瓶、切标、套标、热收缩和出瓶于一体，采用光电定位和 PLC 控制，套标位置准确、收缩平整，不易起皱或产生气泡，适用于圆瓶、方瓶、扁瓶、罐和广口瓶等包装。</p><a href="/contact/">立即获取报价 <span>→</span></a></div></article>
+    <article class="labeling-options__card"><div class="labeling-options__image" data-image-carousel><img src="/assets/first-machinery/products/labeling-machine/self-adhesive/self-adhesive-labeling-machine.webp" alt="不干胶贴标机" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/self-adhesive/self-adhesive-labeling-machine-detail-1.webp" alt="不干胶贴标机输送机构" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/self-adhesive/self-adhesive-labeling-machine-detail-2.webp" alt="不干胶贴标机操作细节" loading="lazy"><img src="/assets/first-machinery/products/labeling-machine/self-adhesive/self-adhesive-labeling-machine-detail-3.webp" alt="不干胶贴标机生产应用" loading="lazy"><div class="labeling-options__arrows"><button type="button" data-carousel-prev aria-label="上一张图片">←</button><button type="button" data-carousel-next aria-label="下一张图片">→</button></div></div><div class="labeling-options__content"><b>03</b><h3>不干胶贴标机</h3><p>自动不干胶贴标机适用于圆形、扁形、方形容器的连续精密贴标，可自动送标、定位、贴标和压标，贴标精度高、运行稳定。可调结构适配多种产品尺寸，适用于正背标、环绕标、顶标和底标等应用。</p><a href="/contact/">立即获取报价 <span>→</span></a></div></article>
+  </div>
+</section>
+<style>
+  .labeling-options{padding:clamp(50px,7vw,90px) 0;background:#fff;overflow:hidden}.labeling-options__head{max-width:760px;margin:0 auto 38px;padding:0 max(20px,5vw);text-align:center}.labeling-options__head>span{color:#456348;font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase}.labeling-options__head h2{margin:12px 0 10px;color:#171b18;font-size:clamp(30px,4vw,48px);line-height:1.1}.labeling-options__head p{margin:0;color:#616a64;font-size:16px}.labeling-options__list{display:grid;width:100%;margin:auto}.labeling-options__card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:470px;background:#fff}.labeling-options__card:nth-child(even){background:#f2f5f7}.labeling-options__card--reverse .labeling-options__image{order:2}.labeling-options__image{position:relative;min-height:470px;overflow:hidden;background:#eff1f0}.labeling-options__image img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s ease}.labeling-options__image:not(.carousel-ready) img:first-child,.labeling-options__image img.is-active{opacity:1}.labeling-options__arrows{position:absolute;right:20px;bottom:20px;z-index:2;display:flex;gap:8px}.labeling-options__arrows button{display:grid;width:42px;height:42px;place-items:center;border:1px solid #fff;background:rgba(31,59,39,.88);color:#fff;font-size:21px;line-height:1;cursor:pointer;transition:background .2s}.labeling-options__arrows button:hover{background:#456348}.labeling-options__content{box-sizing:border-box;display:grid;width:min(750px,100%);align-content:center;justify-items:start;gap:16px;padding:clamp(36px,5vw,82px)}.labeling-options__card--reverse .labeling-options__content{justify-self:end}.labeling-options__content>b{display:grid;width:32px;height:32px;place-items:center;border-radius:5px;background:#456348;color:#fff;font:800 12px/1 "IBM Plex Mono",monospace}.labeling-options__content h3{margin:0;color:#171b18;font-size:clamp(23px,2.4vw,32px);line-height:1.16}.labeling-options__content p{margin:0;color:#5d6661;font-size:15px;line-height:1.7}.labeling-options__content a{display:inline-flex;align-items:center;gap:18px;margin-top:6px;padding:11px 15px;border:1px solid #456348;border-radius:4px;background:#456348;color:#fff!important;font-size:13px;font-weight:800;text-decoration:none;transition:background .2s}.labeling-options__content a:hover{background:#355338}.labeling-options__content a span{font-size:18px;line-height:1}@media(max-width:720px){.labeling-options__head{padding:0 20px}.labeling-options__card{grid-template-columns:1fr;min-height:0}.labeling-options__card--reverse .labeling-options__image{order:0}.labeling-options__image{min-height:280px}.labeling-options__content{width:100%;padding:32px 26px}.labeling-options__card--reverse .labeling-options__content{justify-self:stretch}.labeling-options__content p{font-size:14px}}
+</style>`;
+const fillingMachineCategories = `
+<section class="filling-category-replacement" id="products">
+  <div class="filling-category-replacement__head">
+    <span>产品分类</span>
+    <h2>灌装机分类</h2>
+    <p>选择与饮料或液体类型匹配的设备分类。每个分类覆盖不同产能和瓶型配置。</p>
+  </div>
+  <div class="filling-category-replacement__grid">
+    <a class="filling-category-replacement__card" href="/products/filling-machine/water-filling-machine/">
+      <img src="/assets/first-machinery/2026/05/water-filling-line.webp" alt="瓶装水生产线" loading="lazy">
+      <i></i><b>2,000 – 36,000+ BPH</b><div><small>01</small><h3>瓶装水生产线</h3><p><em>不含气饮用水</em><em>矿泉水</em><em>PET瓶</em></p><strong>咨询该产线 →</strong></div>
+    </a>
+    <a class="filling-category-replacement__card" href="/products/filling-machine/juice-tea-filling-machine/">
+      <img src="/assets/first-machinery/2026/05/juice-filling-1.webp" alt="果汁茶饮灌装线" loading="lazy">
+      <i></i><b>3,000 – 24,000 BPH</b><div><small>02</small><h3>果汁茶饮灌装线</h3><p><em>热灌装</em><em>NFC果汁</em><em>茶饮料</em><em>能量饮料</em></p><strong>咨询该产线 →</strong></div>
+    </a>
+    <a class="filling-category-replacement__card" href="/products/filling-machine/carbonated-drink-filling-machine/">
+      <img src="/assets/first-machinery/2026/05/csd-filling-line.webp" alt="碳酸饮料灌装线" loading="lazy">
+      <i></i><b>6,000 – 42,000 BPH</b><div><small>03</small><h3>碳酸饮料生产线（CSD）</h3><p><em>PET瓶</em><em>易拉罐灌装</em><em>玻璃瓶</em></p><strong>咨询该产线 →</strong></div>
+    </a>
+    <a class="filling-category-replacement__card" href="/products/filling-machine/5-gallon-water-line/">
+      <img src="/assets/first-machinery/2026/05/5gallon-filling-machine.webp" alt="5加仑桶装水生产线" loading="lazy">
+      <i></i><b>100 – 2,000 BPH</b><div><small>04</small><h3>5加仑桶装水生产线</h3><p><em>5加仑桶</em><em>饮用水</em><em>冲洗 &amp; 灌装</em></p><strong>咨询该产线 →</strong></div>
+    </a>
+  </div>
+</section>
+<style>
+  .filling-category-replacement{padding:72px max(5vw,32px);background:#f5f7f4;color:#142019}.filling-category-replacement__head{max-width:720px;margin:0 auto 32px;text-align:center}.filling-category-replacement__head>span,.filling-category-replacement__card small,.filling-category-replacement__card>b,.filling-category-replacement__card em,.filling-category-replacement__card strong{font-family:"IBM Plex Mono",monospace;text-transform:uppercase}.filling-category-replacement__head>span{color:#3e9460;font-size:12px;font-weight:900;letter-spacing:.16em}.filling-category-replacement__head h2{margin:12px 0;color:#142019;font-size:clamp(30px,4vw,48px);line-height:1.1}.filling-category-replacement__head p{margin:0;color:#5d6862;font-size:16px;line-height:1.6}.filling-category-replacement__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1180px;margin:auto}.filling-category-replacement__card{position:relative;display:block;min-height:310px;overflow:hidden;border:1px solid rgba(57,93,61,.24);border-radius:8px;background:#0a1420;color:#fff;isolation:isolate}.filling-category-replacement__card>img,.filling-category-replacement__card>i{position:absolute;inset:0;width:100%;height:100%}.filling-category-replacement__card>img{object-fit:cover;transition:transform .28s ease}.filling-category-replacement__card:hover>img{transform:scale(1.045)}.filling-category-replacement__card>i{background:linear-gradient(180deg,rgba(2,10,16,.02) 10%,rgba(2,10,16,.36) 48%,rgba(2,10,16,.94) 100%)}.filling-category-replacement__card>b{position:absolute;top:17px;right:17px;z-index:1;padding:7px 10px;background:rgba(5,17,23,.82);color:#70cc8d;font-size:10px;letter-spacing:.08em}.filling-category-replacement__card>div{position:absolute;right:22px;bottom:21px;left:22px;z-index:1;display:grid;gap:8px}.filling-category-replacement__card small{color:#70cc8d;font-size:11px;font-weight:800;letter-spacing:.12em}.filling-category-replacement__card h3{margin:0;color:#fff;font-size:21px;line-height:1.14}.filling-category-replacement__card p{display:flex;flex-wrap:wrap;gap:5px;margin:0}.filling-category-replacement__card em{padding:5px 7px;border:1px solid rgba(98,189,124,.28);background:rgba(8,27,19,.64);color:#66c782;font-size:8px;font-style:normal;letter-spacing:.04em}.filling-category-replacement__card strong{width:max-content;margin-top:5px;padding:10px 14px;border:2px solid #64bd80;box-shadow:inset 4px 0 #64bd80;color:#fff;font-size:10px;letter-spacing:.09em}@media(max-width:620px){.filling-category-replacement{padding:52px 20px}.filling-category-replacement__grid{grid-template-columns:1fr}.filling-category-replacement__card{min-height:300px}}
+</style>`;
+
+const productOverviewCategories = [
+  {
+    title: '水处理系统',
+    href: '/products/water-treatment-system/',
+    note: '反渗透 · 超滤 · 臭氧 · 储水',
+    image: '/assets/first-machinery/products/water-treatment-system/drinking-water-treatment-system/factory-price-drinking-water-treatment-system-water-purifying-purified-equipment-water-purification-1601787732342-asset-01.webp',
+  },
+  {
+    title: '吹瓶机',
+    href: '/products/preform-and-bottle-blowing-machine/',
+    note: '瓶坯注塑 · 半自动 · 全自动',
+    image: '/assets/first-machinery/products/preform-and-bottle-blowing-machine/high-speed-automatic-pet-bottle-blowing-machine/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-01.webp',
+  },
+  {
+    title: 'PET 灌装机',
+    href: '/products/filling-machine/',
+    note: '水 · 果汁 · 碳酸饮料 · 油 · 酱料',
+    image: '/assets/first-machinery/company/factory-strength-line-testing.webp',
+  },
+  {
+    title: '贴标机',
+    href: '/products/labeling-machine/',
+    note: '套标 · OPP · 不干胶 · 冷胶',
+    image: '/assets/first-machinery/products/labeling-machine/hot-melt/hot-melt-labeling-machine.webp',
+  },
+  {
+    title: '包装机',
+    href: '/products/packaging-machine/',
+    note: '膜包 Shrink Wrapping · Case 包装',
+    image: '/assets/first-machinery/products/packaging-machine/automatic-case-packer/automatic-case-packer-factory.webp',
+  },
+  {
+    title: '包装材料',
+    href: '/products/production-material/',
+    note: '瓶盖 · 盖子 · 包装耗材',
+    image: '/assets/first-machinery/products/production-material/plastic-bottle-caps-card.avif',
+  },
+];
+
+const productOverviewCategoriesReplacement = `
+<section class="product-overview-categories">
+  <div class="product-overview-categories__inner">
+    <div class="product-overview-categories__eyebrow">全部分类</div>
+    <p>选择分类，查看设备类型、产能范围和产线配置。</p>
+    <div class="product-overview-categories__grid">
+      ${productOverviewCategories.map((category, index) => `
+        <a class="product-overview-categories__card" href="${category.href}">
+          <img src="${category.image}" alt="${category.title}" loading="lazy">
+          <div class="product-overview-categories__shade"></div>
+          <div class="product-overview-categories__content">
+            <span>${String(index + 1).padStart(2, '0')} · 分类</span>
+            <h3>${category.title}</h3>
+            <strong>查看分类 <b>→</b></strong>
+          </div>
+        </a>`).join('')}
+    </div>
+  </div>
+</section>
+<style>
+  .product-overview-categories{padding:74px 24px;background:#101010;color:#fff}.product-overview-categories__inner{width:min(1280px,100%);margin:0 auto;text-align:center}.product-overview-categories__eyebrow{margin-bottom:12px;color:#73c68c;font:800 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.15em;text-transform:uppercase}.product-overview-categories__inner>p{max-width:680px;margin:0 auto 42px;color:#a6aaa7;font-size:17px;line-height:1.6}.product-overview-categories__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.product-overview-categories__card{position:relative;display:block;min-height:360px;overflow:hidden;border-radius:10px;background:#151b17;color:#fff;text-decoration:none;isolation:isolate}.product-overview-categories__card>img,.product-overview-categories__shade{position:absolute;inset:0;width:100%;height:100%}.product-overview-categories__card>img{object-fit:cover;object-position:center;transition:transform .35s ease}.product-overview-categories__shade{background:linear-gradient(180deg,rgba(6,9,7,.04) 8%,rgba(8,13,10,.18) 38%,rgba(14,23,17,.94) 77%)}.product-overview-categories__content{position:absolute;right:28px;bottom:24px;left:28px;z-index:1;text-align:left}.product-overview-categories__content>span,.product-overview-categories__content strong{color:#6fc487;font:800 12px/1.25 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.product-overview-categories__content h3{max-width:380px;margin:8px 0 12px;color:#fff;font-size:23px;line-height:1.08;letter-spacing:-.035em}.product-overview-categories__content strong{display:inline-flex;gap:10px;align-items:center}.product-overview-categories__content strong b{font-size:18px;line-height:1}.product-overview-categories__card:hover>img{transform:scale(1.045)}.product-overview-categories__card:hover strong{color:#9be3ad}@media(max-width:960px){.product-overview-categories__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-overview-categories__card{min-height:330px}}@media(max-width:600px){.product-overview-categories{padding:55px 20px}.product-overview-categories__grid{grid-template-columns:1fr;gap:14px}.product-overview-categories__card{min-height:300px}.product-overview-categories__content{right:24px;bottom:22px;left:24px}.product-overview-categories__inner>p{margin-bottom:30px;font-size:15px}}
+</style>`;
+
+const homeProjectDeliverySection = `
+<section class="home-project-delivery" id="process" aria-labelledby="home-project-delivery-title" data-home-delivery>
+  <div class="home-project-delivery__ambient" aria-hidden="true"></div>
+  <div class="home-project-delivery__inner">
+    <header class="home-project-delivery__intro">
+      <div class="home-project-delivery__eyebrow"><span></span> 项目交付</div>
+      <h2 id="home-project-delivery-title">从需求沟通<br>到产线投产</h2>
+      <p>由同一工程团队负责，从需求分析到产线稳定运行全流程推进。</p>
+    </header>
+
+    <div class="home-project-delivery__layout">
+      <div class="home-project-delivery__timeline" role="tablist" aria-label="Project delivery stages">
+        <button class="home-project-delivery__stage is-active" type="button" role="tab" aria-selected="true" data-home-stage="0" data-title="需求分析" data-items="饮料类型：碳酸饮料|瓶型规格：0.33L / 0.5L / 1.5L|产能：12,000 BPH|公用工程：水、电、气、蒸汽" data-spot-left="15%" data-spot-top="265px" data-line-left="23%" data-line-top="390px">
+          <span class="home-project-delivery__number">01</span>
+          <span class="home-project-delivery__copy"><strong>需求分析</strong><small>评估饮料类型、容器形式、产能范围和工厂条件。</small></span>
+        </button>
+          <button class="home-project-delivery__stage" type="button" role="tab" aria-selected="false" data-home-stage="1" data-title="产线布局与方案" data-items="3D工艺布局|设备分类清单与物流方向|公用工程方案|预留扩展空间" data-spot-left="31%" data-spot-top="220px" data-line-left="36%" data-line-top="350px">
+          <span class="home-project-delivery__number">02</span>
+          <span class="home-project-delivery__copy"><strong>产线布局与方案</strong><small>提供工厂布局、公用工程条件和完整设备清单。</small></span>
+        </button>
+          <button class="home-project-delivery__stage" type="button" role="tab" aria-selected="false" data-home-stage="2" data-title="生产制造与出厂验收" data-items="食品级不锈钢制造|精密加工与装配|电气与软件测试|工厂验收报告" data-spot-left="51%" data-spot-top="205px" data-line-left="56%" data-line-top="340px">
+          <span class="home-project-delivery__number">03</span>
+          <span class="home-project-delivery__copy"><strong>生产制造与出厂验收</strong><small>食品级不锈钢制造，并在发货前完成出厂验收测试。</small></span>
+        </button>
+          <button class="home-project-delivery__stage" type="button" role="tab" aria-selected="false" data-home-stage="3" data-title="出口与物流" data-items="出口级防护包装|集装箱装载方案|备件清单|货运文件协调" data-spot-left="68%" data-spot-top="205px" data-line-left="72%" data-line-top="342px">
+          <span class="home-project-delivery__number">04</span>
+          <span class="home-project-delivery__copy"><strong>出口与物流</strong><small>提供包装记录、备件计划和物流协调。</small></span>
+        </button>
+          <button class="home-project-delivery__stage" type="button" role="tab" aria-selected="false" data-home-stage="4" data-title="安装调试" data-items="现场机械安装|电气与公用工程连接|试产与参数调试|操作与维护培训" data-spot-left="77%" data-spot-top="300px" data-line-left="81%" data-line-top="415px">
+          <span class="home-project-delivery__number">05</span>
+          <span class="home-project-delivery__copy"><strong>安装调试</strong><small>工程师提供现场安装、产线启动和操作培训。</small></span>
+        </button>
+          <button class="home-project-delivery__stage" type="button" role="tab" aria-selected="false" data-home-stage="5" data-title="售后支持" data-items="远程诊断与指导|计划性维护支持|备件响应|按需现场服务" data-spot-left="84%" data-spot-top="245px" data-line-left="87%" data-line-top="370px">
+          <span class="home-project-delivery__number">06</span>
+          <span class="home-project-delivery__copy"><strong>售后支持</strong><small>提供远程及现场支持，保障产线长期稳定运行。</small></span>
+        </button>
+      </div>
+
+      <div class="home-project-delivery__visual-panel">
+        <div class="home-project-delivery__benefits" aria-label="Delivery capabilities">
+          <div><b>01</b><span><strong>整线交钥匙方案</strong><small>覆盖整线流程</small></span></div>
+          <div><b>02</b><span><strong>定制化设计</strong><small>围绕现场规划</small></span></div>
+          <div><b>03</b><span><strong>全球交付</strong><small>100多个国家和地区</small></span></div>
+          <div><b>04</b><span><strong>长期服务支持</strong><small>稳定服务支持</small></span></div>
+        </div>
+
+        <div class="home-project-delivery__machine">
+          <div class="home-project-delivery__machine-grid" aria-hidden="true"></div>
+          <img src="/assets/first-machinery/home/project-delivery-production-line.webp" alt="Isometric beverage production line" loading="lazy" decoding="async" />
+          <div class="home-project-delivery__spotlight" aria-hidden="true"></div>
+          <div class="home-project-delivery__line" aria-hidden="true"></div>
+          <article class="home-project-delivery__detail" aria-live="polite">
+            <div class="home-project-delivery__detail-head">
+              <span>当前阶段</span>
+              <span data-home-delivery-index>01 / 06</span>
+            </div>
+            <h3 data-home-delivery-title>需求分析</h3>
+            <ul data-home-delivery-items>
+              <li>饮料类型：碳酸饮料</li>
+              <li>瓶型规格：0.33L / 0.5L / 1.5L</li>
+              <li>产能：12,000 BPH</li>
+              <li>公用工程：水、电、气、蒸汽</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <footer class="home-project-delivery__footer" aria-label="Project delivery statistics">
+      <div><strong>20+</strong><span>行业经验</span></div>
+      <div><strong>1000+</strong><span>项目案例已完成</span></div>
+      <div><strong>50+</strong><span>服务国家和地区</span></div>
+      <div><strong>50+</strong><span>服务工程师</span></div>
+      <div class="home-project-delivery__actions">
+        <a class="home-project-delivery__btn home-project-delivery__btn--primary" href="/contact/" data-source="home-project-delivery">获取布局方案 <span>&rarr;</span></a>
+        <a class="home-project-delivery__btn home-project-delivery__btn--ghost" href="/products/">查看产品资料 <span>&darr;</span></a>
+      </div>
+    </footer>
+  </div>
+</section>`;
+
+const homeProjectCases = [
+  {
+    title: '瓶装饮用水生产线',
+    country: '中国',
+    image: '/assets/first-machinery/home/projects/bottle-drinking-water-line-in-china.webp',
+  },
+  {
+    title: '5加仑桶装水灌装线',
+    country: '中国',
+    image: '/assets/first-machinery/home/projects/5-gallon-water-filling-line-in-china.webp',
+  },
+  {
+    title: '苏打水生产线',
+    country: '中国',
+    image: '/assets/first-machinery/home/projects/soda-water-production-line-in-china-v2.webp',
+  },
+  {
+    title: '塑料瓶碳酸饮料项目',
+    country: '越南',
+    image: '/assets/first-machinery/home/projects/plastic-bottle-carbonated-drink-project-in-viet-nam.webp',
+  },
+  {
+    title: '茶饮料生产线项目',
+    country: '缅甸',
+    image: '/assets/first-machinery/home/projects/tea-drink-project-in-mayanmar.webp',
+  },
+  {
+    title: '罐装富氢水生产线',
+    country: '中国',
+    image: '/assets/first-machinery/home/projects/canned-hydrogen-water-line-in-china.webp',
+  },
+  {
+    title: '玻璃瓶啤酒生产线',
+    country: '俄罗斯',
+    image: '/assets/first-machinery/home/projects/glass-bottle-beer-production-line-in-russia-v2.webp',
+  },
+  {
+    title: '果汁生产线',
+    country: '加纳',
+    image: '/assets/first-machinery/home/projects/juice-line-in-ghana.webp',
+  },
+];
+
+const homeProjectCasesSection = `
+<section class="home-project-cases" id="projects" aria-labelledby="home-project-cases-title">
+  <div class="home-project-cases__inner">
+    <header class="home-project-cases__header" data-reveal>
+      <div>
+        <p class="home-project-cases__eyebrow"><span></span> 全球项目案例</p>
+        <h2 id="home-project-cases-title">查看已交付的饮料生产线项目，覆盖瓶装水、5加仑桶装水、果汁、茶饮和碳酸饮料等不同国家与产能需求。</h2>
+      </div>
+    </header>
+    <div class="home-project-cases__grid" data-reveal>
+      ${homeProjectCases.map((project, index) => `
+        <article class="home-project-cases__card">
+          <figure>
+            <img src="${project.image}" alt="${project.title}" loading="eager" decoding="async" />
+          </figure>
+          <div class="home-project-cases__content">
+            <span class="home-project-cases__country">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11s-8-6-8-11a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              ${project.country}
+            </span>
+            <h3>${project.title}</h3>
+          </div>
+        </article>
+      `).join('')}
+    </div>
+  </div>
+</section>`;
+
+const projectsHeroSection = `
+<section class="projects-hero-fm" aria-labelledby="projects-hero-title">
+  <div class="projects-hero-grid" aria-hidden="true"></div>
+  <div class="projects-hero-inner">
+    <h1 id="projects-hero-title">全球项目案例</h1>
+    <a class="projects-hero-link" href="/contact/?source=projects-hero">咨询同类产线 <span>&rarr;</span></a>
+  </div>
+</section>`;
+
+let content = item.content
+  .replaceAll('https://hongdao.wufoo.com/forms/m1afeevd0fti8na/', `/contact/?source=legacy-quote&sourceTitle=${encodeURIComponent(item.title)}`)
+  .replaceAll('https://hongdao.wufoo.com/forms/m1afeevd0fti8na', `/contact/?source=legacy-quote&sourceTitle=${encodeURIComponent(item.title)}`)
+  .replaceAll('href="#" class="sol-card sol-card-turnkey"', 'href="/solutions/" class="sol-card sol-card-turnkey"')
+  .replaceAll(
+    '<a class="product-card-link" href="#">',
+    `<a class="product-card-link" href="/contact/?source=product-card&sourceTitle=${encodeURIComponent(item.title)}">`,
+  )
+  .replaceAll('Wufoo 询价表单，后续阶段可接入 API 提交', '请通过联系我们页面发送项目需求')
+  .replaceAll('Depalletizer · Automatic · Robot Palletizer', '卸垛机 · 自动化 · 机器人码垛机')
+  .replaceAll('膜包 Shrink Wrapping · Case 包装', '膜包收缩包装 · 纸箱包装')
+  .replaceAll('Conveyor · Air Dryer · Date Printer · Air Compressor', '输送带 · 空气干燥机 · 喷码机 · 空压机')
+  .replaceAll('Blending · Sterilization · Carbonation · CIP', '混合调配 · 杀菌 · 碳酸化 · CIP清洗')
+  .replaceAll('Viscous Liquid', '高粘度液体');
+
+if (item.title === '灌装机') {
+  content = content.replace(/<section class="sp-products" id="products">[\s\S]*?<\/section>/, fillingMachineCategories);
+}
+
+if (item.slug === '') {
+  content = content
+    .replace(/<section class="section process-section" id="process">[\s\S]*?<\/section>/, homeProjectDeliverySection)
+    .replace(/<section class="section projects-section" id="projects">[\s\S]*?<\/section>/, homeProjectCasesSection)
+    .replaceAll('产线s For<br>Your Industry.', '为您的行业<br>定制产线')
+    .replaceAll('Each solution configured around your beverage type, container format and target capacity — not a standard catalogue.', '每条产线根据饮料类型、容器形式和目标产能定制，非标方案配置。')
+    .replaceAll('Industry 解决方案', '行业解决方案')
+    .replaceAll('Sauce &amp; Condiment 产线', '酱料灌装生产线')
+    .replaceAll('Can 灌装', '易拉罐灌装')
+    .replaceAll('Small 瓶子', '小瓶')
+    .replaceAll('labeling, packing and <strong>palletizing</strong>', '贴标、包装与<strong>码垛</strong>')
+    .replaceAll('Turnkey delivery with on-site installation', '交钥匙交付，含现场安装')
+    .replaceAll('and operator training worldwide.', '及全球操作培训。')
+    .replaceAll('工厂 Floor', '工厂车间')
+    .replaceAll('From water purification through blowing, filling, labeling and palletizing — every module engineered to work as one integrated system.', '从水净化到吹瓶、灌装、贴标和码垛——每个模块均经工程设计，作为一体化集成系统协同工作。')
+    .replaceAll('engineered as\n      one complete system.', '一体化集成设计。')
+    .replaceAll('Certified</div>', '认证</div>')
+    .replaceAll('Ketchup', '番茄酱')
+    .replaceAll('Soy Sauce', '酱油')
+    .replaceAll('High Viscosity', '高粘度')
+    .replaceAll('饮料 Processing', '饮料调配系统')
+    .replaceAll('产品 System', '产品体系')
+    .replaceAll('Range.', '全系列产品')
+    .replaceAll('CE &amp; ISO Certified', 'CE &amp; ISO 认证')
+    .replaceAll('10,000 m² 工厂 Floor', '10,000 m² 工厂车间')
+    .replaceAll('工厂 Strength', '工厂实力')
+    .replaceAll('Workshop, Certifications<br>&amp; Engineers.', '精密车间、认证体系<br>&amp; 工程师团队')
+    .replaceAll('A turnkey partner must combine manufacturing capacity, documented quality processes and practical field engineering. 我们的 factory makes those trust signals visible.', '交钥匙合作伙伴需要综合制造能力、标准化质量流程和务实现场工程能力。我们的工厂让这些信任信号清晰可见。')
+    .replaceAll('Precision Workshop', '精密车间')
+    .replaceAll('Skilled technicians, calibrated tools and disciplined processes ensure every detail is built to spec.', '经验丰富的技师、精密工具和规范流程保障每个细节符合规格要求。')
+    .replaceAll('Engineers inspecting beverage filling equipment in workshop', '工程师在车间检查饮料灌装设备')
+    .replaceAll('Engineer servicing machine control components', '工程师维护设备控制组件')
+    .replaceAll('From water purification through blowing, filling, labeling and palletizing — every module engineered to work as one integrated system.', '从水净化到吹瓶、灌装、贴标和码垛——每个模块均经工程设计，作为一体化集成系统协同工作。')
+    .replaceAll('Successful 项目案例', '成功项目案例')
+    .replaceAll('Countries &amp; Regions', '国家与地区')
+    .replaceAll('Large 瓶子', '大瓶')
+    .replaceAll('整线 Engineering', '整线工程')
+}
+
+if (item.slug === 'products') {
+  content = content
+    .replace('<h1>灌装<br><em>设备</em></h1>', '<h1>完整灌装与<br><em>包装设备</em></h1>')
+    .replace(/<section class="sp-products-section">[\s\S]*?<\/section>/, productOverviewCategoriesReplacement)
+    .replace(/<section class="sp-support">[\s\S]*?<\/section>/, fillingMachineSupportSection)
+    .replace(
+      `        我们的 engineering team will review and reply within 24 hours with a practical
+        line configuration and indicative price range.`,
+      '        我们的工程团队会在24小时内评估并回复实用的产线配置和参考价格范围。',
+    )
+    .replace(/<div class="sp-direct-box">[\s\S]*?<\/div>\s*/, '')
+    .replace(/<div class="sp-wufoo-card">[\s\S]*?<\/div>\s*<\/div>/, `<div class="sp-wufoo-card">${fillingMachineDirectContactCard}</div></div>`)
+    .replace(
+      '</style>',
+      `.sp-wufoo-card{background:transparent!important;border:0!important;box-shadow:none!important}.sp-direct-contact-card{box-sizing:border-box;width:100%;padding:38px 42px;border:1px solid rgba(57,93,61,.16);border-radius:16px;background:#fff;box-shadow:0 18px 48px rgba(20,32,25,.08)}.sp-direct-contact-card p{margin:0 0 18px;color:#535b56;font-size:19px;font-weight:700;line-height:1.35}.sp-direct-contact-card a{display:block;text-decoration:none}.sp-direct-contact-email{margin-bottom:18px;color:#171b18!important;font-size:27px;font-weight:900;line-height:1.25;word-break:break-word}.sp-direct-contact-phone{color:#9a9f9c!important;font-size:23px;font-weight:800;line-height:1.3}.sp-direct-contact-card a:hover{color:#376f40!important}.sp-hero-content h1{font-size:50px!important;line-height:1.05!important}@media(max-width:780px){.sp-direct-contact-card{padding:28px 24px}.sp-direct-contact-email{font-size:22px}.sp-direct-contact-phone{font-size:19px}.sp-hero-content h1{font-size:50px!important}}</style>`,
+    );
+}
+
+if (item.slug?.startsWith('products/')) {
+  content = content.replace(/<div class="wufoo-placeholder">[\s\S]*?<\/div>/g, commonProductForm);
+}
+
+if (item.slug === 'products/filling-machine') {
+  content = content
+    .replace(/<section class="sp-support">[\s\S]*?<\/section>/, fillingMachineSupportSection)
+    .replace(
+      `        我们的 engineering team will review and reply within 24 hours with a practical
+        line configuration and indicative price range.`,
+      '        我们的工程团队会在24小时内评估并回复实用的产线配置和参考价格范围。',
+    )
+    .replace(/<div class="sp-direct-box">[\s\S]*?<\/div>\s*/, '')
+    .replace(
+      /<div class="sp-quote-right">[\s\S]*?\n    <\/div>\s*\n\n  <\/div>\n<\/section>/,
+      `<div class="sp-quote-right">
+      ${fillingMachineDirectContactCard}
+    </div>
+
+  </div>
+</section>`,
+    )
+    .replace(
+      '</style>',
+      `.sp-direct-contact-card{box-sizing:border-box;width:100%;padding:38px 42px;border:1px solid rgba(57,93,61,.16);border-radius:16px;background:#fff;box-shadow:0 18px 48px rgba(20,32,25,.08)}.sp-direct-contact-card p{margin:0 0 18px;color:#535b56;font-size:19px;font-weight:700;line-height:1.35}.sp-direct-contact-card a{display:block;text-decoration:none}.sp-direct-contact-email{margin-bottom:18px;color:#171b18!important;font-size:27px;font-weight:900;line-height:1.25;word-break:break-word}.sp-direct-contact-phone{color:#9a9f9c!important;font-size:23px;font-weight:800;line-height:1.3}.sp-direct-contact-card a:hover{color:#376f40!important}@media(max-width:760px){.sp-direct-contact-card{padding:28px 24px}.sp-direct-contact-email{font-size:22px}.sp-direct-contact-phone{font-size:19px}}</style>`,
+    );
+}
+
+if (item.slug === 'products/labeling-machine') {
+  content = content
+    .replace(
+      '完整 labeling machine category page for buyers comparing label type, bottle shape, speed and automation level.',
+      '贴标机分类页，适合客户按标签类型、瓶型、贴标速度和自动化程度进行对比。',
+    )
+    .replace(/<a class="wt-btn wt-btn-outline" href="#capacity">[\s\S]*?<\/a>/, '')
+    .replace(/<section class="product-showcase" id="capacity">[\s\S]*?<\/section>/, labelingMachine选项)
+    .replace(
+      /<section class="cta-strip">[\s\S]*?<\/section>/,
+      `<section class="cta-strip">
+  <div class="cta-inner"><div><h2>准备对比实用的贴标方案？</h2><p>电话联系我们，确认瓶型、标签类型和目标产能。</p></div><a class="green-btn" href="tel:18962223666">电话咨询：18962223666</a></div>
+</section>`,
+    )
+    .replace(
+      /(<section class="wt-hero">[\s\S]*?<\/section>)/,
+      `$1<style>
+        .elementor-166 .wt-hero { min-height: 500px !important; }
+        @media (max-width: 767px) {
+          .elementor-166 .wt-hero { min-height: 340px !important; }
+        }
+      </style>`,
+    );
+}
+
+const renderedContent = item.slug === 'projects' ? `${projectsHeroSection}${homeProjectCasesSection}` : content;
+const hasContent = item.textLength > 0 || item.slug === 'projects';
+---
+
+{hasContent ? (
+  <article class="migrated-content" set:html={renderedContent} />
+) : (
+  <section class="empty-page">
+    <div class="container">
+      <div class="empty-page-panel">
+        <span>Current WordPress content</span>
+        <h1>{item.title}</h1>
+        <p>本项目 public WordPress page currently exposes no body content through the REST API. The route is preserved locally so future content can be added without changing navigation.</p>
+        <a class="green-btn" href={`/contact/?source=empty-page&sourceTitle=${encodeURIComponent(item.title)}`}>获取资料</a>
+      </div>
+    </div>
+  </section>
+)}
+
+<script is:inline>
+  document.querySelectorAll('[data-image-carousel]').forEach((carousel) => {
+    const images = Array.from(carousel.querySelectorAll('img'));
+    if (images.length < 2) return;
+
+    let current = 0;
+    const showImage = (index) => {
+      current = (index + images.length) % images.length;
+      images.forEach((image, imageIndex) => image.classList.toggle('is-active', imageIndex === current));
+    };
+
+    carousel.classList.add('carousel-ready');
+    showImage(0);
+    carousel.querySelector('[data-carousel-prev]')?.addEventListener('click', () => showImage(current - 1));
+    carousel.querySelector('[data-carousel-next]')?.addEventListener('click', () => showImage(current + 1));
+  });
+
+  document.querySelectorAll('[data-home-delivery]').forEach((section) => {
+    const stages = Array.from(section.querySelectorAll('[data-home-stage]'));
+    const title = section.querySelector('[data-home-delivery-title]');
+    const list = section.querySelector('[data-home-delivery-items]');
+    const index = section.querySelector('[data-home-delivery-index]');
+    const spotlight = section.querySelector('.home-project-delivery__spotlight');
+    const line = section.querySelector('.home-project-delivery__line');
+
+    const selectStage = (stage, stageIndex) => {
+      stages.forEach((button) => {
+        const active = button === stage;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-selected', String(active));
+      });
+
+      if (title) title.textContent = stage.dataset.title || '';
+      if (index) index.textContent = `${String(stageIndex + 1).padStart(2, '0')} / ${String(stages.length).padStart(2, '0')}`;
+      if (list) {
+        list.innerHTML = (stage.dataset.items || '')
+          .split('|')
+          .filter(Boolean)
+          .map((item) => `<li>${item}</li>`)
+          .join('');
+      }
+      if (spotlight instanceof HTMLElement) {
+        spotlight.style.left = stage.dataset.spotLeft || '';
+        spotlight.style.top = stage.dataset.spotTop || '';
+      }
+      if (line instanceof HTMLElement) {
+        line.style.left = stage.dataset.lineLeft || '';
+        line.style.top = stage.dataset.lineTop || '';
+      }
+    };
+
+    stages.forEach((stage, stageIndex) => {
+      stage.addEventListener('mouseenter', () => selectStage(stage, stageIndex));
+      stage.addEventListener('focus', () => selectStage(stage, stageIndex));
+      stage.addEventListener('click', () => selectStage(stage, stageIndex));
+    });
+  });
+</script>

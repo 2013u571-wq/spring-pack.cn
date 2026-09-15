@@ -1,0 +1,376 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const steps = [
+  {
+    title: '询盘已收到',
+    text: "我们已收到您的信息",
+    icon: 'file',
+  },
+  {
+    title: '工程评估中',
+    text: '工程师正在分析需求',
+    icon: 'team',
+  },
+  {
+    title: '方案与回复',
+    text: "我们会尽快联系您",
+    icon: 'mail',
+  },
+];
+
+---
+
+<BaseLayout
+  title="感谢咨询 | Spring Pack"
+  description="Thank you for contacting Spring Pack. 我们的 engineering team will review your beverage production line requirements and respond within 24 hours."
+  robots="noindex, follow"
+>
+  <section class="thanks-page-shell">
+    <div class="thanks-page-bg" aria-hidden="true"></div>
+
+    <div class="thanks-page-container">
+      <div class="thanks-hero">
+        <div class="thanks-hero-success" aria-hidden="true">
+          <svg viewBox="0 0 64 64">
+            <path d="m18 33 9 9 20-22" />
+          </svg>
+        </div>
+        <h1>感谢您的咨询！</h1>
+        <p class="thanks-hero-subtitle">您的询盘已收到。</p>
+        <p class="thanks-hero-copy">
+          我们的工程团队会评估您的需求，<br />并在24小时内回复。
+        </p>
+      </div>
+
+      <div class="thanks-steps" aria-label="询盘进度">
+        {steps.map((step) => (
+          <article class="thanks-steps-item">
+            <div class="thanks-steps-icon" aria-hidden="true">
+              {step.icon === 'file' && (
+                <svg viewBox="0 0 48 48"><path d="M13 7h17l7 7v27H13z" /><path d="M30 7v8h7M18 23h12M18 30h8" /><circle cx="35" cy="35" r="6" /><path d="m32.5 35 1.7 1.7 3.2-3.8" /></svg>
+              )}
+              {step.icon === 'team' && (
+                <svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="6" /><circle cx="12" cy="21" r="4" /><circle cx="36" cy="21" r="4" /><path d="M13 39v-4c0-6 5-10 11-10s11 4 11 10v4M4 38v-3c0-4 3-7 7-8M44 38v-3c0-4-3-7-7-8" /></svg>
+              )}
+              {step.icon === 'mail' && (
+                <svg viewBox="0 0 48 48"><path d="M9 14h30v22H9z" /><path d="m9 16 15 12 15-12" /></svg>
+              )}
+            </div>
+            <h2>{step.title}</h2>
+            <p>{step.text}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="thanks-page-actions" aria-label="下一步导航">
+        <a class="thanks-page-button thanks-page-button--primary" href="/">
+          <span>返回首页</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="thanks-page-button thanks-page-button--secondary" href="/products/">
+          <span>查看产品中心</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .thanks-page-shell {
+      --spring-green: #1f6f3d;
+      --spring-green-light: #67c587;
+      --spring-green-soft: #eaf6ee;
+      --spring-dark: #06131d;
+      --spring-text: #14211c;
+      --spring-muted: #65716b;
+      position: relative;
+      overflow: hidden;
+      padding: clamp(42px, 5vw, 66px) 24px 42px;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(103, 197, 135, 0.16), transparent 26%),
+        linear-gradient(180deg, #f7fbf9 0%, #ffffff 58%, #f7faf8 100%);
+      color: var(--spring-text);
+    }
+
+    .thanks-page-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.42;
+      background:
+        repeating-linear-gradient(165deg, transparent 0 18px, rgba(31, 111, 61, 0.055) 19px 20px, transparent 21px 38px),
+        radial-gradient(ellipse at 0 32%, transparent 0 45%, rgba(31, 111, 61, 0.08) 46%, transparent 47% 100%),
+        radial-gradient(ellipse at 100% 28%, transparent 0 43%, rgba(31, 111, 61, 0.07) 44%, transparent 45% 100%);
+      mask-image: linear-gradient(180deg, #000 0 46%, transparent 92%);
+    }
+
+    .thanks-page-container {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .thanks-hero {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .thanks-hero-success {
+      display: grid;
+      width: 78px;
+      height: 78px;
+      place-items: center;
+      margin: 0 auto 18px;
+      border: 9px solid rgba(103, 197, 135, 0.22);
+      border-radius: 999px;
+      background: linear-gradient(145deg, #6fd18c, #20a85e);
+      box-shadow: 0 18px 48px rgba(31, 111, 61, 0.18);
+      color: #fff;
+    }
+
+    .thanks-hero-success svg {
+      width: 46px;
+      height: 46px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .thanks-hero h1 {
+      margin: 0 0 8px;
+      color: #07121d;
+      font-family: "Space Grotesk", Manrope, sans-serif;
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .thanks-hero-subtitle {
+      margin: 0 0 22px;
+      color: #07121d;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.16;
+    }
+
+    .thanks-hero-copy {
+      margin: 0;
+      color: #3d4a45;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .thanks-steps {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 42px;
+      max-width: 760px;
+      margin: 38px auto 34px;
+      text-align: center;
+    }
+
+    .thanks-steps::before {
+      position: absolute;
+      top: 29px;
+      right: 16%;
+      left: 16%;
+      height: 5px;
+      content: "";
+      border-radius: 999px;
+      background: rgba(103, 197, 135, 0.28);
+    }
+
+    .thanks-steps-item {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      justify-items: center;
+    }
+
+    .thanks-steps-icon {
+      display: grid;
+      width: 62px;
+      height: 62px;
+      place-items: center;
+      margin-bottom: 17px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 34% 22%, #25a866, #006d3c);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(0, 109, 60, 0.2);
+    }
+
+    .thanks-steps-icon svg {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .thanks-steps-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .thanks-steps h2 {
+      margin: 0 0 7px;
+      color: #0d171f;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .thanks-steps p {
+      margin: 0;
+      color: #63726d;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .thanks-page-actions {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 0;
+    }
+
+    .thanks-page-button {
+      display: inline-flex;
+      min-width: 220px;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .thanks-page-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .thanks-page-button--primary {
+      background: linear-gradient(145deg, #006d3c, var(--spring-green));
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(31, 111, 61, 0.2);
+    }
+
+    .thanks-page-button--primary:hover {
+      background: linear-gradient(145deg, #058149, #2d8751);
+      color: #fff;
+    }
+
+    .thanks-page-button--secondary {
+      border: 1px solid var(--spring-green);
+      background: #fff;
+      color: var(--spring-green);
+    }
+
+    .thanks-page-button--secondary:hover {
+      background: var(--spring-green-soft);
+      color: var(--spring-green);
+    }
+
+    .thanks-page-button:focus-visible {
+      outline: 3px solid rgba(103, 197, 135, 0.48);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 767px) {
+      .thanks-page-shell {
+        padding: 34px 20px 34px;
+      }
+
+      .thanks-hero-success {
+        width: 68px;
+        height: 68px;
+        margin-bottom: 16px;
+        border-width: 8px;
+      }
+
+      .thanks-hero h1 {
+        font-size: clamp(36px, 11vw, 44px);
+      }
+
+      .thanks-hero-subtitle {
+        font-size: 23px;
+      }
+
+      .thanks-hero-copy {
+        font-size: 15px;
+      }
+
+      .thanks-hero-copy br {
+        display: none;
+      }
+
+      .thanks-steps {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        max-width: 380px;
+        margin: 32px auto 30px;
+        text-align: left;
+      }
+
+      .thanks-steps::before {
+        top: 31px;
+        bottom: 31px;
+        left: 31px;
+        width: 4px;
+        height: auto;
+        right: auto;
+      }
+
+      .thanks-steps-item {
+        grid-template-columns: 62px minmax(0, 1fr);
+        column-gap: 18px;
+        justify-items: start;
+        align-items: center;
+      }
+
+      .thanks-steps-icon {
+        grid-row: span 2;
+        margin-bottom: 0;
+      }
+
+      .thanks-steps h2 {
+        margin-top: 2px;
+      }
+
+      .thanks-page-actions {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .thanks-page-button {
+        width: 100%;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .thanks-page-button {
+        transition: none;
+      }
+
+      .thanks-page-button:hover {
+        transform: none;
+      }
+    }
+  </style>
+</BaseLayout>

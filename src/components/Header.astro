@@ -1,0 +1,77 @@
+---
+import site from '@/data/site.json';
+
+const menu = site.menu;
+---
+
+<header class="fm-header">
+  <div class="fm-header-inner">
+    <a class="fm-logo" href="/" aria-label="中科美利（苏州）包装设备有限公司首页">
+      <img src="/assets/first-machinery/spring-pack-header-logo.webp" alt="Spring Pack" />
+    </a>
+
+    <nav class="fm-nav" aria-label="主导航">
+      {menu.map((item) => (
+        <div class:list={['fm-nav-item', item.mega && 'has-mega']}>
+          <a class="fm-nav-link" href={item.href}>{item.label}</a>
+          {item.mega && (
+            <div class:list={['fm-mega', item.mega.columns.length === 1 && 'fm-mega--single']} role="menu">
+              <div class="fm-mega-inner">
+                <div class="fm-mega-intro">
+                  <span>{item.mega.eyebrow}</span>
+                  <strong>{item.label}</strong>
+                  <a href={item.href}>查看{item.label}</a>
+                </div>
+                {item.mega.columns.map((column) => (
+                  <section class="fm-mega-col">
+                    <div class="fm-mega-head">
+                      <span>{column.title}</span>
+                      <p>{column.subtitle}</p>
+                    </div>
+                    <div class="fm-mega-list">
+                      {column.links.map(([label, href, note], index) => (
+                        <a href={href}>
+                          <span class="fm-mega-icon">{String(index + 1).padStart(2, '0')}</span>
+                          <span>
+                            <strong>{label}</strong>
+                            <em>{note}</em>
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <a class="fm-header-cta" href="/contact/?source=header-quote">获取报价</a>
+    <button class="fm-mobile-toggle" type="button" aria-label="打开菜单" aria-expanded="false" data-mobile-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="fm-mobile-drawer" data-mobile-drawer>
+    {menu.map((item) => (
+      <div class="fm-mobile-item">
+        <div class="fm-mobile-row">
+          <a href={item.href}>{item.label}</a>
+          {item.mega && <button type="button" data-mobile-submenu aria-label={`展开 ${item.label} 子菜单`}>+</button>}
+        </div>
+        {item.mega && (
+          <div class="fm-mobile-submenu">
+            {item.mega.columns.flatMap((column) => column.links).map(([label, href, note]) => (
+              <a href={href}>
+                <strong>{label}</strong>
+                <span>{note}</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+</header>

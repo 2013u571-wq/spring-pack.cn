@@ -1,0 +1,850 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Template1 from '@/components/Template1.astro';
+import { countryDialOptions, defaultCountryName } from '@/data/countryDialOptions';
+
+export const prerender = true;
+
+const productName = '玻璃瓶碳酸饮料/啤酒项目';
+const productSlug = 'glass-bottle-carbonated-beer-project';
+const assetBase = `/assets/first-machinery/solutions/${productSlug}`;
+const productUrl = 'https://spring-pack.cn/solutions/glass-bottle-carbonated-beer-project/';
+const supplierName = '苏州斯普瑞包装机械有限公司';
+const alibabaProductTitle =
+  '自动 CO2 carbonated soft beverage drinks soda water beverage beer filling machine production line reference';
+
+const heroGallery = [
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-product-overview.avif`,
+    alt: '玻璃瓶碳酸饮料和啤酒项目整体展示',
+    label: '整体展示',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-06.webp`,
+    alt: '自动 rinsing filling capping monoblock for glass bottle 碳酸饮料',
+    label: '碳酸饮料一体机',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-01.webp`,
+    alt: '玻璃瓶 carbonated and beer-style beverage filling production line',
+    label: '玻璃瓶碳酸饮料产线',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-02.webp`,
+    alt: '玻璃瓶 carbonated drink filling machine with isobaric filling system',
+    label: '等压灌装系统',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-03.webp`,
+    alt: '玻璃瓶 beer and sparkling beverage filling machine line detail',
+    label: '瓶filling detail',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-04.webp`,
+    alt: '碳酸饮料及啤酒类饮料生产线设备细节',
+    label: '设备细节',
+  },
+  {
+    src: `${assetBase}/glass-bottle-carbonated-beer-project-hero-05.webp`,
+    alt: '玻璃瓶 soda water and sparkling drink filling line equipment overview',
+    label: '产线 overview',
+  },
+];
+
+const keySpecs = [
+  ['参考产品', '自动 CO2 carbonated soft beverage drinks filling machine'],
+  ['供应商产品标题', alibabaProductTitle],
+  ['产能范围', '1,000-15,000BPH depending on selected isobaric model'],
+  ['供应商型号', 'DXGF series automatic glass bottle carbonated drink filling line'],
+  ['主要配置', '冲洗、等压灌装、封盖、瓶子输送和后段产线连接'],
+  ['灌装物料', '苏打水、气泡饮料、啤酒类饮品和其他含气饮品'],
+  ['瓶身材质', '玻璃瓶'],
+  ['瓶型容量', '按项目需求确认常用玻璃瓶规格'],
+  ['瓶型形状', 'Round glass bottle confirmed by bottle drawing'],
+  ['灌装方式', '等压灌装'],
+  ['包装类型', '玻璃瓶'],
+  ['电压', '110V、220V、380V或415V'],
+  ['自动化等级', '自动'],
+  ['功能', '冲洗、灌装、封盖'],
+  ['瓶径范围', '直径50-115mm'],
+  ['瓶高范围', '160-320mm'],
+  ['压缩空气', '0.3-0.7MPa'],
+  ['清洗介质', '无菌水'],
+  ['冲洗压力', '>0.06MPa且<0.2MPa'],
+  ['应用', '玻璃瓶碳酸饮料及啤酒类饮品生产线'],
+  ['材质', '接触物料部件可选SUS304 / SUS316'],
+  ['核心部件', '电机、压力容器、泵、PLC、齿轮、轴承、齿轮箱、发动机和活塞'],
+  ['质保', '供应商属性中为2年'],
+  ['检测文件', '可提供设备测试报告和出厂检验视频'],
+  ['售后支持', '视频技术支持、在线支持、现场安装调试培训、现场维护服务和免费备件'],
+  ['产地', '中国江苏'],
+];
+
+const csdTechColumns = ['DXGF8-8-3', 'DXGF12-12-5', 'DXGF18-18-6', 'DCXGF24-24-8', 'DXGF series', 'DXGF40-40-15', 'DXGF50-50-18'];
+
+const csdTechRows = [
+  ['产能（500ml玻璃瓶）', '1000BPH', '2000BPH', '3000BPH', '6000BPH', '10,000BPH', '12000BPH', '15000BPH'],
+  ['适用瓶型', 'Round glass bottle'],
+  ['瓶径范围', 'Dia. 50-115 mm'],
+  ['瓶高度', '160-320 mm'],
+  ['压缩空气', '0.3-0.7 MPa'],
+  ['清洗介质', '无菌水'],
+  ['功能', '冲洗、灌装、封盖'],
+  ['冲洗压力', '0.06-0.2 MPa'],
+  ['应用', '玻璃瓶碳酸饮料及啤酒类饮品生产线'],
+  ['总功率', '4.4 kW', '4.8 kW', '5.2 kW', '6.2 kW', '7.5 kW', '8.2 kW', '11 kW'],
+  ['外形尺寸', '2.5 x 1.9 m', '2.7 x 1.9 m', '2.8 x 2.15 m', '3.1 x 2.5 m', '待确认', '4.5 x 3.3 m', '5.5 x 3.5 m'],
+  ['高度', '2.3 m', '2.5 m', '2.5 m', '2.5 m', '2.5 m', '2.5 m', '2.5 m'],
+  ['重量', '3000 kg', '4000 kg', '4500 kg', '6000 kg', '3000 kg', '10000 kg', '11000 kg'],
+];
+
+const machineDetailsOverview = {
+  image: `${assetBase}/glass-bottle-carbonated-beer-project-machine-details-overview.webp`,
+  alt: 'Main machine detail overview for glass bottle carbonated and beer-style drink production line',
+};
+
+const machineAdvantages = [
+  {
+    icon: 'monoblock',
+    title: '冲洗灌装封盖系统',
+    text: '紧凑型一体机集瓶冲洗、等压灌装和封盖于一体，减少转接环节并保持生产稳定。',
+  },
+  {
+    icon: 'output',
+    title: '等压碳酸灌装',
+    text: '等压灌装技术有助于保持二氧化碳含量，并减少苏打水和气泡饮料灌装时的起泡。',
+  },
+  {
+    icon: 'range',
+    title: '玻璃瓶及啤酒产线适配',
+    text: '最终设计前会确认瓶型图纸、皇冠盖或旋盖类型、含气量、灌装温度和后段包装形式。',
+  },
+];
+
+const machineDetails = [
+  {
+    title: '瓶子冲洗段',
+    text: '玻璃瓶碳酸饮料或啤酒类饮品灌装前使用无菌水冲洗瓶子。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-bottle-rinsing-system-detail.webp`,
+    alt: '瓶子冲洗 section for glass bottle carbonated drink production line',
+    width: 1200,
+    height: 675,
+  },
+  {
+    title: '等压灌装阀',
+    text: '等压灌装阀用于保持二氧化碳含量，并提升灌装稳定性。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-pressure-filling-valve-detail.webp`,
+    alt: '碳酸饮料生产线等压灌装阀细节',
+    width: 1200,
+    height: 675,
+  },
+  {
+    title: '自动封盖系统',
+    text: '封盖段在灌装后立即完成封口，使成品瓶质量保持稳定。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-automatic-capping-system-detail.webp`,
+    alt: '碳酸饮料生产线自动封盖系统细节',
+    width: 1200,
+    height: 675,
+  },
+];
+
+const lineModules = [
+  {
+    title: '水处理系统',
+    text: '前处理可配置原水箱、多介质过滤器、活性炭过滤器、RO系统、UV杀菌、臭氧杀菌和成品水箱。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-water-treatment-system.webp`,
+    alt: '碳酸饮料生产线用水处理系统',
+  },
+  {
+    title: '饮料混合系统',
+    text: '碳酸饮料混合系统支持糖浆调配、冷却和二氧化碳比例控制，适用于苏打水及气泡饮料生产。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-carbonated-drink-mixing-system.webp`,
+    alt: '碳酸饮料混合与二氧化碳比例混合系统',
+  },
+  {
+    title: '贴标机',
+    text: '可根据瓶型设计选择套标、OPP热熔胶贴标、不干胶贴标和喷码系统。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-labeling-machine.webp`,
+    alt: '贴标 machine for glass bottle carbonated drink production line',
+  },
+  {
+    title: '包装系统',
+    text: '成品瓶可连接膜包、纸箱包装、托盘包装和输送系统，便于后续发货。',
+    image: `${assetBase}/glass-bottle-carbonated-beer-project-packaging-system.webp`,
+    alt: 'Packaging system for glass bottle carbonated drink production line',
+  },
+];
+
+const processSteps = [
+  ['水处理', '根据原水水质配置过滤、RO、UV或臭氧处理工艺。'],
+  ['糖浆调配', '根据汽水配方配置化糖、香精添加和糖浆调配。'],
+  ['碳酸混合', '饮料在等压灌装前进行冷却并混入二氧化碳，以保持含气量。'],
+  ['瓶子冲洗', '玻璃瓶 are rinsed with aseptic water before entering the filling carousel.'],
+  ['等压灌装', '等压灌装阀有助于减少泡沫并保持碳酸饮料的二氧化碳含量。'],
+  ['封盖与包装', '灌装后立即完成封盖，随后连接贴标和包装设备。'],
+];
+
+const faqs = [
+  {
+    question: '这条玻璃瓶生产线可以灌装哪些产品？',
+    answer: '适用于玻璃瓶啤酒、苏打水、气泡饮料、碳酸软饮料和其他含气饮品。',
+  },
+  {
+    question: '产能可以定制吗？',
+    answer: '可以。可根据玻璃瓶容量、含气量、盖型和车间布局，从小型产线到高产能产线进行配置。',
+  },
+  {
+    question: '可以按完整生产线报价吗？',
+    answer: '可以。方案可包含水处理、调配、二氧化碳比例控制、洗瓶、等压灌装、封盖、贴标、喷码、包装和输送连接。',
+  },
+  {
+    question: '下单前需要确认哪些信息？',
+    answer: '需要确认玻璃瓶容量、瓶型图纸、盖型、含气量、灌装温度、目标产能、电压、车间尺寸，以及是否需要单机或整线。',
+  },
+  {
+    question: '页面参数是否就是最终报价参数？',
+    answer: '页面参数用于玻璃瓶碳酸饮料或啤酒项目前期选型，最终型号、产能、重量和布局需根据瓶样及配方要求确认。',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: productName,
+  description:
+    '自动玻璃瓶碳酸饮料及啤酒类饮品生产线，适用于苏打水、气泡饮料和其他含气饮品，可配置混合、二氧化碳比例控制、冲洗、等压灌装、封盖、贴标和包装模块。',
+  image: heroGallery.map((image) => new URL(image.src, 'https://spring-pack.cn').toString()),
+  brand: {
+    '@type': 'Brand',
+    name: 'First Machinery',
+  },
+  manufacturer: {
+    '@type': 'Organization',
+    name: '中科美利（苏州）包装设备有限公司',
+  },
+  category: '碳酸饮料灌装机',
+  sku: 'GLASS-BOTTLE-CARBONATED-BEER-PROJECT',
+  additionalProperty: keySpecs.map(([name, value]) => ({
+    '@type': 'PropertyValue',
+    name,
+    value,
+  })),
+};
+---
+
+<BaseLayout
+  title={`${productName} | 玻璃瓶碳酸饮料及啤酒交钥匙方案`}
+  description="玻璃瓶碳酸饮料及啤酒类饮品生产线，适用于苏打水、气泡饮料和其他含气饮品，包含等压灌装参数、整线模块和报价规划。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="product-detail-page product-detail-page--rich product-detail-page--square-hero product-detail-page--compact-title solution-line-page">
+    <section class="product-hero product-hero--rich">
+      <div class="container product-rich-hero-inner">
+        <div class="product-hero-breadcrumb-bar">
+          <nav class="product-breadcrumb" aria-label="Breadcrumb">
+            <a href="/">首页</a>
+            <span>/</span>
+            <a href="/solutions/">解决方案</a>
+            <span>/</span>
+            <a href="/products/filling-machine/carbonated-drink-filling-machine/">碳酸饮料灌装机</a>
+          </nav>
+        </div>
+
+        <div class="product-hero-heading">
+          <h1>{productName}</h1>
+        </div>
+
+        <div class="product-hero-content">
+          <div class="product-hero-showcase">
+            <div class="product-hero-gallery" data-product-gallery>
+              <div class="product-hero-thumbs" role="tablist" aria-label="glass bottle carbonated and beer-style drink production line images">
+                {heroGallery.map((image, index) => (
+                  <button
+                    class:list={['product-hero-thumb', index === 0 && 'is-active']}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`显示 ${image.label}`}
+                    data-gallery-thumb
+                    data-gallery-index={String(index)}
+                    data-gallery-src={image.src}
+                    data-gallery-alt={image.alt}
+                  >
+                    <img src={image.src} alt={`${image.alt} 缩略图`} width="120" height="120" loading={index < 4 ? 'eager' : 'lazy'} decoding="async" />
+                  </button>
+                ))}
+              </div>
+              <div class="product-hero-frame">
+                <button class="product-hero-gallery-btn product-hero-gallery-btn--prev" type="button" aria-label="上一张产品图片" data-gallery-prev>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 18 9 12l6-6"></path>
+                  </svg>
+                </button>
+                <div class="product-hero-media">
+                  <img
+                    src={heroGallery[0].src}
+                    alt={heroGallery[0].alt}
+                    width="960"
+                    height="960"
+                    loading="eager"
+                    decoding="async"
+                    data-gallery-main
+                  />
+                  <div class="product-hero-cert-badges" aria-label="Certification badges">
+                    <span>CE</span>
+                    <span>ISO</span>
+                    <span>SGS</span>
+                    <span>CNAS</span>
+                  </div>
+                </div>
+                <button class="product-hero-gallery-btn product-hero-gallery-btn--next" type="button" aria-label="下一张产品图片" data-gallery-next>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-hero-form-card" id="quote">
+            <div class="product-hero-intro-card">
+              <p class="product-hero-intro-eyebrow">方案概述</p>
+              <h2>{productName}</h2>
+              <p>
+                这条玻璃瓶碳酸饮料/啤酒项目适用于玻璃瓶啤酒、苏打水、气泡饮料和碳酸软饮料生产。整线可根据产品工艺配置洗瓶、等压灌装、压盖或旋盖、贴标、包装和输送系统，满足玻璃瓶饮料稳定灌装需求。
+              </p>
+              <a class="product-hero-phone-button" href="tel:18962223666" aria-label="拨打电话 18962223666">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path>
+                </svg>
+                电话咨询：18962223666
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-summary-strip">
+      <div class="container product-summary-grid">
+        <div>
+          <p class="product-kicker">项目资料</p>
+          <h2 class="section-title--secondary">企业实力与整线交付能力</h2>
+        </div>
+        <div class="product-summary-cards">
+          <div><strong>20+</strong><span>年行业经验<small>丰富的设备制造与项目实施经验</small></span></div>
+          <div><strong>整线</strong><span>交钥匙方案<small>从方案设计到安装调试一站式服务</small></span></div>
+          <div><strong>CE / ISO</strong><span>国际认证<small>严格质量管理，符合国际标准</small></span></div>
+          <div><strong>50+</strong><span>国家和地区<small>设备远销全球，提供完善售后支持</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-overview product-section--white" id="overview">
+      <div class="container product-overview-layout">
+        <div class="product-overview-head">
+          <div>
+            <h2 class="section-title--primary">整线方案</h2>
+          </div>
+        </div>
+        <div class="product-line-flow-group">
+          <figure class="product-layout-figure">
+            <img
+              src={`${assetBase}/glass-bottle-carbonated-beer-project-complete-line-layout.avif`}
+              alt="完整 glass bottle carbonated drink production line layout from water treatment and mixing to filling labeling and packing"
+              width="1600"
+              height="456"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="product-process-caption-strip" aria-label="碳酸饮料生产线流程">
+            {processSteps.map(([title, text], index) => (
+              <div class="product-process-item">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="csd-parameters-section" id="specifications">
+      <div class="csd-parameters-container">
+        <p class="csd-parameters-note">
+          所有参数均可根据您的生产需求定制。
+        </p>
+
+        <h2 class="csd-parameters-title">
+          技术 参数: 碳酸饮料灌装线
+        </h2>
+
+        <div class="csd-parameters-scroll">
+          <table class="csd-parameters-table">
+            <thead>
+              <tr>
+                <th>型号</th>
+                {csdTechColumns.map((column) => <th>{column}</th>)}
+              </tr>
+            </thead>
+
+            <tbody>
+              {csdTechRows.map((row) => (
+                <tr>
+                  <th scope="row">{row[0]}</th>
+                  {row.length === 2 ? (
+                    <td colspan={csdTechColumns.length}>{row[1]}</td>
+                  ) : (
+                    row.slice(1).map((value) => <td>{value}</td>)
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="csd-parameters-footnote">
+          技术参数可能会根据瓶型设计、生产条件和最终配置调整。
+        </p>
+      </div>
+    </section>
+
+    <section class="product-section product-feature-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">设备细节</p>
+          <h2 class="section-title--secondary">客户重点查看的核心结构</h2>
+        </div>
+        <div class="product-machine-detail-layout">
+          <div class="product-machine-detail-lead">
+            <figure class="product-machine-detail-main product-machine-detail-main--wide-crop">
+              <img
+                src={machineDetailsOverview.image}
+                alt={machineDetailsOverview.alt}
+                width="800"
+                height="534"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="product-machine-detail-summary">
+              {machineAdvantages.map((item) => (
+                <article>
+                  <span class="product-machine-detail-icon" aria-hidden="true">
+                    {item.icon === 'monoblock' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <rect x="7" y="12" width="34" height="24" rx="3"></rect>
+                        <path d="M14 19h5m5 0h5m5 0h2M14 29h20"></path>
+                        <path d="M16 36v5m16-5v5"></path>
+                        <circle cx="19" cy="24" r="2.5"></circle>
+                        <circle cx="29" cy="24" r="2.5"></circle>
+                      </svg>
+                    )}
+                    {item.icon === 'output' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M8 32h6l4-11 6 17 5-14 4 8h7"></path>
+                        <path d="M10 12h28v24H10z"></path>
+                        <path d="M16 41h16"></path>
+                      </svg>
+                    )}
+                    {item.icon === 'range' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M13 18h22"></path>
+                        <path d="M18 12 12 18l6 6"></path>
+                        <path d="m30 12 6 6-6 6"></path>
+                        <path d="M17 31c0-3 2-5 4-6v-4h6v4c2 1 4 3 4 6v7H17z"></path>
+                        <path d="M20 38h8"></path>
+                      </svg>
+                    )}
+                  </span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div class="product-machine-detail-grid">
+            {machineDetails.map((item) => (
+              <article class="product-machine-detail-card">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-line-module-section">
+      <div class="container">
+        <div class="product-section-head product-section-head--split">
+          <div>
+            <p class="product-kicker">整线方案</p>
+            <h2 class="section-title--secondary">完整玻璃瓶碳酸饮料及啤酒生产线模块</h2>
+          </div>
+          <p>
+            灌装段可与饮料处理、瓶子输送、贴标、喷码和包装设备连接，形成完整碳酸饮料交钥匙生产线。
+          </p>
+        </div>
+        <div class="product-line-module-grid">
+          {lineModules.map((item, index) => (
+            <article class="product-line-module">
+              <figure class="product-line-module-media">
+                <img src={item.image} alt={item.alt} width="1800" height="1350" loading="lazy" decoding="async" />
+              </figure>
+              <div class:list={['product-line-module-copy', index === 0 && 'product-line-module-copy--water']}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="product-section product-faq-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">常见问题</p>
+          <h2 class="section-title--secondary">玻璃瓶碳酸饮料及啤酒项目常见问题</h2>
+        </div>
+        <div class="product-faq-list">
+          {faqs.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div id="inquiry">
+      <Template1 />
+    </div>
+
+    <aside class="product-sticky-cta" data-sticky-cta aria-label="快速联系">
+      <a class="product-sticky-quote" href="/contact/" data-source="sticky-product-cta">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M5 8h22c1.1 0 2 .9 2 2v13c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10c0-1.1.9-2 2-2Zm1.9 2.4 9.1 7.1 9.1-7.1H6.9Zm19.7 2.1-9.8 7.6c-.5.4-1.1.4-1.6 0l-9.8-7.6V23h21.2V12.5Z"></path>
+        </svg>
+        <span>获取报价</span>
+      </a>
+      <a
+        class="product-sticky-whatsapp"
+        href="https://wa.me/8613800000000?text=%E6%88%91%E6%83%B3%E5%92%A8%E8%AF%A2%E7%8E%BB%E7%92%83%E7%93%B6%E7%A2%B3%E9%85%B8%E9%A5%AE%E6%96%99%E5%8F%8A%E5%95%A4%E9%85%92%E9%A1%B9%E7%9B%AE%E3%80%82"
+        target="_blank"
+        rel="noopener"
+        aria-label="通过 WhatsApp 联系我们"
+      >
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 3C9.4 3 4 8.2 4 14.8c0 2.3.7 4.5 2 6.4L4.7 29l8-2.1c1.1.3 2.2.5 3.3.5 6.6 0 12-5.2 12-11.7S22.6 3 16 3Zm0 22c-1 0-2-.2-3-.5l-.5-.2-4.8 1.3.8-4.7-.3-.5c-1.2-1.7-1.8-3.6-1.8-5.6C6.4 9.6 10.7 5.3 16 5.3s9.6 4.2 9.6 9.5S21.3 25 16 25Zm5.6-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.3 5.4 4.7.8.3 1.4.5 1.9.6.8.2 1.4.2 2 .1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.4-.2-.7-.4Z"></path>
+        </svg>
+      </a>
+    </aside>
+
+    <div class="product-mobile-quote-modal" data-mobile-quote-modal hidden>
+      <div class="product-mobile-quote-backdrop" data-mobile-quote-close></div>
+      <div class="product-mobile-quote-panel" role="dialog" aria-modal="true" aria-labelledby="mobileQuoteTitle">
+        <button class="product-mobile-quote-close" type="button" aria-label="关闭报价表单" data-mobile-quote-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>
+        </button>
+        <form class="product-mobile-quote-form" data-lead-form novalidate>
+          <div class="lead-eyebrow">获取方案</div>
+          <h2 id="mobileQuoteTitle">获取这条玻璃瓶碳酸饮料生产线报价。</h2>
+          <label>
+            <span>姓名 <b>*</b></span>
+            <input name="name" type="text" autocomplete="name" placeholder="请输入姓名" required />
+            <em data-error-for="name">请输入您的姓名。</em>
+          </label>
+          <label>
+            <span>WhatsApp <b>*</b></span>
+            <div class="product-hero-phone-control">
+              <select name="country" autocomplete="country-name" required aria-label="国家区号">
+                {countryDialOptions.map((item) => (
+                  <option value={item.country} data-dial={item.code} selected={item.country === defaultCountryName}>
+                    {item.flag} {item.code}
+                  </option>
+                ))}
+              </select>
+              <input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required />
+            </div>
+            <em data-error-for="whatsapp">请输入您的 WhatsApp 号码。</em>
+          </label>
+          <label>
+            <span>项目需求 <b>*</b></span>
+            <textarea name="message" placeholder="瓶size, target capacity, CO2 volume, filling temperature, voltage, line scope..." required></textarea>
+            <em data-error-for="message">请描述您的项目需求。</em>
+          </label>
+          <input type="hidden" name="product" value={productName} />
+          <input type="hidden" name="sourcePage" value="" />
+          <input type="hidden" name="sourceTitle" value="" />
+          <input type="hidden" name="source" value="mobile-sticky-quote" />
+          <input type="hidden" name="referrer" value="" />
+          <button class="lead-submit" type="submit">获取报价</button>
+          <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺。</p>
+        </form>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .solution-line-page .product-hero-frame,
+    .solution-line-page .product-hero-media,
+    .solution-line-page .product-hero-media img {
+      aspect-ratio: 900 / 510 !important;
+    }
+
+    .solution-line-page .product-hero-media img {
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      transform: none !important;
+    }
+    .solution-line-page .product-hero-heading {
+      text-align: center;
+    }
+
+    .solution-line-page .product-hero-heading h1 {
+      max-width: 1100px;
+      margin-inline: auto;
+      font-size: 40px !important;
+      line-height: 1.08;
+    }
+
+    .solution-line-page .product-overview-head {
+      display: block;
+      max-width: 980px;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .solution-line-page .product-overview-head .section-title--primary {
+      max-width: 920px;
+      margin-inline: auto;
+      font-size: 30px !important;
+      line-height: 1.15;
+    }
+
+    .csd-parameters-section {
+      padding: 64px 0;
+      background: #f6f8f3;
+      color: var(--fm-ink);
+    }
+
+    .csd-parameters-container {
+      width: min(var(--fm-max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .csd-parameters-note {
+      margin: 0 0 10px;
+      color: var(--fm-green);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .solution-line-page .csd-parameters-title {
+      margin: 0 auto 24px;
+      max-width: 900px;
+      color: #101815;
+      font-family: "Space Grotesk", Manrope, sans-serif;
+      font-size: 40px !important;
+      font-weight: 800;
+      line-height: 1.04;
+      text-align: center;
+    }
+
+    .csd-parameters-scroll {
+      overflow-x: auto;
+      border: 1px solid rgba(57, 93, 61, 0.18);
+      background: #fff;
+      box-shadow: 0 22px 70px rgba(16, 24, 21, 0.08);
+    }
+
+    .csd-parameters-table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: collapse;
+      font-size: 13px !important;
+      line-height: 1.32;
+    }
+
+    .csd-parameters-table th,
+    .csd-parameters-table td {
+      padding: 10px 12px;
+      border: 1px solid rgba(57, 93, 61, 0.14);
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .csd-parameters-table thead th {
+      background: var(--fm-green);
+      color: #fff;
+      font-family: "Space Grotesk", Manrope, sans-serif;
+      font-weight: 800;
+      font-size: 13px !important;
+      white-space: nowrap;
+    }
+
+    .csd-parameters-table tbody th {
+      width: 190px;
+      background: #eef3ec;
+      color: #17231c;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    .csd-parameters-table tbody td {
+      color: #44504a;
+      font-weight: 650;
+    }
+
+    .csd-parameters-footnote {
+      margin: 12px 0 0;
+      color: #66716b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .csd-parameters-section {
+        padding: 46px 0;
+      }
+
+      .solution-line-page .csd-parameters-title {
+        font-size: 32px !important;
+      }
+
+      .csd-parameters-table {
+        min-width: 1060px;
+        font-size: 12px;
+      }
+
+      .csd-parameters-table th,
+      .csd-parameters-table td {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    (() => {
+      document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
+        const mainImage = gallery.querySelector('[data-gallery-main]');
+        const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
+        const previous = gallery.querySelector('[data-gallery-prev]');
+        const next = gallery.querySelector('[data-gallery-next]');
+        let activeIndex = 0;
+
+        const setActive = (nextIndex) => {
+          if (!mainImage || thumbs.length === 0) return;
+          activeIndex = (nextIndex + thumbs.length) % thumbs.length;
+          const activeThumb = thumbs[activeIndex];
+          const imageSrc = activeThumb.getAttribute('data-gallery-src');
+          const imageAlt = activeThumb.getAttribute('data-gallery-alt') || '';
+
+          if (imageSrc) mainImage.setAttribute('src', imageSrc);
+          mainImage.setAttribute('alt', imageAlt);
+
+          thumbs.forEach((thumb, index) => {
+            const isActive = index === activeIndex;
+            thumb.classList.toggle('is-active', isActive);
+            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+        };
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener('click', () => setActive(index));
+          thumb.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+              event.preventDefault();
+              setActive(index + 1);
+              thumbs[(index + 1) % thumbs.length]?.focus();
+            }
+            if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+              event.preventDefault();
+              setActive(index - 1);
+              thumbs[(index - 1 + thumbs.length) % thumbs.length]?.focus();
+            }
+          });
+        });
+
+        previous?.addEventListener('click', () => setActive(activeIndex - 1));
+        next?.addEventListener('click', () => setActive(activeIndex + 1));
+      });
+
+      const stickyCta = document.querySelector('[data-sticky-cta]');
+      if (stickyCta) {
+        const stickyReveal滚动Y = 500;
+        const setStickyVisible = (visible) => {
+          stickyCta.classList.toggle('is-visible', visible);
+        };
+        const updateSticky = () => {
+          setStickyVisible(window.scrollY >= stickyReveal滚动Y);
+        };
+        updateSticky();
+        window.addEventListener('scroll', updateSticky, { passive: true });
+      }
+
+      const quoteModal = document.querySelector('[data-mobile-quote-modal]');
+      const quoteTrigger = document.querySelector('[data-mobile-quote-trigger]');
+      const isMobileQuote = () => window.matchMedia('(max-width: 921px)').matches;
+      const openQuoteModal = () => {
+        if (!quoteModal) return;
+        quoteModal.hidden = false;
+        document.body.classList.add('mobile-quote-open');
+        requestAnimationFrame(() => {
+          quoteModal.classList.add('is-open');
+          quoteModal.querySelector('input[name="name"]')?.focus();
+        });
+      };
+      const closeQuoteModal = () => {
+        if (!quoteModal) return;
+        quoteModal.classList.remove('is-open');
+        document.body.classList.remove('mobile-quote-open');
+        window.setTimeout(() => {
+          if (!quoteModal.classList.contains('is-open')) quoteModal.hidden = true;
+        }, 180);
+      };
+
+      quoteTrigger?.addEventListener('click', (event) => {
+        if (!isMobileQuote()) return;
+        event.preventDefault();
+        openQuoteModal();
+      });
+
+      quoteModal?.querySelectorAll('[data-mobile-quote-close]').forEach((item) => {
+        item.addEventListener('click', closeQuoteModal);
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) {
+          closeQuoteModal();
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

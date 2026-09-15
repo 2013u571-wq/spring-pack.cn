@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Alibaba Product Page"
+  short_description: "Create local product pages from opened Alibaba detail tabs."
+  default_prompt: "Use this skill to capture an Alibaba product detail page from Chrome and build a matching local product detail page."

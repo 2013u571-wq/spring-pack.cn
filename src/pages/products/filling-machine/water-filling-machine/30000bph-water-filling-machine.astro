@@ -1,0 +1,794 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Template1 from '@/components/Template1.astro';
+import WaterBottlingTechnicalParameters from '@/components/WaterBottlingTechnicalParameters.astro';
+import { countryDialOptions, defaultCountryName } from '@/data/countryDialOptions';
+
+export const prerender = true;
+
+const productName = '30000BPH 水灌装机';
+const productSlug = '30000bph-water-filling-machine';
+const assetBase = `/assets/first-machinery/products/water-filling-machine/${productSlug}`;
+const productUrl = 'https://spring-pack.cn/products/filling-machine/water-filling-machine/30000bph-water-filling-machine/';
+const supplierName = '中科美利（苏州）包装设备有限公司';
+
+const heroGallery = [
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-main.webp`,
+    alt: '30000BPH XGF automatic bottled water filling machine for PET bottle production',
+    label: 'Main machine image',
+  },
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-overview.webp`,
+    alt: 'Stainless steel rotary section of the 30000BPH water filling machine from supplier gallery',
+    label: 'Rotary filling section',
+  },
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-rinsing-system.webp`,
+    alt: 'Top view of the rinsing filling and capping monoblock for 30000BPH bottled water line',
+    label: 'Monoblock top view',
+  },
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-front-view.webp`,
+    alt: 'Conveyor and transfer section detail on the 30000BPH water filling machine',
+    label: 'Transfer section',
+  },
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-filling-valve.webp`,
+    alt: '灌装 valve detail for the 30000BPH bottled water filling machine',
+    label: '灌装 valve',
+  },
+  {
+    src: `${assetBase}/30000bph-water-filling-machine-capping-system.webp`,
+    alt: 'Automatic capping head detail for the 30000BPH water filling machine',
+    label: '封盖 system',
+  },
+];
+
+const heroStats = [
+  ['产能', '30,000 BPH'],
+  ['适用瓶型', '100ml-10L PET'],
+  ['灌装头数', '20个以上'],
+  ['设备类型', '三合一'],
+];
+
+const keySpecs = [
+  ['产品型号', '30000BPH 水灌装机'],
+  ['产能范围', '30,000 BPH'],
+  ['适用瓶型', 'PET圆瓶或方瓶，最终以瓶样和图纸确认为准'],
+  ['适用容量', '100ml-10L'],
+  ['灌装物料', '纯净水、矿泉水、山泉水等非含气饮用水'],
+  ['设备结构', '冲洗、灌装、封盖三合一单机，灌装头数20个以上'],
+  ['灌装精度', '±1mm'],
+  ['清洗介质', '无菌水'],
+  ['冲洗压力', '0.06-0.2MPa'],
+  ['压缩空气', '0.3-0.7MPa'],
+  ['设备材质', '与物料接触部分可选SUS304/SUS316不锈钢'],
+  ['适配产线', '可连接水处理、吹瓶、贴标、喷码、包装和码垛设备'],
+  ['电压', '110V、220V、380V或415V，按项目定制'],
+  ['售后支持', '提供视频技术支持、在线支持、现场安装和培训'],
+  ['产地', '中国江苏'],
+];
+
+const machineDetailsOverview = {
+  image: `${assetBase}/30000bph-water-filling-machine-machine-details-overview.webp`,
+  alt: 'Rotary rinsing filling and capping table of the 30000BPH 自动水灌装机',
+};
+
+const machineAdvantages = [
+  {
+    icon: 'monoblock',
+    title: '卫生型三合一主机',
+    text: '冲洗、灌装和封盖集中在同一台不锈钢主机内完成，减少瓶子转移环节，产线更紧凑，也更便于清洁维护。',
+  },
+  {
+    icon: 'output',
+    title: '30,000 BPH稳定产能',
+    text: '该型号适合中小型水厂和大型瓶装水工厂，可根据瓶型、瓶盖和车间布局配置对应的输送、贴标和包装速度。',
+  },
+  {
+    icon: 'range',
+    title: '适配100ml-10L PET瓶',
+    text: '适用于纯净水和矿泉水灌装项目，正式报价前会结合瓶样、瓶口、盖型和标签形式确认最终配置。',
+  },
+];
+
+const machineDetails = [
+  {
+    title: '自动冲瓶系统',
+    text: '瓶子进入灌装前进行内部冲洗，减少瓶内灰尘和杂质，保障饮用水灌装卫生。',
+    image: `${assetBase}/30000bph-water-filling-machine-automatic-rinsing-system-detail.webp`,
+    alt: 'PET瓶灌装前自动冲瓶系统细节',
+    width: 1400,
+    height: 788,
+  },
+  {
+    title: '高速回流灌装阀',
+    text: '灌装阀控制液位稳定，灌装精度高，适合连续生产中的瓶装水液位一致性要求。',
+    image: `${assetBase}/30000bph-water-filling-machine-high-speed-reflux-filling-valve-detail.webp`,
+    alt: '瓶装水精准灌装阀细节',
+    width: 960,
+    height: 960,
+  },
+  {
+    title: '自动旋盖系统',
+    text: '自动理盖、送盖和旋盖，提高封盖效率，并保持瓶盖锁紧效果稳定。',
+    image: `${assetBase}/30000bph-water-filling-machine-automatic-capping-system-detail.webp`,
+    alt: '30000BPH 水灌装机自动旋盖系统细节',
+    width: 960,
+    height: 960,
+  },
+];
+
+const lineModules = [
+  {
+    title: '水处理系统',
+    text: '前处理可配置原水箱、石英砂过滤器、活性炭过滤器、精密过滤器、RO反渗透、紫外线杀菌、臭氧系统和成品水箱。',
+    image: `${assetBase}/30000bph-water-filling-machine-water-treatment-system.webp`,
+    alt: '瓶装纯净水生产线RO水处理系统',
+  },
+  {
+    title: '贴标机',
+    text: '可根据包装设计选择PVC套标、OPP热熔胶贴标、不干胶贴标或冷胶纸标等方案。',
+    image: `${assetBase}/30000bph-water-filling-machine-labeling-machine.webp`,
+    alt: '瓶装水生产线连接贴标机',
+  },
+  {
+    title: '包装系统',
+    text: '产线可连接膜包机、纸箱包装、托盘膜包等后段包装设备，满足不同销售渠道的包装需求。',
+    image: `${assetBase}/30000bph-water-filling-machine-packaging-system.webp`,
+    alt: '瓶装水后段包装系统',
+  },
+  {
+    title: '吹瓶机',
+    text: '吹瓶设备可在灌装前生产矿泉水瓶、饮料瓶和其他PET容器，便于组成完整瓶装水生产线。',
+    image: `${assetBase}/30000bph-water-filling-machine-bottle-blowing-machine.webp`,
+    alt: '灌装前PET瓶吹瓶机',
+  },
+];
+
+const related解决方案 = [
+  {
+    title: '非含气饮料生产线',
+    text: '适用于果汁、茶饮、功能饮料和含果肉饮料项目，需要采用不同的前处理和灌装设计。',
+    capacity: '1,000-30,000BPH',
+    image: `${assetBase}/30000bph-water-filling-machine-non-carbonated-beverage-line.webp`,
+    alt: '果汁茶饮和功能饮料灌装项目非含气饮料生产线',
+  },
+  {
+    title: '碳酸饮料生产线',
+    text: '适用于苏打水、气泡饮料和碳酸软饮料生产，需要按含气产品配置等压灌装系统。',
+    capacity: '1,000-20,000BPH',
+    image: `${assetBase}/30000bph-water-filling-machine-carbonated-drink-line.webp`,
+    alt: '苏打水和气泡饮料碳酸饮料灌装线',
+  },
+  {
+    title: '3-5加仑桶装水生产线',
+    text: '适用于周转桶装水生产，可完成3加仑至5加仑大桶的清洗、灌装和封盖。',
+    capacity: '60-2,000BPH',
+    image: `${assetBase}/30000bph-water-filling-machine-3-5-gallon-water-line.webp`,
+    alt: '3至5加仑桶装水灌装线方案',
+  },
+];
+
+const processSteps = [
+  ['水处理', '原水根据当地水质经过过滤、反渗透、紫外线或臭氧处理，达到灌装要求。'],
+  ['瓶子供应', 'PET瓶可由吹瓶机在线供应，也可人工上瓶后进入灌装主机。'],
+  ['瓶内冲洗', '冲瓶系统在灌装前清洁瓶内表面，减少灰尘和异物。'],
+  ['饮用水灌装', '非含气饮用水通过20个以上灌装头完成稳定灌装，保持液位一致。'],
+  ['旋盖封口', '瓶盖自动整理、输送并旋紧，成品瓶随后进入贴标和包装工段。'],
+];
+
+const faqs = [
+  {
+    question: '30000BPH水灌装机可以灌装哪些产品？',
+    answer: '该设备适用于非含气瓶装饮用水，包括纯净水、矿泉水、山泉水和普通饮用水。碳酸饮料或果汁通常需要不同的处理和灌装方案。',
+  },
+  {
+    question: '这台设备适合哪些瓶型规格？',
+    answer: '该型号适用于100ml-10L PET瓶。正式配置需根据瓶样、瓶口、盖型、标签形式和是否需要多规格切换来确认。',
+  },
+  {
+    question: '是否可以作为完整生产线报价？',
+    answer: '可以。可按项目需求配置水处理、吹瓶、灌装、喷码、贴标、包装和码垛等设备，组成完整瓶装水生产线。',
+  },
+  {
+    question: '采购前需要确认哪些信息？',
+    answer: '建议确认原水水质、瓶型容量、瓶样图纸、瓶盖类型、目标产能、当地电压、车间尺寸、安装计划以及是否需要单机或整线方案。',
+  },
+  {
+    question: '页面参数是否就是最终报价参数？',
+    answer: '页面参数用于选型参考，最终型号、速度、尺寸、功率和布局需结合瓶型、产线范围和项目现场条件确认。',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: productName,
+  description:
+    '30000BPH 水灌装机适用于PET瓶装纯净水和矿泉水生产，集冲洗、灌装和封盖于一体，可连接水处理、贴标和包装设备。',
+  image: heroGallery.map((image) => new URL(image.src, 'https://spring-pack.cn').toString()),
+  brand: {
+    '@type': 'Brand',
+    name: 'First Machinery',
+  },
+  manufacturer: {
+    '@type': 'Organization',
+    name: '中科美利（苏州）包装设备有限公司',
+  },
+  category: '水灌装机',
+  sku: '30000BPH-WATER-FILLING-MACHINE',
+  additionalProperty: keySpecs.map(([name, value]) => ({
+    '@type': 'PropertyValue',
+    name,
+    value,
+  })),
+};
+---
+
+<BaseLayout
+  title={`${productName} | 三合一瓶装水灌装生产线`}
+  description="30000BPH 水灌装机适用于PET瓶装纯净水和矿泉水生产，瓶型范围100ml-10L，可组成完整瓶装水生产线。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <article class="product-detail-page product-detail-page--rich product-detail-page--water-gallery-crop">
+    <section class="product-hero product-hero--rich">
+      <div class="container product-rich-hero-inner">
+        <div class="product-hero-breadcrumb-bar">
+          <nav class="product-breadcrumb" aria-label="面包屑导航">
+            <a href="/">首页</a>
+            <span>/</span>
+            <a href="/products/">产品</a>
+            <span>/</span>
+            <a href="/products/filling-machine/water-filling-machine/">水灌装机</a>
+          </nav>
+        </div>
+
+        <div class="product-hero-heading">
+          <p class="product-kicker">高速瓶装水生产线</p>
+          <h1>{productName}</h1>
+        </div>
+
+        <dl class="product-rich-stats" aria-label="产品关键参数">
+          {heroStats.map(([label, value]) => (
+            <div>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <div class="product-hero-content">
+          <div class="product-hero-showcase">
+            <div class="product-hero-gallery" data-product-gallery>
+              <div class="product-hero-thumbs" role="tablist" aria-label="30000BPH水灌装机图片">
+                {heroGallery.map((image, index) => (
+                  <button
+                    class:list={['product-hero-thumb', index === 0 && 'is-active']}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`查看 ${image.label}`}
+                    data-gallery-thumb
+                    data-gallery-index={String(index)}
+                    data-gallery-src={image.src}
+                    data-gallery-alt={image.alt}
+                  >
+                    <img src={image.src} alt={`${image.alt} 缩略图`} width="120" height="120" loading={index < 4 ? 'eager' : 'lazy'} decoding="async" />
+                  </button>
+                ))}
+              </div>
+              <div class="product-hero-frame">
+                <button class="product-hero-gallery-btn product-hero-gallery-btn--prev" type="button" aria-label="上一张产品图片" data-gallery-prev>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 18 9 12l6-6"></path>
+                  </svg>
+                </button>
+                <div class="product-hero-media">
+                  <img
+                    src={heroGallery[0].src}
+                    alt={heroGallery[0].alt}
+                    width="960"
+                    height="960"
+                    loading="eager"
+                    decoding="async"
+                    data-gallery-main
+                  />
+                  <div class="product-hero-cert-badges" aria-label="认证标识">
+                    <span>CE</span>
+                    <span>ISO</span>
+                    <span>SGS</span>
+                    <span>CNAS</span>
+                  </div>
+                </div>
+                <button class="product-hero-gallery-btn product-hero-gallery-btn--next" type="button" aria-label="下一张产品图片" data-gallery-next>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-hero-form-card" id="quote">
+            <div class="product-hero-intro-card">
+              <p class="product-hero-intro-eyebrow">产品简介</p>
+              <h2>30000BPH 水灌装机</h2>
+              <p>
+                这款灌装机专为PET瓶装水生产设计，适用于100毫升至10升的容量。它适用于纯净水和矿泉水的灌装。该机器集冲洗、灌装和封盖于一体，运行稳定，灌装精准，易于维护。它可以与水处理、贴标和包装设备连接，形成完整的瓶装水生产线。广泛应用于中小型水厂以及大型瓶装水工厂。
+              </p>
+              <a class="product-hero-phone-button" href="tel:18962223666" aria-label="拨打电话 18962223666">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path>
+                </svg>
+                电话咨询：18962223666
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-summary-strip">
+      <div class="container product-summary-grid">
+        <div>
+          <p class="product-kicker">企业实力</p>
+          <h2 class="section-title--secondary">20余年行业经验，提供可靠的整线解决方案</h2>
+        </div>
+        <div class="product-summary-cards">
+          <div><strong>20+</strong><span>年行业经验<small>丰富的设备制造与项目实施经验</small></span></div>
+          <div><strong>整线</strong><span>交钥匙方案<small>从方案设计到安装调试一站式服务</small></span></div>
+          <div><strong>CE / ISO</strong><span>国际认证<small>严格质量管理，符合国际标准</small></span></div>
+          <div><strong>50+</strong><span>国家和地区<small>设备远销全球，提供完善售后支持</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-overview product-section--white" id="overview">
+      <div class="container product-overview-layout">
+        <div class="product-overview-head">
+          <div>
+            <p class="product-kicker">产品概述</p>
+            <h2 class="section-title--primary">适合瓶装水工厂的高产能生产线</h2>
+          </div>
+          <div class="product-overview-copy">
+            <p>
+              30000BPH 水灌装机适用于PET瓶装纯净水、矿泉水和山泉水生产，适用容量为100ml-10L，产能范围为30,000 BPH。设备既可作为单台灌装主机使用，也可与水处理、吹瓶、贴标、包装和码垛设备连接，组成完整瓶装水生产线。
+            </p>
+          </div>
+        </div>
+        <div class="product-line-flow-group">
+          <figure class="product-layout-figure">
+            <img
+              src={`${assetBase}/30000bph-water-filling-machine-complete-line-layout.webp`}
+              alt="完整 water bottling line layout from water treatment to filling labeling packing and palletizing"
+              width="1710"
+              height="805"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="product-process-caption-strip" aria-label="瓶装水生产线流程">
+            {processSteps.map(([title, text], index) => (
+              <div class="product-process-item">
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-spec-section" id="specifications">
+      <div class="container">
+        <details class="product-spec-disclosure" open>
+          <summary>
+            <span class="product-spec-summary-copy">
+              <span class="product-kicker">技术参数</span>
+              <span class="section-title--primary">30000BPH 水灌装机参数</span>
+            </span>
+            <span class="product-spec-summary-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="product-spec-disclosure-body">
+            <WaterBottlingTechnicalParameters />
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="product-section product-feature-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">设备细节</p>
+          <h2 class="section-title--secondary">采购方重点关注的核心部件</h2>
+        </div>
+        <div class="product-machine-detail-layout">
+          <div class="product-machine-detail-lead">
+            <figure class="product-machine-detail-main">
+              <img
+                src={machineDetailsOverview.image}
+                alt={machineDetailsOverview.alt}
+                width="960"
+                height="640"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="product-machine-detail-summary">
+              {machineAdvantages.map((item) => (
+                <article>
+                  <span class="product-machine-detail-icon" aria-hidden="true">
+                    {item.icon === 'monoblock' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <rect x="7" y="12" width="34" height="24" rx="3"></rect>
+                        <path d="M14 19h5m5 0h5m5 0h2M14 29h20"></path>
+                        <path d="M16 36v5m16-5v5"></path>
+                        <circle cx="19" cy="24" r="2.5"></circle>
+                        <circle cx="29" cy="24" r="2.5"></circle>
+                      </svg>
+                    )}
+                    {item.icon === 'output' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M8 32h6l4-11 6 17 5-14 4 8h7"></path>
+                        <path d="M10 12h28v24H10z"></path>
+                        <path d="M16 41h16"></path>
+                      </svg>
+                    )}
+                    {item.icon === 'range' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M13 18h22"></path>
+                        <path d="M18 12 12 18l6 6"></path>
+                        <path d="m30 12 6 6-6 6"></path>
+                        <path d="M17 31c0-3 2-5 4-6v-4h6v4c2 1 4 3 4 6v7H17z"></path>
+                        <path d="M20 38h8"></path>
+                      </svg>
+                    )}
+                  </span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div class="product-machine-detail-grid">
+            {machineDetails.map((item) => (
+              <article class="product-machine-detail-card">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-line-module-section">
+      <div class="container">
+        <div class="product-section-head product-section-head--split">
+          <div>
+            <p class="product-kicker">完整灌装生产线方案</p>
+            <h2 class="section-title--secondary">组成完整瓶装水产线的配套设备</h2>
+          </div>
+          <p>
+            供应商资料显示，灌装机通常作为完整生产线的一部分配置。当客户需要交钥匙瓶装水工厂时，应同步规划以下配套模块。
+          </p>
+        </div>
+        <div class="product-line-module-grid">
+          {lineModules.map((item, index) => (
+            <article class="product-line-module">
+              <figure class="product-line-module-media">
+                <img src={item.image} alt={item.alt} width="1800" height="1350" loading="lazy" decoding="async" />
+              </figure>
+              <div class:list={['product-line-module-copy', index === 0 && 'product-line-module-copy--water']}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-related-solution-section">
+      <div class="container">
+        <div class="product-section-head product-section-head--split">
+          <div>
+            <p class="product-kicker">更多灌装解决方案</p>
+            <h2 class="section-title--secondary">便于后续扩展比较的相关产线</h2>
+          </div>
+          <p>
+            除瓶装水产线外，还可提供饮料和桶装水等相关方案，便于客户在规划后续扩产时进行对比。
+          </p>
+        </div>
+        <div class="product-related-solution-track" aria-label="相关灌装解决方案">
+          {related解决方案.map((item) => (
+            <article class="product-related-solution-card">
+              <img src={item.image} alt={item.alt} width="1254" height="1254" loading="lazy" decoding="async" />
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <span>{item.capacity}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-brand-section">
+      <div class="container product-two-col product-two-col--wide">
+        <div>
+          <p class="product-kicker">核心部件品牌</p>
+          <h2 class="section-title--secondary">供应商资料中的核心部件信息</h2>
+          <p>
+            供应商资料展示了西门子、ABB、欧姆龙、Festo、三菱电机、SKF、格兰富、AirTAC等常见工业部件品牌。最终部件清单需在设备配置和正式报价中确认。
+          </p>
+        </div>
+        <figure class="product-framed-image product-framed-image--plain">
+          <img
+            src={`${assetBase}/30000bph-water-filling-machine-core-component-brands.webp`}
+            alt="Core component brand logos for water filling machine including Siemens ABB Omron Festo SKF and Grundfos"
+            width="1800"
+            height="790"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section class="product-section product-trust-section">
+      <div class="container">
+        <div class="product-trust-layout">
+          <figure class="product-framed-image product-framed-image--plain">
+            <img
+              src={`${assetBase}/30000bph-water-filling-machine-factory.webp`}
+              alt="工厂 building for bottled water filling machine and complete beverage production line manufacturing"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="product-trust-copy">
+            <h3>关于工厂</h3>
+            <p>
+              该供应商定位为饮料灌装机械制造商，可提供水灌装机、5加仑桶装水设备、果汁茶饮灌装机、碳酸饮料灌装机、水处理系统、吹瓶机、贴标机和包装机等设备。
+            </p>
+            <p>
+              对于30000BPH瓶装水项目，客户通常需要的不只是单台灌装机。实际报价应把车间布局、瓶子供应、水处理、灌装、贴标、包装、安装调试和售后服务统一纳入整线方案。
+            </p>
+            <dl class="product-trust-metrics">
+              <div><dt>50+</dt><dd>项目资料中提及的出口国家和地区</dd></div>
+              <div><dt>交钥匙</dt><dd>产线设计、生产、安装和调试支持</dd></div>
+              <div><dt>24h</dt><dd>项目资料中的响应支持说明</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="product-trust-proof-grid">
+          <figure class="product-certificate-folder">
+            <img
+              src={`${assetBase}/30000bph-water-filling-machine-certifications.webp`}
+              alt="Certification display for water filling machine supplier including compliance and inspection documents"
+              width="1719"
+              height="915"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>认证和合规资料便于客户审核。</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${assetBase}/30000bph-water-filling-machine-global-customers.webp`}
+              alt="Global customers and export experience graphic for bottled water filling machine supplier"
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>出口经验和客户来访资料作为信任背书。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-faq-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">常见问题</p>
+          <h2 class="section-title--secondary">30000BPH瓶装水项目常见问题</h2>
+        </div>
+        <div class="product-faq-list">
+          {faqs.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+        <div id="inquiry">
+      <Template1 title="需要立即咨询？" description="欢迎直接联系我们，获取设备配置和报价。" whatsappLabel="18962223666" whatsappHref="tel:18962223666" />
+    </div>
+
+    <aside class="product-sticky-cta" data-sticky-cta aria-label="快速联系操作">
+      <a class="product-sticky-quote" href="/contact/" data-source="sticky-product-cta">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M5 8h22c1.1 0 2 .9 2 2v13c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V10c0-1.1.9-2 2-2Zm1.9 2.4 9.1 7.1 9.1-7.1H6.9Zm19.7 2.1-9.8 7.6c-.5.4-1.1.4-1.6 0l-9.8-7.6V23h21.2V12.5Z"></path>
+        </svg>
+        <span>获取报价</span>
+      </a>
+      <a
+        class="product-sticky-whatsapp"
+        href="https://wa.me/8613800000000?text=I%20am%20interested%20in%20the%2030000BPH%20水%20灌装%20Machine."
+        target="_blank"
+        rel="noopener"
+        aria-label="通过WhatsApp联系"
+      >
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 3C9.4 3 4 8.2 4 14.8c0 2.3.7 4.5 2 6.4L4.7 29l8-2.1c1.1.3 2.2.5 3.3.5 6.6 0 12-5.2 12-11.7S22.6 3 16 3Zm0 22c-1 0-2-.2-3-.5l-.5-.2-4.8 1.3.8-4.7-.3-.5c-1.2-1.7-1.8-3.6-1.8-5.6C6.4 9.6 10.7 5.3 16 5.3s9.6 4.2 9.6 9.5S21.3 25 16 25Zm5.6-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.3 5.4 4.7.8.3 1.4.5 1.9.6.8.2 1.4.2 2 .1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.4-.2-.7-.4Z"></path>
+        </svg>
+      </a>
+    </aside>
+
+    <div class="product-mobile-quote-modal" data-mobile-quote-modal hidden>
+      <div class="product-mobile-quote-backdrop" data-mobile-quote-close></div>
+      <div class="product-mobile-quote-panel" role="dialog" aria-modal="true" aria-labelledby="mobileQuoteTitle">
+        <button class="product-mobile-quote-close" type="button" aria-label="关闭报价表单" data-mobile-quote-close>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>
+        </button>
+        <form class="product-mobile-quote-form" data-lead-form novalidate>
+          <div class="lead-eyebrow">获取方案</div>
+          <h2 id="mobileQuoteTitle">获取30000BPH产线报价</h2>
+          <label>
+            <span>姓名 <b>*</b></span>
+            <input name="name" type="text" autocomplete="name" placeholder="您的姓名" required />
+            <em data-error-for="name">请输入您的姓名。</em>
+          </label>
+          <label>
+            <span>联系电话 <b>*</b></span>
+            <div class="product-hero-phone-control">
+              <select name="country" autocomplete="country-name" required aria-label="国家区号">
+                {countryDialOptions.map((item) => (
+                  <option value={item.country} data-dial={item.code} selected={item.country === defaultCountryName}>
+                    {item.flag} {item.code}
+                  </option>
+                ))}
+              </select>
+              <input name="whatsapp" type="tel" autocomplete="tel" placeholder="555 000 0000" required />
+            </div>
+            <em data-error-for="whatsapp">请输入联系电话。</em>
+          </label>
+          <label>
+            <span>项目需求 <b>*</b></span>
+            <textarea name="message" placeholder="瓶型、目标产能、水源、电压、整线范围等" required></textarea>
+            <em data-error-for="message">请填写项目需求。</em>
+          </label>
+          <input type="hidden" name="product" value={productName} />
+          <input type="hidden" name="sourcePage" value="" />
+          <input type="hidden" name="sourceTitle" value="" />
+          <input type="hidden" name="source" value="mobile-sticky-quote" />
+          <input type="hidden" name="referrer" value="" />
+          <button class="lead-submit" type="submit">获取报价</button>
+          <p class="lead-status" data-lead-status role="status" aria-live="polite">无需承诺，可直接咨询。</p>
+        </form>
+      </div>
+    </div>
+  </article>
+
+  <script is:inline>
+    (() => {
+      document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
+        const mainImage = gallery.querySelector('[data-gallery-main]');
+        const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
+        const previous = gallery.querySelector('[data-gallery-prev]');
+        const next = gallery.querySelector('[data-gallery-next]');
+        let activeIndex = 0;
+
+        const setActive = (nextIndex) => {
+          if (!mainImage || thumbs.length === 0) return;
+          activeIndex = (nextIndex + thumbs.length) % thumbs.length;
+          const activeThumb = thumbs[activeIndex];
+          const imageSrc = activeThumb.getAttribute('data-gallery-src');
+          const imageAlt = activeThumb.getAttribute('data-gallery-alt') || '';
+
+          if (imageSrc) mainImage.setAttribute('src', imageSrc);
+          mainImage.setAttribute('alt', imageAlt);
+
+          thumbs.forEach((thumb, index) => {
+            const isActive = index === activeIndex;
+            thumb.classList.toggle('is-active', isActive);
+            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+        };
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener('click', () => setActive(index));
+          thumb.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+              event.preventDefault();
+              setActive(index + 1);
+              thumbs[(index + 1) % thumbs.length]?.focus();
+            }
+            if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+              event.preventDefault();
+              setActive(index - 1);
+              thumbs[(index - 1 + thumbs.length) % thumbs.length]?.focus();
+            }
+          });
+        });
+
+        previous?.addEventListener('click', () => setActive(activeIndex - 1));
+        next?.addEventListener('click', () => setActive(activeIndex + 1));
+      });
+
+      const stickyCta = document.querySelector('[data-sticky-cta]');
+      if (stickyCta) {
+        const stickyReveal滚动Y = 500;
+        const setStickyVisible = (visible) => {
+          stickyCta.classList.toggle('is-visible', visible);
+        };
+        const updateSticky = () => {
+          setStickyVisible(window.scrollY >= stickyReveal滚动Y);
+        };
+        updateSticky();
+        window.addEventListener('scroll', updateSticky, { passive: true });
+      }
+
+      const quoteModal = document.querySelector('[data-mobile-quote-modal]');
+      const quoteTrigger = document.querySelector('[data-mobile-quote-trigger]');
+      const isMobileQuote = () => window.matchMedia('(max-width: 921px)').matches;
+      const openQuoteModal = () => {
+        if (!quoteModal) return;
+        quoteModal.hidden = false;
+        document.body.classList.add('mobile-quote-open');
+        requestAnimationFrame(() => {
+          quoteModal.classList.add('is-open');
+          quoteModal.querySelector('input[name="name"]')?.focus();
+        });
+      };
+      const closeQuoteModal = () => {
+        if (!quoteModal) return;
+        quoteModal.classList.remove('is-open');
+        document.body.classList.remove('mobile-quote-open');
+        window.setTimeout(() => {
+          if (!quoteModal.classList.contains('is-open')) quoteModal.hidden = true;
+        }, 180);
+      };
+
+      quoteTrigger?.addEventListener('click', (event) => {
+        if (!isMobileQuote()) return;
+        event.preventDefault();
+        openQuoteModal();
+      });
+
+      quoteModal?.querySelectorAll('[data-mobile-quote-close]').forEach((item) => {
+        item.addEventListener('click', closeQuoteModal);
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && quoteModal?.classList.contains('is-open')) {
+          closeQuoteModal();
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

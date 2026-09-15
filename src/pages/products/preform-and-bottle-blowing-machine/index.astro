@@ -1,0 +1,805 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Template1 from '@/components/Template1.astro';
+
+export const prerender = true;
+
+const productName = '全自动PET吹瓶机';
+const productSlug = 'high-speed-automatic-pet-bottle-blowing-machine';
+const assetBase = `/assets/first-machinery/products/preform-and-bottle-blowing-machine/${productSlug}`;
+const productUrl = 'https://spring-pack.cn/products/preform-and-bottle-blowing-machine/';
+const supplierName = '中科美利（苏州）包装设备有限公司';
+const heroGallery = [
+  {
+    src: `${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-01.webp`,
+    alt: '全自动PET吹瓶机主机图片',
+    label: '主机图片',
+  },
+  {
+    src: `${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-02.webp`,
+    alt: '全自动PET拉伸吹塑成型机整体展示',
+    label: '设备概览',
+  },
+  {
+    src: `${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-03.webp`,
+    alt: 'PET吹瓶机加热和成型区域',
+    label: '加热区域',
+  },
+  {
+    src: `${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-04.webp`,
+    alt: 'PET吹瓶机控制柜',
+    label: '控制系统',
+  },
+  {
+    src: `${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-05.webp`,
+    alt: '全自动PET吹瓶机生产系统',
+    label: '生产系统',
+  },
+];
+
+const heroStats = [
+  ['型号', 'SP-BL-12000'],
+  ['产能', '12,000 BPH'],
+  ['瓶子材质', 'PET'],
+  ['自动化', '全自动'],
+];
+
+const keySpecs = [
+  ['品牌', 'First Machinery'],
+  ['型号', 'SP-BL-12000'],
+  ['产能', '12,000 BPH'],
+  ['适用材料', 'PET'],
+  ['设备类型', '注拉吹成型机'],
+  ['最大瓶高', '300 mm'],
+  ['最大瓶径', '70 mm'],
+  ['瓶口直径', '30 mm'],
+  ['电压', '110 V / 220 V / 380 V'],
+  ['功率', '40 kW'],
+  ['重量', '5800 kg'],
+  ['PLC品牌', '西门子'],
+  ['高压阀', 'SMC'],
+  ['旋转气缸', 'FESTO'],
+  ['保修', '2年'],
+  ['产地', '中国江苏'],
+];
+
+const blowingTechRows = [
+  ['SP-BL-12000', '12,000 BPH', 'PET', '300 mm', '70 mm', '40 kW', '5800 kg'],
+  ['配置说明', '全自动', '注拉吹成型', '30 mm瓶口', '480 kN合模力', '110 V / 220 V / 380 V', '5120 × 1950 × 2600 mm'],
+];
+
+const machineDetailsOverview = {
+  image: `${assetBase}/pet-bottle-blowing-machine-details-main.avif`,
+  alt: '高速全自动PET吹瓶机',
+};
+
+const machineAdvantages = [
+  {
+    icon: 'monoblock',
+    title: '高速PET瓶生产',
+    text: 'SP-BL-12000型号适用于高产能PET瓶自动化生产，可根据瓶型和目标产能配置。',
+  },
+  {
+    icon: 'output',
+    title: '精准拉伸吹塑成型',
+    text: 'PET瓶坯经过加热、拉伸和吹塑成型，形成所需瓶型，瓶壁厚度更稳定。',
+  },
+  {
+    icon: 'range',
+    title: '可连接灌装生产线',
+    text: '吹瓶设备可与风送、冲洗、灌装、贴标和包装设备连接，形成完整饮料生产项目。',
+  },
+];
+
+const machineDetails = [
+  {
+    title: '瓶坯输送',
+    image: `${assetBase}/preform-delivery.webp`,
+    alt: 'PET吹瓶机瓶坯自动输送系统',
+  },
+  {
+    title: '瓶坯加热',
+    image: `${assetBase}/preform-heating.webp`,
+    alt: 'PET吹瓶机瓶坯加热系统',
+  },
+  {
+    title: '瓶子成型',
+    image: `${assetBase}/bottle-forming.webp`,
+    alt: '全自动拉伸吹塑单元中的PET瓶成型',
+  },
+];
+
+const faqs = [
+  {
+    question: '这款吹瓶机可以生产哪些瓶型？',
+    answer: '该设备适用于PET瓶项目。正式报价时需确认瓶子容量、瓶高、瓶径、瓶口规格和瓶型图纸，以便匹配模具和工艺。',
+  },
+  {
+    question: '这个页面参考的产能是多少？',
+    answer: '页面参考型号为SP-BL-12000，产能为12,000 BPH。最终产能会根据瓶型、模具和现场生产条件确认。',
+  },
+  {
+    question: '可以连接灌装生产线吗？',
+    answer: '可以。吹瓶机可配置风送系统，并与后端冲洗、灌装、封盖、贴标和包装设备连接。',
+  },
+  {
+    question: '报价前需要提供哪些资料？',
+    answer: '建议提供瓶子容量、瓶口规格、瓶型图纸、目标产能、当地电压，以及是否需要模具或后端灌装设备。',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: productName,
+  description: '全自动PET塑料吹瓶机适用于PET瓶高速生产，可完成自动送料、加热、拉伸、吹塑成型和成品输出。',
+  image: heroGallery.map((image) => new URL(image.src, 'https://spring-pack.cn').toString()),
+  brand: {
+    '@type': 'Brand',
+    name: 'First Machinery',
+  },
+  manufacturer: {
+    '@type': 'Organization',
+    name: '中科美利（苏州）包装设备有限公司',
+  },
+  category: '瓶坯和吹瓶机',
+  sku: 'SP-BL-12000',
+  url: productUrl,
+  additionalProperty: keySpecs.map(([name, value]) => ({
+    '@type': 'PropertyValue',
+    name,
+    value,
+  })),
+};
+---
+
+<BaseLayout
+  title={`${productName} | 中科美利（苏州）包装设备有限公司`}
+  description="全自动PET塑料吹瓶机适用于PET瓶高速生产，可完成自动送料、加热、拉伸、吹塑成型和成品输出。"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="wt-hero">
+    <div class="wt-hero-bg"></div><div class="wt-hero-overlay"></div>
+    <div class="wt-hero-inner">
+      <div class="wt-breadcrumb"><a href="/">首页</a><span>/</span><a href="/products/">产品中心</a><span>/</span><span>吹瓶机</span></div>
+      <h1>全自动PET<br />吹瓶机</h1>
+      <p>适用于高产能PET瓶生产的全自动拉伸吹塑成型设备，可根据瓶型和目标产能配置。</p>
+      <div class="wt-hero-actions"><a class="wt-btn wt-btn-primary" href="/contact/?source=product-category&sourceTitle=吹瓶机">获取系统方案</a></div>
+    </div>
+  </section>
+
+  <article class="product-detail-page product-detail-page--rich product-detail-page--square-hero product-detail-page--compact-title" id="capacity">
+    <section class="product-hero product-hero--rich">
+      <div class="container product-rich-hero-inner">
+        <div class="product-inquiry-layout">
+          <div class="product-gallery-column">
+            <div class="product-gallery" data-product-gallery>
+              <div class="product-main-image-wrap">
+                <button class="product-gallery-nav product-gallery-nav--prev" type="button" aria-label="上一张产品图片" data-gallery-prev>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6"></path></svg>
+                </button>
+                <img src={heroGallery[0].src} alt={heroGallery[0].alt} width="1200" height="900" loading="eager" decoding="async" data-gallery-main />
+                <div class="product-certifications" aria-label="认证标识"><span>CE</span><span>ISO</span><span>SGS</span><span>CNAS</span></div>
+                <button class="product-gallery-nav product-gallery-nav--next" type="button" aria-label="下一张产品图片" data-gallery-next>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+                </button>
+              </div>
+              <div class="product-thumbnails" role="tablist" aria-label="PET吹瓶机图片">
+                {heroGallery.map((image, index) => (
+                  <button
+                    class:list={['product-thumbnail', index === 0 && 'is-active']}
+                    type="button"
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`显示 ${image.label}`}
+                    data-gallery-thumb
+                    data-gallery-src={image.src}
+                    data-gallery-alt={image.alt}
+                  >
+                    <img src={image.src} alt={`${image.alt} 缩略图`} width="120" height="120" loading={index < 4 ? 'eager' : 'lazy'} decoding="async" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="product-form-column">
+                        <div class="product-hero-form-card" id="quote">
+              <div class="product-hero-intro-card">
+                <p class="product-hero-intro-eyebrow">产品简介</p>
+                <h2>全自动吹瓶机功能介绍</h2>
+                <p>这款全自动塑料吹瓶机集自动送料、加热、拉伸、吹塑成型及成品输出于一体。采用稳定的PLC智能控制和精确的温度控制系统，可高效生产各种规格、形状的PET瓶。该机实现连续高速自动化生产，成型稳定，瓶壁厚度均匀，成品合格率高，材料损耗低。具有自动故障检测、过载保护、温度异常报警和自动计数功能。</p>
+                <a class="product-hero-phone-button" href="tel:18962223666" aria-label="拨打电话 18962223666">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path>
+                  </svg>
+                  电话咨询：18962223666
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-summary-strip">
+      <div class="container product-summary-grid">
+        <div>
+          <p class="product-kicker">企业实力</p>
+          <h2 class="section-title--secondary">20余年行业经验，提供可靠的整线解决方案</h2>
+        </div>
+        <div class="product-summary-cards">
+          <div><strong>20+</strong><span>年行业经验<small>丰富的设备制造与项目实施经验</small></span></div>
+          <div><strong>整线</strong><span>交钥匙方案<small>从方案设计到安装调试一站式服务</small></span></div>
+          <div><strong>CE / ISO</strong><span>国际认证<small>严格质量管理，符合国际标准</small></span></div>
+          <div><strong>50+</strong><span>国家和地区<small>设备远销全球，提供完善售后支持</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-spec-section blowing-spec-section" id="specifications">
+      <div class="container">
+        <div class="product-spec-heading">
+          <p class="product-kicker">技术规格</p>
+          <h2 class="section-title--primary">PET吹瓶机参数</h2>
+        </div>
+        <div class="water-technical-parameters-scroll">
+          <table class="water-technical-parameters-table" aria-label="技术参数：PET吹瓶机">
+            <thead>
+              <tr>
+                <th>型号</th><th>产能</th><th>适用材料</th><th>最大瓶高</th><th>最大瓶径</th><th>功率</th><th>重量</th>
+              </tr>
+            </thead>
+            <tbody>
+              {blowingTechRows.map((row) => (
+                <tr>
+                  {row.map((value, index) => (index === 0 ? <th scope="row">{value}</th> : <td>{value}</td>))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-feature-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">设备细节</p>
+          <h2 class="section-title--secondary">客户通常优先关注的核心结构</h2>
+        </div>
+        <div class="product-machine-detail-layout">
+          <div class="product-machine-detail-lead">
+            <figure class="product-machine-detail-main">
+              <img src={machineDetailsOverview.image} alt={machineDetailsOverview.alt} width="1440" height="1080" loading="lazy" decoding="async" />
+            </figure>
+            <div class="product-machine-detail-summary">
+              {machineAdvantages.map((item) => (
+                <article>
+                  <span class="product-machine-detail-icon" aria-hidden="true">
+                    {item.icon === 'monoblock' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <rect x="7" y="12" width="34" height="24" rx="3"></rect>
+                        <path d="M14 19h5m5 0h5m5 0h2M14 29h20"></path>
+                        <path d="M16 36v5m16-5v5"></path>
+                      </svg>
+                    )}
+                    {item.icon === 'output' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M8 32h6l4-11 6 17 5-14 4 8h7"></path>
+                        <path d="M10 12h28v24H10z"></path>
+                      </svg>
+                    )}
+                    {item.icon === 'range' && (
+                      <svg viewBox="0 0 48 48" role="img">
+                        <path d="M13 18h22"></path>
+                        <path d="M18 12 12 18l6 6"></path>
+                        <path d="m30 12 6 6-6 6"></path>
+                      </svg>
+                    )}
+                  </span>
+                  <div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div class="product-machine-detail-grid">
+            {machineDetails.map((item) => (
+              <article class="product-machine-detail-card">
+                <img src={item.image} alt={item.alt} width="1200" height="675" loading="lazy" decoding="async" />
+                <h3>{item.title}</h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-brand-section">
+      <div class="container product-two-col product-two-col--wide">
+        <div>
+          <p class="product-kicker">核心部件品牌</p>
+          <h2 class="section-title--secondary">供应商资料中的核心部件信息</h2>
+          <p>供应商资料展示了西门子、ABB、欧姆龙、Festo、三菱电机、SKF、格兰富、AirTAC等常见工业部件品牌。最终部件清单需在设备配置和正式报价中确认。</p>
+        </div>
+        <figure class="product-framed-image product-framed-image--plain">
+          <img
+            src={`${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-15.webp`}
+            alt="PET吹瓶机核心部件品牌展示"
+            width="1800"
+            height="790"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section class="product-section product-trust-section">
+      <div class="container">
+        <div class="product-trust-layout">
+          <figure class="product-framed-image product-framed-image--plain">
+            <img
+              src={`${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-17.webp`}
+              alt="PET吹瓶机和饮料设备制造工厂"
+              width="1448"
+              height="1086"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <div class="product-trust-copy">
+            <h3>关于工厂</h3>
+            <p>该供应商可提供PET吹瓶机、饮料灌装机、贴标机和后段包装设备。吹瓶项目既可按独立设备配置，也可作为完整生产线的一部分规划。</p>
+            <p>对于吹瓶项目，实际报价前应确认瓶型图纸、瓶口规格、目标产能、水电气条件、模具需求、车间布局和安装支持。</p>
+            <dl class="product-trust-metrics">
+              <div><dt>50+</dt><dd>项目资料中提及的出口国家和地区</dd></div>
+              <div><dt>交钥匙</dt><dd>产线设计、生产、安装和调试支持</dd></div>
+              <div><dt>24h</dt><dd>项目资料中的响应支持说明</dd></div>
+            </dl>
+          </div>
+        </div>
+        <div class="product-trust-proof-grid">
+          <figure class="product-certificate-folder">
+            <img
+              src={`${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-19.webp`}
+              alt="PET吹瓶机供应商认证资料展示"
+              width="1200"
+              height="675"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>认证和检测资料便于客户审核。</figcaption>
+          </figure>
+          <figure>
+            <img
+              src={`${assetBase}/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-21.webp`}
+              alt="PET吹瓶机供应商全球客户和出口经验资料"
+              width="1122"
+              height="1402"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>出口经验和客户资料作为信任背书。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section product-faq-section">
+      <div class="container">
+        <div class="product-section-head">
+          <p class="product-kicker">常见问题</p>
+          <h2 class="section-title--secondary">PET吹瓶机项目常见问题</h2>
+        </div>
+        <div class="product-faq-list">
+          {faqs.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+        <div id="inquiry">
+      <Template1 title="需要吹瓶机方案？" description="欢迎直接联系我们，获取瓶型、模具和整线配置报价。" whatsappLabel="18962223666" whatsappHref="tel:18962223666" />
+    </div>
+  </article>
+
+  <style>
+    .wt-hero, .wt-hero * { box-sizing: border-box; }
+    .wt-hero { position: relative; min-height: 500px; margin-bottom: 40px; display: flex; align-items: center; overflow: hidden; background: #061017; }
+    .wt-hero-bg { position: absolute; inset: 0; background: url('/assets/first-machinery/products/preform-and-bottle-blowing-machine/high-speed-automatic-pet-bottle-blowing-machine/high-speed-automatic-pet-plastic-bottle-stretch-blow-blowing-moulding-making-machine-1601787675835-asset-07.webp') center / cover no-repeat; transform: scale(1.02); }
+    .wt-hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.76) 26%,rgba(0,0,0,.46) 50%,rgba(0,0,0,.16) 76%,rgba(0,0,0,.02)),linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.10) 48%,rgba(0,0,0,.42)); }
+    .wt-hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1250px; margin: 0 auto; padding: 90px 42px; }
+    .wt-breadcrumb { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; color: #2ab35f; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+    .wt-breadcrumb a { color: inherit; text-decoration: none; }
+    .wt-hero h1 { max-width: 620px; margin: 0 0 24px; color: #fff; font-size: 60px; line-height: 1.08; font-weight: 800; letter-spacing: -.04em; }
+    .wt-hero p { max-width: 600px; margin: 0 0 36px; color: rgba(255,255,255,.68); font-size: 17px; line-height: 1.5; font-weight: 500; }
+    .wt-hero-actions { display: flex; gap: 18px; flex-wrap: wrap; }
+    .wt-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 180px; height: 54px; padding: 0 28px; border-radius: 6px; font-size: 15px; font-weight: 800; text-decoration: none; transition: .25s ease; }
+    .wt-btn-primary { background: #176b36; border: 1px solid #176b36; color: #fff; box-shadow: 0 14px 34px rgba(23,107,54,.28); }
+    .wt-btn-outline { border: 1px solid rgba(42,179,95,.75); background: rgba(0,0,0,.16); color: #fff; }
+    .wt-btn:hover { transform: translateY(-2px); color: #fff; background: #218547; border-color: #218547; }
+    @media (max-width: 767px) { .wt-hero { min-height: 340px; align-items: flex-end; } .wt-hero-inner { padding: 28px 20px 24px; } .wt-hero h1 { margin-bottom: 12px; font-size: 28px; } .wt-hero p { margin-bottom: 18px; font-size: 13px; line-height: 1.48; } .wt-hero-actions { gap: 10px; width: 100%; } .wt-btn { min-width: 0; flex: 1 1 calc(50% - 5px); height: 44px; padding: 0 7px; font-size: 13px; } }
+
+    .product-inquiry-layout,
+    .product-inquiry-layout * { box-sizing: border-box; }
+
+    .product-inquiry-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 460px);
+      column-gap: 24px;
+      align-items: start;
+      width: 100%;
+    }
+
+    .product-gallery-column,
+    .product-form-column {
+      min-width: 0;
+      width: 100%;
+      position: relative;
+    }
+
+    .product-gallery {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .product-main-image-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--neutral-2);
+      background: #f5f4f0;
+      box-shadow: 0 24px 70px rgba(20, 20, 20, 0.12);
+    }
+
+    .product-main-image-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .product-gallery-nav {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid rgba(20, 20, 20, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #101815;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .product-gallery-nav--prev { left: 12px; }
+    .product-gallery-nav--next { right: 12px; }
+    .product-gallery-nav svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+    .product-certifications {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      display: flex;
+      gap: 8px;
+      width: auto;
+      max-width: calc(100% - 36px);
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .product-certifications span {
+      flex: 0 0 auto;
+      padding: 6px 9px;
+      border: 1px solid rgba(20, 20, 20, 0.16);
+      background: rgba(255, 255, 255, 0.94);
+      color: #5b625d;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 12px;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 18px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 2px 0 8px;
+    }
+
+    .product-thumbnail {
+      flex: 0 0 70px;
+      display: grid;
+      place-items: center;
+      width: 70px;
+      aspect-ratio: 1;
+      padding: 4px;
+      border: 1px solid rgba(57, 93, 61, 0.18);
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .product-thumbnail.is-active { border-color: var(--controlled-green); box-shadow: 0 8px 20px rgba(20, 20, 20, 0.13); }
+    .product-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
+
+    .product-overview .product-layout-figure img {
+      display: block;
+      width: 100%;
+      height: clamp(360px, 28vw, 560px);
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .product-spec-heading { margin-bottom: 22px; }
+    .product-spec-heading .section-title--primary { font-size: clamp(26px, 2.35vw, 40px); white-space: nowrap; }
+    .product-feature-section .product-machine-detail-card img { object-fit: cover; }
+    .product-feature-section .product-machine-detail-card h3 { text-align: center; }
+
+    .product-form-column { position: static; margin: 0; transform: none; align-self: start; }
+
+    .product-form-card {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      width: 100%;
+      max-width: none;
+      min-height: 100%;
+      margin: 0;
+      padding: clamp(18px, 2.4vw, 28px);
+      position: relative;
+      border: 1px solid rgba(20, 20, 20, 0.1);
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(20, 20, 20, 0.1);
+      box-sizing: border-box;
+    }
+
+    .product-form-card h2 { margin: -4px 0 0; color: #101815; font-family: "Space Grotesk", sans-serif; font-size: clamp(24px, 2vw, 30px); line-height: 1.08; }
+    .product-form-card > p { margin: 0; color: #5b665f; font-size: 13px; line-height: 1.45; }
+    .product-form-card label { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+    .product-form-card label span { color: #17231c; font-size: 12px; font-weight: 800; }
+    .product-form-card label b { color: var(--fm-green); }
+    .product-form-card input, .product-form-card select, .product-form-card textarea { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #dce5dc; border-radius: 6px; background: #fcfdfb; color: #101815; font-size: 14px; outline: none; }
+    .product-form-card em { display: none; color: #b42318; font-size: 12px; font-style: normal; }
+    .product-form-message { align-items: start !important; min-height: 124px; }
+    .product-form-message > span { padding-top: 10px; line-height: 1.25; }
+    .product-form-message textarea { min-height: 116px; resize: vertical; }
+    .product-form-phone-control { display: grid; grid-template-columns: 112px minmax(0, 1fr); overflow: hidden; border: 1px solid #dce5dc; border-radius: 6px; background: #fcfdfb; }
+    .product-form-phone-control select, .product-form-phone-control input { min-height: 42px; border: 0; border-radius: 0; background: transparent; }
+    .product-form-phone-control select { border-right: 1px solid rgba(20, 20, 20, 0.14); font-weight: 800; }
+    .product-form-trust { display: flex; flex-wrap: wrap; gap: 15px; color: #5b665f; font-size: 12px; font-weight: 800; }
+    .product-form-trust span { display: inline-flex; align-items: center; gap: 7px; }
+    .product-form-trust svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+    @media (max-width: 1024px) {
+      .product-inquiry-layout { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 620px) {
+      .product-form-card label { grid-template-columns: 1fr; gap: 6px; }
+      .product-form-message { min-height: 0; }
+      .product-gallery-nav { width: 40px; height: 40px; }
+      .product-certifications { right: 10px; bottom: 10px; gap: 4px; }
+      .product-certifications span { padding: 5px 6px; font-size: 10px; }
+      .product-overview .product-layout-figure img { height: auto; }
+      .product-spec-heading .section-title--primary { white-space: normal; }
+    }
+
+    .product-detail-page--csd .product-video-card img {
+      object-fit: cover;
+    }
+
+    .juice-line-module-section .product-section-head {
+      margin-bottom: 24px;
+    }
+
+    .juice-module-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .juice-module-row {
+      display: grid;
+      gap: 18px;
+    }
+
+    .juice-module-row--top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .juice-module-row--bottom {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .juice-module-card {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(57, 93, 61, 0.14);
+      box-shadow: 0 16px 48px rgba(7, 16, 27, 0.05);
+    }
+
+    .juice-module-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #eef3ed;
+    }
+
+    .juice-module-card--large img {
+      aspect-ratio: 4 / 3;
+    }
+
+    .juice-module-card div {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .juice-module-card h3 {
+      margin: 0 0 10px;
+      color: #101815;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .juice-module-card p {
+      margin: 0 auto;
+      max-width: 54ch;
+      color: #222;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .juice-module-row--bottom .juice-module-card p {
+      font-size: 14px;
+    }
+
+    .juice-related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-flow: row;
+      grid-auto-columns: auto;
+      gap: 18px;
+      overflow: visible;
+      padding: 0;
+    }
+
+    .product-detail-page--csd .juice-related-section .product-section-head {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr) !important;
+      gap: clamp(20px, 4vw, 56px) !important;
+      align-items: start !important;
+      margin-bottom: clamp(24px, 4vw, 44px) !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .product-detail-page--csd .juice-related-section .product-section-head .product-kicker,
+    .product-detail-page--csd .juice-related-section .product-section-head > p {
+      display: block !important;
+    }
+
+    .product-detail-page--csd .juice-related-section .product-section-head h2 {
+      color: #101815 !important;
+      font-size: clamp(34px, 3.2vw, 58px) !important;
+      line-height: 0.98 !important;
+    }
+
+    .juice-related-card {
+      text-align: center;
+    }
+
+    .juice-related-card img {
+      aspect-ratio: 16 / 9;
+    }
+
+    .juice-related-card div {
+      padding: 20px;
+    }
+
+    .juice-related-card h3 {
+      font-size: 22px;
+    }
+
+    .juice-related-card p,
+    .juice-related-card span {
+      display: block;
+      color: #050505;
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .juice-related-card span {
+      margin-top: 6px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font-weight: 400;
+      text-transform: none;
+    }
+
+    @media (max-width: 921px) {
+      .juice-module-row--top,
+      .juice-module-row--bottom,
+      .juice-related-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .juice-module-card p,
+      .juice-module-row--bottom .juice-module-card p,
+      .juice-related-card p,
+      .juice-related-card span {
+        font-size: 14px;
+      }
+    }
+  </style>
+
+  <script is:inline>
+    (() => {
+      document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
+        const mainImage = gallery.querySelector('[data-gallery-main]');
+        const thumbs = Array.from(gallery.querySelectorAll('[data-gallery-thumb]'));
+        const previous = gallery.querySelector('[data-gallery-prev]');
+        const next = gallery.querySelector('[data-gallery-next]');
+        let activeIndex = 0;
+
+        const setActive = (nextIndex) => {
+          if (!mainImage || thumbs.length === 0) return;
+          activeIndex = (nextIndex + thumbs.length) % thumbs.length;
+          const activeThumb = thumbs[activeIndex];
+          const imageSrc = activeThumb.getAttribute('data-gallery-src');
+          const imageAlt = activeThumb.getAttribute('data-gallery-alt') || '';
+
+          if (imageSrc) mainImage.setAttribute('src', imageSrc);
+          mainImage.setAttribute('alt', imageAlt);
+
+          thumbs.forEach((thumb, index) => {
+            const isActive = index === activeIndex;
+            thumb.classList.toggle('is-active', isActive);
+            thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+        };
+
+        thumbs.forEach((thumb, index) => {
+          thumb.addEventListener('click', () => setActive(index));
+          thumb.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+              event.preventDefault();
+              setActive(index + 1);
+              thumbs[(index + 1) % thumbs.length]?.focus();
+            }
+            if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+              event.preventDefault();
+              setActive(index - 1);
+              thumbs[(index - 1 + thumbs.length) % thumbs.length]?.focus();
+            }
+          });
+        });
+
+        previous?.addEventListener('click', () => setActive(activeIndex - 1));
+        next?.addEventListener('click', () => setActive(activeIndex + 1));
+      });
+    })();
+  </script>
+</BaseLayout>

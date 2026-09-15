@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const companyName = '中科美利（苏州）包装设备有限公司';
+
+const factoryImages = [
+  { src: '/assets/first-machinery/products/juice-tea-filling-machine/2000bph-juice-filling-machine/2000bph-juice-filling-machine-workshop-line.webp', alt: '饮料灌装设备生产车间', label: '生产车间' },
+  { src: '/assets/first-machinery/products/water-treatment-system/drinking-water-treatment-system/factory-price-drinking-water-treatment-system-water-purifying-purified-equipment-water-purification-1601787732342-asset-05.webp', alt: '饮料处理和混合设备', label: '处理与混合设备' },
+  { src: '/assets/first-machinery/company/filling-line-assembly.webp', alt: '灌装生产线装配现场', label: '灌装线装配' },
+  { src: '/assets/first-machinery/products/juice-tea-filling-machine/2000bph-juice-filling-machine/2000bph-juice-filling-machine-labeling-packaging.webp', alt: '贴标和包装设备', label: '贴标与包装设备' },
+];
+
+const benefits = [
+  ['品质稳定可靠', '严格质量控制与卫生级设计，保障设备长期稳定运行。', 'shield'],
+  ['经验丰富的团队', '专业工程师提供产线设计与技术支持。', 'team'],
+  ['交钥匙解决方案', '从布局设计、设备制造到安装调试提供完整支持。', 'puzzle'],
+  ['全球服务', '设备和生产线已服务50多个国家和地区客户。', 'globe'],
+];
+
+const stats = [['20+', '行业经验'], ['50+', '国家和地区'], ['1000+', '成功项目案例'], ['50+', '专业工程师']];
+---
+
+<BaseLayout title={`${companyName} | 公司介绍`} description="专业饮料灌装设备及完整生产线解决方案供应商。">
+  <section class="company-hero">
+    <div class="company-hero__copy"><div class="company-crumb">首页 <span>›</span> 公司介绍</div><p class="eyebrow">关于我们</p><h1>公司介绍</h1><i></i><h2>专业饮料灌装机械解决方案供应商</h2><p>{companyName} 是中国专业的饮料灌装机械及完整生产线解决方案制造商。我们提供水灌装机、5加仑桶装水灌装机、果汁茶饮灌装机、碳酸饮料灌装机，以及水处理、吹瓶、贴标和包装设备。</p></div>
+    <div class="company-hero__image"><img src="/assets/first-machinery/company/company-factory.webp" alt="中科美利工厂外景" width="1448" height="1086" loading="eager" decoding="async" /></div>
+  </section>
+
+  <section class="company-section company-intro"><div class="company-container company-intro__grid"><div><p class="eyebrow">关于我们</p><h2>值得信赖的饮料灌装机械合作伙伴</h2><i></i><p>凭借20多年制造经验，{companyName} 为瓶装水、5加仑桶装水、果汁、茶饮和碳酸饮料项目提供完整生产线解决方案。从设备设计制造到安装调试和售后服务，我们根据客户产能与现场需求提供可靠设备和实用技术支持。</p><a href="#factory" class="company-button">了解更多 <span>→</span></a></div><figure><img src="/assets/first-machinery/company/factory-strength-workshop.webp" alt="工程师检查饮料灌装设备" width="1200" height="900" loading="lazy" decoding="async" /></figure></div></section>
+
+  <section class="company-why"><div class="company-container"><p class="eyebrow">为什么选择我们</p><h2>品质 <b>·</b> 工程 <b>·</b> 服务</h2><i></i><div class="company-benefits">{benefits.map(([title, text, icon]) => <article><svg viewBox="0 0 48 48" aria-hidden="true">{icon === 'shield' && <><path d="M24 4 39 10v11c0 10-6.5 18-15 23-8.5-5-15-13-15-23V10L24 4Z"/><path d="m16 24 5 5 11-12"/></>}{icon === 'team' && <><circle cx="24" cy="16" r="6"/><circle cx="10" cy="20" r="4"/><circle cx="38" cy="20" r="4"/><path d="M13 39v-4c0-6 5-10 11-10s11 4 11 10v4M3 39v-3c0-4 2.5-7 6.5-8M45 39v-3c0-4-2.5-7-6.5-8"/></>}{icon === 'puzzle' && <><path d="M7 7h12v7a5 5 0 1 0 10 0V7h12v12h-7a5 5 0 1 0 0 10h7v12H29v-7a5 5 0 1 0-10 0v7H7V29h7a5 5 0 1 0 0-10H7V7Z"/></>}{icon === 'globe' && <><circle cx="24" cy="24" r="19"/><path d="M5 24h38M24 5c6 5 9 12 9 19s-3 14-9 19c-6-5-9-12-9-19S18 10 24 5Z"/></>}</svg><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+
+  <section class="company-stats"><div class="company-container">{stats.map(([value, label]) => <div><strong>{value}</strong><span>{label}</span></div>)}</div></section>
+
+  <section class="company-section company-factory" id="factory"><div class="company-container"><p class="eyebrow">我们的工厂</p><h2>先进设备，高效生产</h2><i></i><div class="company-factory__grid">{factoryImages.map((item) => <figure><img src={item.src} alt={item.alt} width="1200" height="900" loading="lazy" decoding="async" /><figcaption>{item.label}</figcaption></figure>)}</div></div></section>
+
+  <section class="company-cta"><div class="company-container"><div><h2>正在寻找合适的饮料灌装解决方案？</h2><p>请联系我们的团队，我们会根据瓶型、产能、车间布局和成品要求提供定制方案。</p></div><a href="/contact/?source=company-cta" class="company-button company-button--light">联系我们 <span>→</span></a></div></section>
+
+  <style>
+    :global(.main-content){overflow:hidden}.company-container{width:min(1240px,calc(100% - 48px));margin:auto}.company-hero{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);min-height:550px;background:#fff}.company-hero__copy{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:64px max(40px,calc((100vw - 1240px)/2));padding-right:84px;background:#f1f3f1}.company-crumb{margin-bottom:38px;color:#404940;font-size:13px}.company-crumb span{padding:0 12px;color:#7a877d}.eyebrow{margin:0 0 14px;color:#216b34;font:800 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase}.company-hero h1{margin:0;color:#17201a;font-size:clamp(52px,6.2vw,83px);line-height:.96;letter-spacing:-.06em;text-transform:uppercase}.company-hero i,.company-intro i,.company-why i,.company-factory i{display:block;width:40px;height:3px;margin:24px 0;background:#287640}.company-hero h2{max-width:450px;margin:0 0 20px;font-size:22px;line-height:1.35}.company-hero p:not(.eyebrow){max-width:500px;margin:0;color:#516058;font-size:14px;line-height:1.72}.company-hero__image{position:relative;min-height:550px;overflow:hidden}.company-hero__image:before{position:absolute;z-index:1;inset:0;content:"";background:linear-gradient(90deg,#f1f3f1 0%,rgba(241,243,241,.84) 6%,rgba(241,243,241,0) 29%)}.company-hero__image img{width:100%;height:100%;object-fit:cover;object-position:center}.company-section{padding:92px 0}.company-intro__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px;align-items:center}.company-intro h2,.company-why h2,.company-factory h2,.company-cta h2{margin:0;color:#17201a;font-size:clamp(31px,3.4vw,46px);line-height:1.16;letter-spacing:-.04em}.company-intro p:not(.eyebrow){margin:0 0 26px;color:#516058;font-size:15px;line-height:1.72}.company-button{display:inline-flex;gap:18px;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:5px;background:#236c36;color:#fff;font-size:13px;font-weight:800;text-decoration:none}.company-button span{font-size:18px}.company-intro figure{margin:0;overflow:hidden;border-radius:16px}.company-intro img{display:block;width:100%;aspect-ratio:1.42;object-fit:cover}.company-why{padding:76px 0 60px;background:#f0f5ef;text-align:center}.company-why h2 b{padding:0 9px;color:#2b783e}.company-why i,.company-factory i{margin:18px auto 36px}.company-benefits{display:grid;grid-template-columns:repeat(4,1fr)}.company-benefits article{padding:0 34px;border-right:1px solid #cdd8ce}.company-benefits article:last-child{border:0}.company-benefits svg{width:54px;height:54px;margin-bottom:15px;fill:none;stroke:#287640;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.company-benefits h3{margin:0 0 8px;font-size:16px}.company-benefits p{margin:0;color:#516058;font-size:13px;line-height:1.6}.company-stats{background:linear-gradient(rgba(20,99,44,.91),rgba(20,99,44,.91)),url('/assets/first-machinery/products/juice-tea-filling-machine/2000bph-juice-filling-machine/2000bph-juice-filling-machine-workshop-line.webp') center/cover;padding:42px 0;color:#fff}.company-stats .company-container{display:grid;grid-template-columns:repeat(4,1fr)}.company-stats div>div{display:grid;place-items:center;gap:8px;border-right:1px solid rgba(255,255,255,.34)}.company-stats div>div:last-child{border:0}.company-stats strong{font-size:42px;line-height:1}.company-stats span{font-size:13px}.company-factory{text-align:center}.company-factory__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px;text-align:left}.company-factory figure{position:relative;margin:0;overflow:hidden;border-radius:12px;background:#e7ece7}.company-factory img{display:block;width:100%;aspect-ratio:1.12;object-fit:cover}.company-factory figcaption{padding:10px 4px 2px;color:#243028;font-size:12px;font-weight:800;text-align:center}.company-button--outline{border:1px solid #236c36;background:transparent;color:#236c36}.company-cta{padding:37px 0;background:#176630;color:#fff}.company-cta .company-container{display:flex;align-items:center;justify-content:space-between;gap:35px}.company-cta h2{color:#fff;font-size:29px}.company-cta p{max-width:750px;margin:7px 0 0;color:rgba(255,255,255,.85);font-size:14px;line-height:1.55}.company-button--light{flex:0 0 auto;background:#fff;color:#216b34}@media(max-width:800px){.company-hero{grid-template-columns:1fr}.company-hero__copy{padding:52px 24px}.company-hero__image{min-height:330px}.company-hero__image:before{background:linear-gradient(180deg,#f1f3f1 0%,rgba(241,243,241,0) 30%)}.company-intro__grid{grid-template-columns:1fr;gap:36px}.company-benefits{grid-template-columns:repeat(2,1fr);gap:34px}.company-benefits article:nth-child(2){border:0}.company-benefits article{padding:0 22px}.company-factory__grid{grid-template-columns:repeat(2,1fr)}.company-cta .company-container{align-items:flex-start;flex-direction:column}.company-stats .company-container{grid-template-columns:repeat(2,1fr);gap:28px}.company-stats div>div:nth-child(2){border-right:0}}@media(max-width:480px){.company-container{width:min(100% - 32px,1240px)}.company-section{padding:60px 0}.company-hero h1{font-size:52px}.company-benefits{grid-template-columns:1fr}.company-benefits article{padding:0;border:0}.company-factory__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.company-factory figure{flex:0 0 80%;scroll-snap-align:start}.company-stats strong{font-size:35px}.company-why h2{font-size:30px}}
+    .company-factory__grid { margin-bottom: 0; }
+    .company-factory figcaption { padding: 12px 8px; line-height: 1.35; }
+    @media (max-width: 480px) {
+      .company-hero__copy { padding-top: 30px; padding-bottom: 40px; }
+      .company-crumb { margin-bottom: 22px; }
+      .company-hero h1 { display: none; }
+      .company-hero h1 + i { margin-top: 0; }
+      .company-why { padding: 56px 0; }
+      .company-why h2 { max-width: 330px; margin-inline: auto; font-size: 29px; }
+      .company-why i { margin-bottom: 30px; }
+      .company-benefits { gap: 24px; text-align: left; }
+      .company-benefits article { display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+      .company-benefits svg { grid-row: span 2; width: 46px; height: 46px; margin: 1px 0 0; }
+      .company-benefits h3 { margin: 0 0 7px; font-size: 17px; }
+      .company-benefits p { font-size: 14px; line-height: 1.55; }
+    }
+  </style>
+</BaseLayout>

@@ -1,0 +1,33 @@
+{
+  "name": "first-machinery",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 4321",
+    "build": "astro build",
+    "start": "node ./dist/server/entry.mjs",
+    "preview": "astro preview --host 127.0.0.1 --port 4321",
+    "migrate": "node scripts/migrate-wordpress.mjs",
+    "alibaba:login": "node scripts/alibaba-login.mjs",
+    "alibaba:login:file": "node scripts/alibaba-login-from-file.mjs",
+    "alibaba:open": "node scripts/alibaba-open-manual-browser.mjs",
+    "alibaba:capture": "node scripts/alibaba-capture-current-page.mjs",
+    "alibaba:scrape": "node scripts/scrape-alibaba-products.mjs",
+    "alibaba:product": "node scripts/extract-alibaba-product.mjs"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.4",
+    "astro": "^7.1.2",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "playwright-core": "^1.61.1",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^3.4.19"
+  }
+}

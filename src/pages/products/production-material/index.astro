@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const productName = 'PET瓶坯及容器';
+const productUrl = 'https://spring-pack.cn/products/production-material/';
+const materialBase = '/assets/first-machinery/products/production-material';
+const gallery = [
+  { src: `${materialBase}/beverage-bottle-caps.webp`, alt: '塑料瓶盖与封口件', label: '瓶盖' },
+  { src: `${materialBase}/pet-bottle-preforms.webp`, alt: '多种规格PET瓶坯', label: 'PET瓶坯' },
+  { src: `${materialBase}/colored-pet-bottle-preforms.webp`, alt: '彩色PET瓶坯', label: '彩色瓶坯' },
+  { src: `${materialBase}/custom-packaging-label-rolls.webp`, alt: '定制包装标签卷材', label: '定制标签' },
+  { src: `${materialBase}/dispensing-and-bottle-caps.webp`, alt: '出液盖与封口件', label: '出液盖' },
+  { src: `${materialBase}/printed-packaging-label-rolls.webp`, alt: '印刷包装标签卷材', label: '印刷标签' },
+];
+const specs = [
+  ['产品范围', 'PET瓶坯、塑料容器、化妆品瓶、油水瓶、罐、瓶盖、标签和包装配套材料'],
+  ['定制服务', '可根据容量、瓶口、克重、颜色、外形、图案和包装方式进行定制'],
+  ['应用范围', '饮用水、果汁、茶饮、碳酸饮料、食用油、日化、化妆品和其他液体产品'],
+  ['材料与颜色', '材料、颜色、表面效果和包装方式可按产品定位及品牌需求选择'],
+  ['确认内容', '生产前确认图纸、样品、尺寸、颜色、数量、包装方式和交付要求'],
+  ['产线适配', '可结合吹瓶、灌装、旋盖、贴标和包装设备一起评估适配性'],
+];
+const categories = [
+  ['PET瓶坯', '可按瓶型容量、瓶口规格、克重、颜色和吹瓶模具要求进行匹配。'],
+  ['塑料容器', '可用于化妆品瓶、油水瓶、罐类和其他定制容器项目。'],
+  ['瓶盖与封口件', '可提供螺旋盖、运动盖、翻盖、泵头和定量出液盖等配套方案。'],
+  ['整线适配', '瓶坯、瓶盖、标签和包装材料可与吹瓶、灌装、贴标及包装设备一起确认。'],
+];
+const faqs = [
+  ['定制报价需要哪些信息？', '请提供产品类型、容量、瓶口规格、颜色、尺寸图纸或样品、目标数量和包装要求。'],
+  ['可以按样品或图纸定制吗？', '可以。可根据样品、图纸或项目需求确认瓶坯、容器、瓶盖和包装材料规格。'],
+  ['可以和饮料设备一起供应吗？', '可以。瓶坯、瓶盖、标签和包装材料可与吹瓶、灌装、旋盖、贴标和包装设备一起评估。'],
+  ['适用于哪些行业？', '适用于饮用水、饮料、食用油、日化、化妆品、医药和其他需要塑料容器包装的项目。'],
+];
+const schema = { '@context': 'https://schema.org', '@type': 'Product', name: productName, description: '提供可按需求定制的PET瓶坯、塑料容器、瓶盖、标签和包装配套材料。', image: gallery.map((item) => new URL(item.src, 'https://spring-pack.cn').toString()), brand: { '@type': 'Brand', name: 'First Machinery' }, category: '生产资料', url: productUrl };
+---
+
+<BaseLayout title={`${productName} | 中科美利（苏州）包装设备有限公司`} description="提供可按需求定制的PET瓶坯、塑料容器、瓶盖、标签和包装配套材料。">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="pm-hero"><div class="pm-hero__image"></div><div class="pm-hero__shade"></div><div class="pm-hero__inner"><div class="pm-breadcrumb"><a href="/">首页</a><span>/</span><a href="/products/">产品中心</a><span>/</span><span>生产资料</span></div><h1>PET瓶坯<br />及塑料容器</h1><p>提供PET瓶坯、塑料容器、瓶盖、标签和包装材料，可根据项目规格、外观设计和应用场景定制。</p><a class="pm-primary-button" href="/contact/?source=product-category&sourceTitle=生产资料">获取材料方案</a></div></section>
+  <article class="pm-page" id="capacity">
+    <section class="pm-product-hero"><div class="container pm-product-hero__grid"><div class="pm-gallery" data-pm-gallery><div class="pm-gallery__main"><img src={gallery[0].src} alt={gallery[0].alt} width="1200" height="900" loading="eager" decoding="async" data-pm-main style="object-position:center 70%" /><button type="button" data-pm-prev aria-label="上一张产品图片">←</button><button type="button" data-pm-next aria-label="下一张产品图片">→</button></div><div class="pm-gallery__thumbs">{gallery.map((item,index)=><button class:list={['pm-gallery__thumb',index===0&&'is-active']} type="button" data-pm-thumb data-src={item.src} data-alt={item.alt} aria-label={`显示 ${item.label}`}><img src={item.src} alt={`${item.alt} 缩略图`} width="120" height="90" loading="lazy" decoding="async" /></button>)}</div></div><div class="product-hero-form-card" id="quote"><div class="product-hero-intro-card">
+      <p class="product-hero-intro-eyebrow">产品简介</p>
+      <h2>PET瓶坯及容器</h2>
+      <p>我们提供定制服务，我们所有的产品都可以根据您的要求定制。专业生产PET瓶坯及容器（包括化妆品瓶、油水瓶、罐等）。</p>
+      <a class="product-hero-phone-button" href="tel:18962223666" aria-label="拨打电话 18962223666">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"></path>
+        </svg>
+        电话咨询：18962223666
+      </a>
+    </div></div></div></section>
+    <section class="pm-summary"><div class="container pm-summary__grid"><div><p class="pm-kicker">企业实力</p><h2>20余年行业经验，提供可靠的整线解决方案</h2></div><div class="pm-summary__cards"><div><strong>20+</strong><span>年行业经验<small>丰富的设备制造与项目实施经验</small></span></div><div><strong>整线</strong><span>交钥匙方案<small>从方案设计到安装调试一站式服务</small></span></div><div><strong>CE / ISO</strong><span>国际认证<small>严格质量管理，符合国际标准</small></span></div><div><strong>50+</strong><span>国家和地区<small>设备远销全球，提供完善售后支持</small></span></div></div></div></section>
+    <section class="pm-section"><div class="container"><p class="pm-kicker">技术规格</p><h2>生产资料参数</h2><div class="pm-spec-table"><table><tbody>{specs.map(([name,value])=><tr><th scope="row">{name}</th><td>{value}</td></tr>)}</tbody></table></div></div></section>
+    <section class="pm-section pm-section--soft"><div class="container"><div class="pm-section-head"><div><p class="pm-kicker">产品范围</p><h2>围绕瓶型、容器和品牌需求配置</h2></div><p>每一类生产资料都会结合产品容量、外观要求、生产工艺和后段包装方式确认，减少实际生产中的适配问题。</p></div><div class="pm-detail-layout"><figure style="height:520px;align-self:start"><img src={`${materialBase}/cap-detail.avif`} alt="塑料瓶盖与容器细节" width="1200" height="900" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover" /></figure><div class="pm-capability-list">{categories.map(([title,text],index)=><article><span>{String(index+1).padStart(2,'0')}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></div></section>
+    <section class="pm-section pm-section--dark"><div class="container pm-solution"><div><p class="pm-kicker">定制供货</p><h2>PET瓶坯、容器和包装材料</h2><ol><li>可按项目要求定制容量、瓶口、颜色、外形和包装方式。</li><li>专业生产PET瓶坯及多类塑料容器。</li><li>可配套瓶盖、标签、膜包等生产资料。</li><li>支持化妆品瓶、油水瓶、罐类和其他容器项目。</li><li>可根据样品、图纸或品牌要求确认细节。</li><li>可结合整线设备一起评估材料适配性。</li></ol><a class="pm-primary-button" href="tel:18962223666">电话咨询：18962223666</a></div><figure style="min-height:0;align-self:start;background:transparent"><img src={`${materialBase}/plastic-bottle-caps.avif`} alt="塑料瓶盖和包装材料" width="1200" height="900" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;object-fit:contain;background:transparent" /></figure></div></section>
+    <section class="pm-section" id="inquiry"><div class="container pm-faq"><div><p class="pm-kicker">常见问题</p><h2>包装材料常见问题</h2></div><div>{faqs.map(([question,answer])=><details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
+  </article>
+  <style>
+    .pm-hero{position:relative;display:flex;align-items:center;min-height:500px;overflow:hidden;background:#07110c}.pm-hero__image,.pm-hero__shade{position:absolute;inset:0}.pm-hero__image{background:url('/assets/first-machinery/products/production-material/beverage-bottle-caps.webp') center 61%/cover no-repeat}.pm-hero__shade{background:linear-gradient(90deg,rgba(2,12,7,.92),rgba(2,12,7,.72) 42%,rgba(2,12,7,.18))}.pm-hero__inner{position:relative;width:min(1250px,100%);margin:auto;padding:88px 42px;color:#fff}.pm-breadcrumb{display:flex;gap:9px;margin-bottom:22px;color:#75cf8e;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.pm-breadcrumb a{color:inherit;text-decoration:none}.pm-hero h1{max-width:820px;margin:0 0 23px;font-size:clamp(38px,5vw,62px);line-height:1.08;letter-spacing:-.04em}.pm-hero p{max-width:640px;margin:0 0 34px;color:rgba(255,255,255,.75);font-size:17px;line-height:1.55}.pm-primary-button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1px solid #176b36;border-radius:5px;background:#176b36;color:#fff!important;font-size:14px;font-weight:800;text-decoration:none}.pm-page{width:100%;min-width:0;overflow:hidden;color:#18201b}.pm-product-hero{padding:58px 0}.pm-product-hero__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,460px);gap:24px;align-items:start}.pm-gallery,.product-hero-form-card{min-width:0}.pm-gallery__main{position:relative;overflow:hidden;background:#edf0ed;aspect-ratio:4/3}.pm-gallery__main>img{width:100%;height:100%;object-fit:cover}.pm-gallery__main>button{position:absolute;top:50%;display:grid;width:43px;height:43px;place-items:center;border:0;background:rgba(16,37,23,.85);color:#fff;font-size:24px;cursor:pointer;transform:translateY(-50%)}.pm-gallery__main [data-pm-prev]{left:14px}.pm-gallery__main [data-pm-next]{right:14px}.pm-gallery__thumbs{display:flex;gap:10px;margin-top:12px;overflow-x:auto;overflow-y:hidden}.pm-gallery__thumb{flex:0 0 88px;padding:0;border:2px solid transparent;background:#edf0ed;cursor:pointer}.pm-gallery__thumb.is-active{border-color:#176b36}.pm-gallery__thumb img{display:block;width:100%;height:68px;object-fit:cover}.pm-kicker{margin:0 0 11px;color:#35623e;font:800 12px/1.2 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase}.pm-section h2{margin:0 0 17px;font-size:clamp(27px,3.2vw,40px);line-height:1.12;letter-spacing:-.03em}.pm-section p{color:#606a63;font-size:16px;line-height:1.65}.pm-summary{padding:45px 0;background:#15241a;color:#fff}.pm-summary__grid{display:grid;grid-template-columns:.8fr 1.5fr;gap:40px;align-items:center}.pm-summary h2{margin:0;font-size:28px;line-height:1.18}.pm-summary .pm-kicker,.pm-section--dark .pm-kicker{color:#8ad3a0}.pm-summary__cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.14)}.pm-summary__cards>div{min-height:100px;padding:18px;background:#15241a}.pm-summary__cards strong,.pm-summary__cards span,.pm-summary__cards small{display:block}.pm-summary__cards strong{margin-bottom:8px;color:#8ad3a0;font-size:20px}.pm-summary__cards span{color:rgba(255,255,255,.76);font-size:12px;font-weight:650;line-height:1.35}.pm-summary__cards small{margin-top:4px;color:rgba(255,255,255,.58);font-size:10px;font-weight:500;line-height:1.4}.pm-section{padding:80px 0}.pm-section--soft{background:#f3f5f3}.pm-section--dark{background:#0c1710;color:#fff}.pm-section--dark p{color:rgba(255,255,255,.72)}.pm-spec-table{overflow:auto;margin-top:28px;border:1px solid #dde5dd}.pm-spec-table table{width:100%;border-collapse:collapse;font-size:15px}.pm-spec-table th,.pm-spec-table td{padding:17px 20px;border-bottom:1px solid #dde5dd;text-align:left;vertical-align:top}.pm-spec-table th{width:31%;background:#f5f8f5;color:#203226}.pm-spec-table tr:last-child>*{border-bottom:0}.pm-section-head{display:flex;justify-content:space-between;gap:50px;align-items:end;margin-bottom:34px}.pm-section-head>div{max-width:600px}.pm-section-head>p{max-width:430px;margin:0}.pm-detail-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:38px;align-items:stretch}.pm-detail-layout figure,.pm-solution figure{margin:0;background:#dfe6df}.pm-detail-layout figure img,.pm-solution figure img{display:block;width:100%;height:100%;object-fit:cover}.pm-capability-list{display:grid;gap:1px;background:#dce4dc}.pm-capability-list article{display:flex;gap:20px;padding:24px;background:#fff}.pm-capability-list span{color:#35623e;font:800 13px/1 "IBM Plex Mono",monospace}.pm-capability-list h3{margin:0 0 7px;font-size:18px}.pm-capability-list p{margin:0;font-size:14px!important}.pm-solution{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.pm-solution h2{font-size:clamp(30px,4vw,48px)}.pm-solution ol{display:grid;gap:10px;margin:0 0 24px;padding-left:22px;color:rgba(255,255,255,.78);font-size:16px;line-height:1.55}.pm-solution .pm-primary-button{margin-top:0}.pm-solution figure{min-height:390px}.pm-faq{display:grid;grid-template-columns:.85fr 1.15fr;gap:55px}.pm-faq details{border-top:1px solid #dce4dc}.pm-faq details:last-child{border-bottom:1px solid #dce4dc}.pm-faq summary{padding:20px 34px 20px 0;cursor:pointer;font-size:17px;font-weight:800;list-style:none}.pm-faq summary:after{content:'+';float:right;color:#35623e;font-size:25px;font-weight:400}.pm-faq details[open] summary:after{content:'−'}.pm-faq details p{margin:0;padding:0 28px 22px 0;font-size:14px}@media(max-width:900px){.pm-product-hero__grid,.pm-detail-layout,.pm-solution,.pm-faq,.pm-summary__grid{grid-template-columns:1fr}.pm-summary__cards{grid-template-columns:repeat(2,1fr)}.pm-section-head{display:block}.pm-section-head>p{margin-top:15px}}@media(max-width:600px){.pm-page,.pm-product-hero,.pm-summary,.pm-section{width:100%;max-width:none}.pm-hero{min-height:390px;align-items:end}.pm-hero__inner{padding:40px 20px}.pm-hero h1{font-size:34px}.pm-hero p{font-size:14px;margin-bottom:23px}.pm-product-hero,.pm-section{padding:44px 0}.product-hero-form{padding:22px 18px}.product-hero-form label,.product-hero-form label.product-hero-form-message{grid-template-columns:1fr;gap:7px;min-height:0}.product-hero-form em.is-visible{grid-column:auto}.product-hero-form-message>span{padding-top:0}.product-hero-phone-control{grid-template-columns:minmax(96px,.36fr) minmax(0,1fr)}.product-hero-form-message textarea{min-height:120px}.pm-summary{padding:40px 0}.pm-summary__cards>div{min-height:86px;padding:14px}.pm-gallery__thumb{flex-basis:74px}.pm-gallery__thumb img{height:58px}}
+    /* Material imagery: crop product graphics without showing their embedded logo strips. */
+    .pm-gallery__main > img { object-position: center 70%; }
+
+    /* Keep the category image compact instead of stretching it to the height of the four text rows. */
+    .pm-detail-layout { align-items: start; }
+    .pm-detail-layout figure { height: 520px; }
+    .pm-detail-layout figure img { height: 100%; object-fit: cover; }
+
+    /* Preserve the supplied cap photo's natural proportions, without a colored area below it. */
+    .pm-solution figure { min-height: 0; align-self: start; background: transparent; }
+    .pm-solution figure img { height: auto; object-fit: contain; background: transparent; }
+
+    @media (max-width: 600px) {
+      .pm-detail-layout figure { height: 320px; }
+    }
+  </style>
+  <script is:inline>document.querySelectorAll('[data-pm-gallery]').forEach((gallery)=>{const main=gallery.querySelector('[data-pm-main]');const thumbs=Array.from(gallery.querySelectorAll('[data-pm-thumb]'));let current=0;const show=(index)=>{current=(index+thumbs.length)%thumbs.length;const button=thumbs[current];main.src=button.dataset.src;main.alt=button.dataset.alt;main.style.objectPosition='center 70%';thumbs.forEach((item,itemIndex)=>item.classList.toggle('is-active',itemIndex===current));};thumbs.forEach((button,index)=>button.addEventListener('click',()=>show(index)));gallery.querySelector('[data-pm-prev]')?.addEventListener('click',()=>show(current-1));gallery.querySelector('[data-pm-next]')?.addEventListener('click',()=>show(current+1));});</script>
+</BaseLayout>

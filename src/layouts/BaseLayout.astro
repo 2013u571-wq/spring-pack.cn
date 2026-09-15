@@ -1,0 +1,401 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import site from '@/data/site.json';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string | string[];
+  image?: string;
+  canonical?: string;
+  dateModified?: string;
+  robots?: string;
+  pageId?: number;
+  hideGlobalQuote?: boolean;
+}
+
+const {
+  title = '中科美利（苏州）包装设备有限公司',
+  description = '提供饮料生产线、灌装机、包装系统及整厂工程方案。',
+  keywords,
+  image = '/assets/first-machinery/home/project-banner.webp',
+  canonical,
+  dateModified,
+  robots,
+  pageId,
+  hideGlobalQuote = false,
+} = Astro.props;
+
+const siteOrigin = site.origin.replace(/\/$/, '');
+const canonicalPath = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalUrl = canonical
+  ? new URL(canonical, siteOrigin).toString()
+  : `${siteOrigin}${canonicalPath}`;
+const ogImage = new URL(image, siteOrigin).toString();
+const fallbackDescription = '中科美利（苏州）包装设备有限公司提供饮料灌装机、吹瓶机、水处理、贴标包装设备及整厂交钥匙生产线方案。';
+const cleanedDescription = description.replace(/\s*\[&hellip;\]\s*$/i, '').trim();
+const baseDescription = cleanedDescription && !/^首页\s*\//i.test(cleanedDescription)
+  ? cleanedDescription
+  : fallbackDescription;
+const descriptionContext = '中科美利可按瓶型、目标产能和工厂条件提供饮料包装设备与交钥匙生产线方案。';
+const metaDescription = baseDescription.length < 50
+  ? `${baseDescription.replace(/[。；;]\s*$/, '')}。${descriptionContext}`
+  : baseDescription;
+const defaultKeywords = [
+  title.split('|')[0].trim(),
+  '饮料灌装机',
+  '饮料生产线',
+  '包装设备',
+  '交钥匙工程',
+  '中科美利',
+];
+const metaKeywords = [...new Set([
+  ...(Array.isArray(keywords) ? keywords : keywords?.split(',') ?? []),
+  ...defaultKeywords,
+].map((value) => value.trim()).filter(Boolean))].join(', ');
+const organizationId = `${siteOrigin}/#organization`;
+const websiteId = `${siteOrigin}/#website`;
+const webpageId = `${canonicalUrl}#webpage`;
+const breadcrumbLabels: Record<string, string> = {
+  products: '产品中心',
+  solutions: '解决方案',
+  projects: '项目案例',
+  factory: '工厂与公司介绍',
+  contact: '联系我们',
+  'filling-machine': '灌装机',
+  'water-filling-machine': '水灌装机',
+  'juice-tea-filling-machine': '果汁茶饮灌装机',
+  'carbonated-drink-filling-machine': '碳酸饮料灌装机',
+  '5-gallon-water-line': '5加仑桶装水生产线',
+};
+const pathSegments = canonicalPath.split('/').filter(Boolean);
+const breadcrumbItems = [
+  { '@type': 'ListItem', position: 1, name: '首页', item: `${siteOrigin}/` },
+  ...pathSegments.map((segment, index) => ({
+    '@type': 'ListItem',
+    position: index + 2,
+    name: index === pathSegments.length - 1
+      ? title.split('|')[0].trim()
+      : breadcrumbLabels[segment] ?? segment.replaceAll('-', ' '),
+    item: `${siteOrigin}/${pathSegments.slice(0, index + 1).join('/')}/`,
+  })),
+];
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: '中科美利（苏州）包装设备有限公司',
+      alternateName: 'Spring Pack',
+      url: `${siteOrigin}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteOrigin}/assets/first-machinery/spring-pack-header-logo.webp`,
+      },
+      email: 'manager@spring-pack.com',
+      telephone: '+86-189-6222-3666',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '乐余镇乐丰路179号',
+        addressLocality: '张家港市',
+        addressRegion: '江苏省',
+        addressCountry: 'CN',
+      },
+      areaServed: 'Worldwide',
+      knowsAbout: ['饮料灌装机', '饮料生产线', '吹瓶机', '水处理系统', '贴标机', '包装机'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: `${siteOrigin}/`,
+      name: 'Spring Pack 中科美利',
+      inLanguage: 'zh-CN',
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      url: canonicalUrl,
+      name: title,
+      description: metaDescription,
+      inLanguage: 'zh-CN',
+      isPartOf: { '@id': websiteId },
+      about: { '@id': organizationId },
+      publisher: { '@id': organizationId },
+      primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+      ...(dateModified ? { dateModified } : {}),
+    },
+    ...(pathSegments.length > 0 ? [{
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: breadcrumbItems,
+    }] : []),
+  ],
+};
+const availablePageCss = new Set([
+  31, 33, 98, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172,
+]);
+const pageCssHref = pageId && availablePageCss.has(pageId) ? `/assets/first-machinery/elementor/css/post-${pageId}.css` : null;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={metaDescription} />
+    <meta name="keywords" content={metaKeywords} />
+    <meta name="author" content="中科美利（苏州）包装设备有限公司" />
+    <meta name="content-language" content="zh-CN" />
+    <meta name="geo.region" content="CN-JS" />
+    <meta name="geo.placename" content="中国江苏省张家港市" />
+    <meta name="robots" content={robots ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+    <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="zh-CN" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="Spring Pack" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <link rel="icon" href="/assets/first-machinery/2026/05/spring-pack-favicon.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/first-machinery/elementor/css/base-desktop.css" />
+    <link rel="stylesheet" href="/assets/first-machinery/elementor/css/post-8.css" />
+    {pageCssHref && <link rel="stylesheet" href={pageCssHref} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳至内容</a>
+    <div class="site-shell">
+      <Header />
+      <main id="main" class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+
+    {!hideGlobalQuote && (
+      <>
+        <aside class="global-floating-cta" aria-label="快速联系">
+          <div class="global-floating-wechat-wrap">
+            <button class="global-floating-wechat" type="button" data-wechat-toggle aria-label="微信联系">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 6c-5 0-9 3.6-9 8 0 2.4 1.2 4.6 3.2 6l-1.2 3.6 4-2.1c1 .3 2 .5 3 .5 5 0 9-3.6 9-8s-4-8-9-8Zm-3 6c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1Zm6 0c.6 0 1 .4 1 1s-.4 1-1 1-1-.4-1-1 .4-1 1-1Z"/><path d="M21 3c-4 0-8 3-8 7s4 7 8 7c.9 0 1.7-.1 2.5-.4l3.2 1.7-.9-3c1.7-1.3 2.7-3.2 2.7-5.3 0-3.9-3.6-7-7.5-7Zm-2 5c.4 0 .8.3.8.7 0 .5-.4.8-.8.8-.4 0-.8-.3-.8-.8 0-.4.4-.7.8-.7Zm4 0c.4 0 .8.3.8.7 0 .5-.4.8-.8.8-.4 0-.8-.3-.8-.8 0-.4.4-.7.8-.7Z"/></svg>
+            </button>
+            <div class="global-floating-qr-popover" data-wechat-popover>
+              <figure>
+                <img src="/assets/first-machinery/contact/wechat-qr.webp" alt="微信二维码" width="200" height="195" loading="lazy" />
+              </figure>
+              <p>扫码添加微信</p>
+            </div>
+          </div>
+          <a class="global-floating-phone" href="tel:18962223666" aria-label="拨打电话 18962223666">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8.4 5.1 12 4l3 7.5-2.3 1.8a17 17 0 0 0 7.2 7.2L21.7 18l7.5 3-1.1 3.8c-.5 1.7-2 2.8-3.8 2.6C14.1 26.8 5.2 17.9 4.1 7.2C3.9 5.4 6.8 5.6 8.4 5.1Z"/></svg>
+            <span class="global-floating-phone-label">18962223666</span>
+          </a>
+        </aside>
+      </>
+    )}
+
+    <script is:inline>
+      (() => {
+        const body = document.body;
+        const toggle = document.querySelector('[data-mobile-toggle]');
+        const drawer = document.querySelector('[data-mobile-drawer]');
+        toggle?.addEventListener('click', () => {
+          const open = drawer?.classList.toggle('is-open');
+          body.classList.toggle('mobile-nav-open', Boolean(open));
+          toggle.setAttribute('aria-expanded', String(Boolean(open)));
+        });
+
+        document.querySelectorAll('[data-mobile-submenu]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const item = button.closest('.fm-mobile-item');
+            const open = item?.classList.toggle('is-open');
+            button.setAttribute('aria-expanded', String(Boolean(open)));
+          });
+        });
+
+        const globalFloatingCta = document.querySelector('.global-floating-cta');
+        let globalFloatingTimer;
+        const revealGlobalFloatingCta = () => {
+          if (!globalFloatingCta || globalFloatingCta.classList.contains('is-visible') || globalFloatingTimer) return;
+          globalFloatingTimer = window.setTimeout(() => {
+            globalFloatingCta.classList.add('is-visible');
+          }, 3000);
+        };
+        window.addEventListener('scroll', revealGlobalFloatingCta, { passive: true, once: true });
+
+        const wechatToggle = document.querySelector('[data-wechat-toggle]');
+        const wechatPopover = document.querySelector('[data-wechat-popover]');
+        let wechatOpen = false;
+
+        wechatToggle?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          wechatOpen = !wechatOpen;
+          wechatPopover?.classList.toggle('is-open', wechatOpen);
+        });
+
+        document.addEventListener('click', (e) => {
+          if (wechatOpen && !wechatToggle?.contains(e.target) && !wechatPopover?.contains(e.target)) {
+            wechatOpen = false;
+            wechatPopover?.classList.remove('is-open');
+          }
+        });
+
+        document.querySelectorAll('[data-scroll-target]').forEach((item) => {
+          item.addEventListener('click', () => {
+            const target = document.getElementById(item.getAttribute('data-scroll-target') || '');
+            target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+
+        document.querySelectorAll('.fm-gallery').forEach((gallery) => {
+          const mainImage = gallery.querySelector('#fmMainImage');
+          gallery.querySelectorAll('.fm-thumb').forEach((thumb) => {
+            thumb.addEventListener('click', () => {
+              const next = thumb.getAttribute('data-img');
+              if (mainImage && next) mainImage.setAttribute('src', next);
+              gallery.querySelectorAll('.fm-thumb').forEach((item) => item.classList.remove('active'));
+              thumb.classList.add('active');
+            });
+          });
+        });
+
+        const revealObserver = 'IntersectionObserver' in window
+          ? new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  revealObserver.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.12 })
+          : null;
+        document.querySelectorAll('[data-reveal]').forEach((item) => {
+          if (revealObserver) revealObserver.observe(item);
+          else item.classList.add('is-visible');
+        });
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        document.querySelectorAll('[data-lead-form]').forEach((form) => {
+          if (!(form instanceof HTMLFormElement) || form.dataset.ready === 'true') return;
+          form.dataset.ready = 'true';
+
+          const params = new URLSearchParams(window.location.search);
+          let stored = {};
+          try {
+            stored = JSON.parse(sessionStorage.getItem('fmLeadSource') || '{}');
+          } catch {}
+
+          const sourcePage = form.elements.namedItem('sourcePage');
+          const sourceTitle = form.elements.namedItem('sourceTitle');
+          const source = form.elements.namedItem('source');
+          const referrer = form.elements.namedItem('referrer');
+          if (sourcePage instanceof HTMLInputElement) sourcePage.value = stored.page || document.referrer || window.location.href;
+          if (sourceTitle instanceof HTMLInputElement) sourceTitle.value = params.get('sourceTitle') || stored.title || document.title;
+          if (source instanceof HTMLInputElement) source.value = params.get('source') || stored.source || source.value || 'direct';
+          if (referrer instanceof HTMLInputElement) referrer.value = document.referrer || '';
+
+          const setError = (name, show) => {
+            const input = form.elements.namedItem(name);
+            const error = form.querySelector(`[data-error-for="${name}"]`);
+            input?.classList.toggle('is-error', show);
+            error?.classList.toggle('is-visible', show);
+          };
+
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            if (form.dataset.redirecting === 'true') return;
+
+            const data = new FormData(form);
+            const countrySelect = form.elements.namedItem('country');
+            const selectedCountry = countrySelect instanceof HTMLSelectElement
+              ? countrySelect.selectedOptions[0]
+              : null;
+            const dialCode = selectedCountry?.dataset.dial || '';
+            const rawWhatsapp = String(data.get('whatsapp') || '').trim();
+            const whatsapp = rawWhatsapp.startsWith('+') || !dialCode
+              ? rawWhatsapp
+              : `${dialCode} ${rawWhatsapp.replace(/^0+/, '')}`.trim();
+            data.set('whatsapp', whatsapp);
+            const attachment = data.get('attachment');
+            const attachmentExtension = attachment instanceof File && attachment.name.includes('.')
+              ? attachment.name.slice(attachment.name.lastIndexOf('.')).toLowerCase()
+              : '';
+            const allowedAttachmentExtensions = ['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.jpg', '.jpeg', '.png', '.webp', '.zip'];
+            const emailInput = form.elements.namedItem('email');
+            const countryInput = form.elements.namedItem('country');
+            const messageInput = form.elements.namedItem('message');
+            const lead = {
+              name: String(data.get('name') || '').trim(),
+              email: String(data.get('email') || '').trim(),
+              whatsapp,
+              country: String(data.get('country') || '').trim(),
+              message: String(data.get('message') || '').trim(),
+              product: String(data.get('product') || '').trim(),
+              sourcePage: String(data.get('sourcePage') || '').trim(),
+              sourceTitle: String(data.get('sourceTitle') || '').trim(),
+              source: String(data.get('source') || '').trim(),
+              referrer: String(data.get('referrer') || '').trim(),
+            };
+
+            const invalid = {
+              name: !lead.name,
+              email: emailInput ? !emailPattern.test(lead.email) : false,
+              whatsapp: !lead.whatsapp,
+              country: countryInput ? !lead.country : false,
+              message: messageInput instanceof HTMLTextAreaElement && messageInput.required && !lead.message,
+              attachment: attachment instanceof File
+                && attachment.size > 0
+                && (attachment.size > 8 * 1024 * 1024 || !allowedAttachmentExtensions.includes(attachmentExtension)),
+            };
+            Object.entries(invalid).forEach(([name, show]) => setError(name, show));
+            if (Object.values(invalid).some(Boolean)) return;
+
+            const button = form.querySelector('button[type="submit"]');
+            const status = form.querySelector('[data-lead-status]');
+            const previous = button?.innerHTML || '';
+            button?.setAttribute('disabled', 'true');
+            if (button) button.textContent = '正在发送...';
+            status?.classList.remove('is-error');
+            if (status) status.textContent = '正在发送您的询盘...';
+
+            try {
+              const response = await fetch('/api/contact', {
+                method: 'POST',
+                body: data,
+              });
+              const result = await response.json().catch(() => ({ ok: false, error: '提交失败。' }));
+              if (!response.ok || !(result.ok || result.success)) throw new Error(result.error || '提交失败。');
+              form.dataset.redirecting = 'true';
+              if (status) status.textContent = '询盘已收到，正在跳转...';
+              window.setTimeout(() => {
+                window.location.assign('/thank-you/');
+              }, 700);
+            } catch (error) {
+              if (status) {
+                status.textContent = error instanceof Error ? error.message : '提交失败，请稍后重试。';
+                status.classList.add('is-error');
+              }
+              button?.removeAttribute('disabled');
+              if (button && previous) button.innerHTML = previous;
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
