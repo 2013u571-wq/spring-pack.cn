@@ -1,5 +1,5 @@
 version: 1
-installCommand: npm ci && npm run build:qiniu
+installCommand: npm install --no-audit --no-fund && npm run build:qiniu
 startCommand: npm run start:qiniu
 port: 3000
 healthcheck:
