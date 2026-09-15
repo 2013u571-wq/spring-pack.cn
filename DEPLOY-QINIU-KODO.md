@@ -25,6 +25,7 @@ AccessKey 和 SecretKey 只能保存在 GitHub Secrets，不得写入仓库文�
 ## 手动触发
 
 打开 GitHub 仓库的 **Actions → Deploy to Qiniu Kodo → Run workflow**。
+如必填 Secrets 尚未设置，流水线会完成构建检查并安全跳过上传。
 
 本地验证命令：
 

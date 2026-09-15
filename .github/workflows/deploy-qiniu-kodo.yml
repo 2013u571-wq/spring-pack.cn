@@ -27,7 +27,8 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # npm lockfiles generated on macOS can omit Linux-only optional binaries.
+        run: npm install --package-lock=false
 
       - name: Build static site
         run: npm run build
@@ -43,7 +44,12 @@ jobs:
           fi
 
       - name: Upload dist to Qiniu Kodo
-        run: npm run deploy:qiniu
+        run: |
+          if [ -z "$QINIU_ACCESS_KEY" ] || [ -z "$QINIU_SECRET_KEY" ] || [ -z "$QINIU_BUCKET" ]; then
+            echo "::warning::Qiniu upload skipped. Add QINIU_ACCESS_KEY, QINIU_SECRET_KEY and QINIU_BUCKET as repository secrets, then run this workflow again."
+            exit 0
+          fi
+          npm run deploy:qiniu
         env:
           QINIU_ACCESS_KEY: ${{ secrets.QINIU_ACCESS_KEY }}
           QINIU_SECRET_KEY: ${{ secrets.QINIU_SECRET_KEY }}
