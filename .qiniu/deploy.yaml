@@ -1,6 +1,6 @@
 version: 1
-installCommand: npm ci && npm run build
-startCommand: HOST=0.0.0.0 PORT=3000 npm run start
+installCommand: npm ci && npm run build:qiniu
+startCommand: npm run start:qiniu
 port: 3000
 healthcheck:
   path: /

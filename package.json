@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 4321",
     "build": "astro build",
+    "build:qiniu": "./node_modules/node/bin/node ./node_modules/astro/bin/astro.mjs build",
     "start": "node ./dist/server/entry.mjs",
+    "start:qiniu": "HOST=0.0.0.0 PORT=3000 ./node_modules/node/bin/node ./dist/server/entry.mjs",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "migrate": "node scripts/migrate-wordpress.mjs",
     "alibaba:login": "node scripts/alibaba-login.mjs",
@@ -20,8 +22,9 @@
     "alibaba:product": "node scripts/extract-alibaba-product.mjs"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.4",
-    "astro": "^7.1.2",
+    "@astrojs/node": "11.1.5",
+    "astro": "7.3.2",
+    "node": "22.22.0",
     "sharp": "^0.35.3"
   },
   "devDependencies": {
