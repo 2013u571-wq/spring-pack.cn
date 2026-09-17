@@ -312,6 +312,39 @@ select {
   text-transform: uppercase;
 }
 
+.fm-language-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid rgba(57, 93, 61, 0.22);
+  border-radius: 4px;
+  color: #244c31;
+  font: 800 12px/1 "Space Grotesk", Manrope, sans-serif;
+  letter-spacing: 0.06em;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.fm-language-link svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fm-language-link:hover,
+.fm-language-link:focus-visible {
+  border-color: rgba(30, 107, 58, 0.48);
+  background: rgba(30, 107, 58, 0.06);
+  color: var(--fm-green);
+}
+
 .fm-mobile-toggle {
   display: none;
   width: 42px;
@@ -4885,7 +4918,19 @@ select {
 
   .fm-mobile-toggle {
     display: inline-flex;
+    margin-left: 0;
+  }
+
+  .fm-language-link {
+    width: 42px;
+    height: 42px;
+    min-height: 42px;
     margin-left: auto;
+    padding: 0;
+  }
+
+  .fm-language-link span {
+    display: none;
   }
 
   .fm-mobile-drawer {
@@ -5487,8 +5532,7 @@ select {
   }
 
   .elementor-31 .hero-mask {
-    background:
-      linear-gradient(180deg, rgba(247, 249, 247, 0.68) 0%, rgba(247, 249, 247, 0.44) 48%, rgba(247, 249, 247, 0.30) 100%) !important;
+    background: none !important;
   }
 
   .elementor-31 .hero-spec {

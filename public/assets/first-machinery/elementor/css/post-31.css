@@ -395,10 +395,14 @@
     min-height:80vh;
     max-height:none;
     padding-top:0;
+    background-image:url("/assets/first-machinery/2026/09/homepage-mobile-hero-bottling-line.webp");
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
   }
 
   .elementor-31 .elementor-element.elementor-element-0f99466 .hero-video{
-    object-position:center center;
+    display:none;
   }
 
   .elementor-31 .elementor-element.elementor-element-0f99466 .hero-panel{
@@ -407,18 +411,14 @@
     justify-content:flex-start;
     background:linear-gradient(
       to bottom,
-      rgba(255,255,255,.97),
-      rgba(255,255,255,.92) 60%,
-      rgba(255,255,255,.10) 100%
+      rgba(255,255,255,.90),
+      rgba(255,255,255,.68) 58%,
+      rgba(255,255,255,.02) 100%
     );
   }
 
   .elementor-31 .elementor-element.elementor-element-0f99466 .hero-mask{
-    background:linear-gradient(
-      to bottom,
-      rgba(10,26,14,0),
-      rgba(10,26,14,.75)
-    );
+    background:none;
   }
 
   .elementor-31 .elementor-element.elementor-element-0f99466 .hero-kicker{
