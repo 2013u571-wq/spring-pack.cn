@@ -336,6 +336,8 @@ if (item.title === '灌装机') {
 
 if (item.slug === '') {
   content = content
+    .replace('href="#contact" class="btn-primary">\u83b7\u53d6\u4ea7\u7ebf\u65b9\u6848', 'href="/contact/?source=home-hero" class="btn-primary">\u83b7\u53d6\u4ea7\u7ebf\u65b9\u6848')
+    .replace(/\s*<a href="#solutions" class="btn-outline">\u25b6 \u89c2\u770b\u89c6\u9891<\/a>/, '')
     .replace(/<section class="section process-section" id="process">[\s\S]*?<\/section>/, homeProjectDeliverySection)
     .replace(/<section class="section projects-section" id="projects">[\s\S]*?<\/section>/, homeProjectCasesSection)
     .replaceAll('产线s For<br>Your Industry.', '为您的行业<br>定制产线')
